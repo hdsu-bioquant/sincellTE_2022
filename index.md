@@ -20,7 +20,9 @@ The course will run over 2 days (Wednesday, 16.06 and Thursday, 17.06) from 10 a
 In this two-day course, we want to give you an **introduction to working with R in simple data analysis tasks**; you will learn the basic principles of reading in a data table, doing some descriptive statistics, making nice plots.
 On the second day, we will focus on a simple single-cell analysis workflow, which will guide you through the first steps of this kind of analysi!
 
- While we will start at a very basic level, we would strongly encourage **absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
+### IMPORTANT NOTE! 
+
+ While we will start at a very basic level, we would **strongly encourage absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
  We will send you a link so that you can freely register to DataCamp and follow this course. 
 
 ********
