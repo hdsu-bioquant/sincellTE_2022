@@ -25,7 +25,7 @@ View(String1)
 ```
 This is one of many ways to use the console. If instead you want to write a code that you will need again or can change you use the Source to write a **R  script** which you can save and use again.
 
-## 1.2 The Source
+## 1.2 The source
 
 The source is the panel in which you can write commands as an **R script**. An **R script** is a text file containing R commands (similar to the commands you would type in the console), but which are stored so that they can be executed again several times. 
 
@@ -101,6 +101,8 @@ class(myName)
 ```
 
 </details>
+
+<p></p>
 
 ### Exercise 1.2: more sophisticated data types
 
