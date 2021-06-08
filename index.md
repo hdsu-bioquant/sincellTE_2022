@@ -3,7 +3,8 @@
 ![circos](./circos.png)
 
 Welcome to the **IRTG Course - Introduction to R** This workshop is meant for individuals with little previous knowledge R. 
-The course will run over 2 days (Wednesday, 16.06 and Thursday, 17.06) from 10 am - 12.30 pm and 1.30 pm - 5.30 pm.
+
+The course will run over 2 days **(Wednesday, 16.06 and Thursday, 17.06)** from 10 am - 12.30 pm and 1.30 pm - 5.30 pm.
 
 
 ******
@@ -32,7 +33,7 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
 
-1. Getting started with RStudio
+1. [Getting started with RStudio](./1_rstudio.md)
 2. Reading in a data table
 3. Simple descriptive statistics
 4. Performing statistical tests
