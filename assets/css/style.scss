@@ -207,6 +207,15 @@ footer {
   }
 }
 
+details {
+  border-left: 6px solid #629bce;
+  margin: 0 0 10px;
+  padding: 5px 0 2px 20px;
+  background-color: #ebeefd;
+  color: #3267aa;
+  font-style: normal;
+}
+
 @media print, screen and (max-width: 720px) {
   body {
     word-wrap:break-word;
