@@ -38,6 +38,7 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
 
+0. [Goals of Day 1](./00_Objectives.md)
 1. [Getting started with RStudio](./01_rstudio.md)
 2. [Reading in a data table](./02_dataframe.md)
 3. [Cleaning the dataset](./03_cleanup.md)
