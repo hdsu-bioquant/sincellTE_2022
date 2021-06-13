@@ -33,11 +33,11 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
 
-1. [Getting started with RStudio](./1_rstudio.md)
-2. Reading in a data table
-3. Simple descriptive statistics
-4. Performing statistical tests
-4. Making plots!
+1. [Getting started with RStudio](./01_rstudio.md)
+2. [Reading in a data table](./02_dataframe.md)
+3. [Cleaning the dataset](./03_cleanup.md)
+4. [Making plots](./04_plotting.md)
+5. [Statistical tests](./05_test.md)
                                                    
 
 ### Day 2: a simple single-cell RNA-seq analysis workflow
