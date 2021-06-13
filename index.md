@@ -31,6 +31,17 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 ### Day 1: General introduction - (almost) first steps in R!                                        
 
+
+<important>
+Please make sure to install the following R packages prior to the start of the course:
+ * tidyverse
+ * RColorBrewer
+ * pheatmap
+ * vioplot
+
+ </important>
+
+
 On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
 
 1. [Getting started with RStudio](./01_rstudio.md)

@@ -1,4 +1,4 @@
 theme: jekyll-theme-minimal
 markdown: GFM
 title: IRTG Course
-description: <h3>Introduction to R for genomics</h3>  16-17 June 2021
+description: <h3>Introduction to R for genomics</h3>  <figure><img src="./circos.png"></figure>16-17 June 2021

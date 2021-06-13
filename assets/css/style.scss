@@ -216,6 +216,17 @@ details {
   font-style: normal;
 }
 
+important {
+  border-left: 6px solid #c23b3b;
+  margin: 0 0 10px;
+  padding: 5px 0 2px 20px;
+  background-color: #e4bcc0;
+  color: #aa3242;
+  font-style: normal;
+}
+
+
+
 @media print, screen and (max-width: 720px) {
   body {
     word-wrap:break-word;

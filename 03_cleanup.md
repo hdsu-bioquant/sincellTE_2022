@@ -39,7 +39,7 @@ Lets do some clean up of our own diabetes data --
 3. We will also remove the column `time.ppn` which will not be required in our analysis
 4. We will reorder the columns of the data such that all the qualitative and quantitative values are separated. Among the quantitative values we will keep related variables together
 
-## Setting row names
+## 3.1 Setting row names
 
 As it is, our data frame has no row names (check by running `rownames(dat)`); however, it might be interesting to have row names.
 
@@ -67,7 +67,7 @@ We could extend the pipe principle and chain several commands!
 </details>
 <p></p>
 
-## Reordering columns
+## 3.2 Reordering columns
 
 Now, we want to reorder the columns so that all numerical columns come first, and the other columns after:
 
