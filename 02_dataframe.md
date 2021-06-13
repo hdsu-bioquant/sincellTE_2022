@@ -1,16 +1,3 @@
----
-title: "IRTG Course - Introduction to R for Genomics"
-author: "Carl Herrmann & Carlos Ramirez"
-date: "2021-06-11"
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 2. First steps in the analysis of a data matrix
 
 ## 2.1 reading in the data!

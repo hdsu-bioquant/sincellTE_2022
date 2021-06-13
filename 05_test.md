@@ -1,14 +1,3 @@
----
-title: "IRTG Course - Introduction to R for Genomics"
-author: "Carl Herrmann & Carlos Ramirez"
-date: "2021-06-13"
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
 # 5. Statistical tests
 
 We have so far performed an **exploratory** or **descriptive** analysis of the data. This is the first important step! 

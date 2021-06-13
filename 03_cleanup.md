@@ -1,16 +1,3 @@
----
-title: "IRTG Course - Introduction to R for Genomics"
-author: "Carl Herrmann & Carlos Ramirez"
-date: "2021-06-12"
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 3. Data filtering and cleanup
 
 Very often the first thing one needs to do before any data science project is to clean up the raw data and transform it into a format that is readily understood and easy to use for all downstream analysis. This process usually involves:

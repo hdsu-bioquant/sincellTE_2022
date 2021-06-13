@@ -1,16 +1,3 @@
----
-title: "IRTG Course - Introduction to R for Genomics"
-author: "Carl Herrmann & Carlos Ramirez"
-date: "2021-06-12"
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 4. Plotting data
 
 To plot data with R, we can use two strategies
