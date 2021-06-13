@@ -29,11 +29,12 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 ********
 ## Practical parts
 
-### Day 1: General introduction - (almost) first steps in R!                                        
-
 
 **You need to install a couple of R packages; you can download the 
 [following script](./install_packages.R). Load it into RStudio, and then hit the *Run* button at the top to execute it. It should run smoothly!**
+
+
+### Day 1: General introduction - (almost) first steps in R!                                        
 
 
 On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
