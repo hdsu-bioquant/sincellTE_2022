@@ -499,7 +499,9 @@ dat.nona$frame = factor(dat.nona$frame, levels = c("small", "medium", "large")) 
 Notice that in the last command, we also indicated in which order the levels should be considered. Since we have ordinal data here (there is a clear order between small/medium/large), we should indicate this order here. Otherwise, the levels are ordered by alphabetical order!
 
 </details> 
+
 ----
+
 <p></p>
 
 Let's inspect our cleaned dataset again:
