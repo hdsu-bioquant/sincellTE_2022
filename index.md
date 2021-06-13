@@ -34,11 +34,11 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 <important>
 Please make sure to install the following R packages prior to the start of the course:
+
  * tidyverse
  * RColorBrewer
  * pheatmap
  * vioplot
-
  </important>
 
 
