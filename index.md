@@ -33,12 +33,7 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 
 <important>
-Please make sure to install the following R packages prior to the start of the course:
-
- * tidyverse
- * RColorBrewer
- * pheatmap
- * vioplot
+You need to install a couple of R packages; you can download the [following script](./install_packages.R). Load it into RStudio, and then hit the *Run* button at the top to execute it. It should run smoothly!
  </important>
 
 
