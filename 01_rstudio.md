@@ -1,8 +1,18 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+
+
+
+
 # 1. First steps in RStudio and R
 
 R is a powerful programming language for the analysis of data. It is recommended that you take the introductory classes for R in DataCamp to get to know this language before you start coding here. In this course you will learn to use RStudio, a software that allows you to use R in a very user-friendly way. When you open RStudio you can see the console on the left side of your screen. The console is one of the two panes you can write you code in. Let's find out more about them.
 
-## 1.1 - the console panel
+## 1.1  the console panel
 
 The console is where you type commands that you want to execute immediately and don't need to save. For example, if you want to import a dataset or visualize a matrix you can type the respective commands in. To execute those commands press enter. Here a few examples of code you can type in.
 
@@ -25,7 +35,7 @@ View(String1)
 ```
 This is one of many ways to use the console. If instead you want to write a code that you will need again or can change you use the Source to write a **R  script** which you can save and use again.
 
-## 1.2 - the source panel
+## 1.2  the source panel
 
 The source is the panel in which you can write commands as an **R script**. An **R script** is a text file containing R commands (similar to the commands you would type in the console), but which are stored so that they can be executed again several times. 
 

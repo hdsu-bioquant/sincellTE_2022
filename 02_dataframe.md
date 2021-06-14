@@ -1,3 +1,13 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+
+
+
+
 # 2. First steps in the analysis of a data matrix
 
 ## 2.1 reading in the data!
@@ -8,9 +18,8 @@ In this section, we will learn how to read in such a table, and start doing some
 
 The diabetes dataset, which we will be using throughout this practical will be downloaded from an online repository. We will load that into R and have a sneak peek into how it looks like with the console. In the following you will see several functions that give us information about our dataset. You will also see how the "$" sign is used to access specific columns of out dataframe. 
 
-Depending on the format of the input file, there are two possibilities to read the file:
 
-1. If your data file is in the form of a text file,, with tab delimited columns (typically with the ending `.tsv` or `.csv`), you can use the following command to read the data file:
+If your data file is in the form of a text file, with tab delimited columns (typically with the ending `.tsv` or `.csv`), you can use the following command to read the data file 
 
 
 ```r
@@ -43,10 +52,12 @@ head(dat, 10)  # Look at the first 10 lines of the table
 10  small   108    72    NA    NA    45  50      240
 ```
 
-Note that we indicated here a url to a remote file! If you have instead a local file stored on your computer, indicate the path to this file instead of the url!
+**Note that we indicated here a url to a remote file! If you have instead a local file stored on your computer, indicate the path to this file instead of the url!**
 
+<detail>
+<summary><b>What if I have an Excel sheet to read in?</b></summary>
 
-2. If on the other hand the file is an Excel file, then you can use a specific library containing a command to read in Excel formated files.
+If on the other hand the file is an Excel file, then you can use a specific library containing a command to read in Excel formated files.
 
 However, we cannot indicate a URL in the function; so we first need to download the file to a local folder, and then read the file from this local storage.
 
@@ -59,9 +70,18 @@ However, we cannot indicate a URL in the function; so we first need to download 
 # we need to load the library xlsx first
 library("xlsx")
 # here, replace the path with the path to the file!
-dat = read.xlsx("~/Dropbox/IRTG2021/data/diabetes_full.xlsx", 1, stringsAsFactors = FALSE)
+dat.xls = read.xlsx("~/Dropbox/IRTG2021/data/diabetes_full.xlsx", 1, stringsAsFactors = FALSE)
 ```
 
+However, the `read.xlsx` function might sometimes not recognize the data type of the columns correctly,  and e.g. interpret a column of numerical values as strings...
+
+An alternative could there for be:
+
+1. read in your excel sheet in the Excel program
+2. use "save as..." to export the sheet in tab-separated format
+3. read in using the `read.table` function
+</detail>
+<p></p>
 
 ## 2.2 explore and understand our dataset
 
@@ -212,9 +232,11 @@ dat[1:3, ]  # Returns the first three lines
 dat[, 1:3]  # Returns the first three columns
 dat[1:3, 1:3]  # Returns the first three elements of the first three lines
 
-# Returning a value or an interval of values in a vector
-dat$age[1]  # Returns the first value
-dat$age[1:3]  # Returns the first three values
+# If your data frame has column names, you can use this to extract a column
+dat$age  # Returns the column age
+
+# BEWARE!! This last method DOES NOT WORK for matrices (even if they have column
+# names...)
 ```
 
 

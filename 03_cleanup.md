@@ -1,3 +1,13 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+
+
+
+
 # 3. Data filtering and cleanup
 
 Very often the first thing one needs to do before any data science project is to clean up the raw data and transform it into a format that is readily understood and easy to use for all downstream analysis. This process usually involves:
@@ -32,12 +42,7 @@ dat = read.delim("https://tinyurl.com/ex9hxvvr", stringsAsFactors = FALSE)
 ```
 
 
-Lets do some clean up of our own diabetes data --
-
-1. We will make the `id` column the row names for the dataset. 
-2. We will remove the `bp.2s` and `bp.2d` columns as it has mostly missing values (remember the output of the `summary` function in part 1? If not, run it again...)
-3. We will also remove the column `time.ppn` which will not be required in our analysis
-4. We will reorder the columns of the data such that all the qualitative and quantitative values are separated. Among the quantitative values we will keep related variables together
+Lets do some clean up of our own diabetes data!
 
 ## 3.1 Setting row names
 
@@ -67,7 +72,47 @@ We could extend the pipe principle and chain several commands!
 </details>
 <p></p>
 
-## 3.2 Reordering columns
+## 3.2 Adding new columns
+
+Very often, we want to add new columns to an existing data frame! For example, we could add a column names `ageMont` in which we compute the age in month instead of year.
+
+This can be done with the function `mutate()` from the `dplyr` package:
+
+
+
+```r
+dat.clean = dat.clean %>% mutate(ageMonth = age * 12)
+head(dat.clean)
+```
+
+```
+  chol stab.glu hdl ratio glyhb   location age gender height weight  frame
+1  203       82  56   3.6  4.31 Buckingham  46 female     62    121 medium
+2  165       97  24   6.9  4.44 Buckingham  29 female     64    218  large
+3  228       92  37   6.2  4.64 Buckingham  58 female     61    256  large
+4   78       93  12   6.5  4.63 Buckingham  67   male     67    119  large
+5  249       90  28   8.9  7.72 Buckingham  64   male     68    183 medium
+6  248       94  69   3.6  4.81 Buckingham  34   male     71    190  large
+  bp.1s bp.1d bp.2s bp.2d waist hip time.ppn ageMonth
+1   118    59    NA    NA    29  38      720      552
+2   112    68    NA    NA    46  48      360      348
+3   190    92   185    92    49  57      180      696
+4   110    50    NA    NA    33  38      480      804
+5   138    80    NA    NA    44  41      300      768
+6   132    86    NA    NA    36  42      195      408
+```
+
+See what changed? We could also have more complex formula in the `mutate()` function, involving, for example, several columns!
+
+As the newly created column is not really informative, we can remove it with the `select()` function. This function selects some specific columns. If we however append the "-" sign, it will select all column BUT the ones specified!
+
+
+```r
+dat.clean = dat.clean %>% select(-ageMonth)
+```
+
+
+## 3.3 Reordering columns
 
 Now, we want to reorder the columns so that all numerical columns come first, and the other columns after:
 
@@ -79,20 +124,20 @@ head(dat.clean)
 ```
 
 ```
-     chol stab.glu hdl ratio glyhb   location age gender height weight  frame
-1000  203       82  56   3.6  4.31 Buckingham  46 female     62    121 medium
-1001  165       97  24   6.9  4.44 Buckingham  29 female     64    218  large
-1002  228       92  37   6.2  4.64 Buckingham  58 female     61    256  large
-1003   78       93  12   6.5  4.63 Buckingham  67   male     67    119  large
-1005  249       90  28   8.9  7.72 Buckingham  64   male     68    183 medium
-1008  248       94  69   3.6  4.81 Buckingham  34   male     71    190  large
-     bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
-1000   118    59    NA    NA    29  38      720
-1001   112    68    NA    NA    46  48      360
-1002   190    92   185    92    49  57      180
-1003   110    50    NA    NA    33  38      480
-1005   138    80    NA    NA    44  41      300
-1008   132    86    NA    NA    36  42      195
+  chol stab.glu hdl ratio glyhb   location age gender height weight  frame
+1  203       82  56   3.6  4.31 Buckingham  46 female     62    121 medium
+2  165       97  24   6.9  4.44 Buckingham  29 female     64    218  large
+3  228       92  37   6.2  4.64 Buckingham  58 female     61    256  large
+4   78       93  12   6.5  4.63 Buckingham  67   male     67    119  large
+5  249       90  28   8.9  7.72 Buckingham  64   male     68    183 medium
+6  248       94  69   3.6  4.81 Buckingham  34   male     71    190  large
+  bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
+1   118    59    NA    NA    29  38      720
+2   112    68    NA    NA    46  48      360
+3   190    92   185    92    49  57      180
+4   110    50    NA    NA    33  38      480
+5   138    80    NA    NA    44  41      300
+6   132    86    NA    NA    36  42      195
 ```
 
 Notice the order of the columns!
@@ -104,30 +149,30 @@ dat.clean %>% relocate(gender)
 ```
 
 ```
-     gender chol stab.glu hdl ratio glyhb   location age height weight  frame
-1000 female  203       82  56   3.6  4.31 Buckingham  46     62    121 medium
-1001 female  165       97  24   6.9  4.44 Buckingham  29     64    218  large
-1002 female  228       92  37   6.2  4.64 Buckingham  58     61    256  large
-1003   male   78       93  12   6.5  4.63 Buckingham  67     67    119  large
-1005   male  249       90  28   8.9  7.72 Buckingham  64     68    183 medium
-1008   male  248       94  69   3.6  4.81 Buckingham  34     71    190  large
-1011   male  195       92  41   4.8  4.84 Buckingham  30     69    191 medium
-1015   male  227       75  44   5.2  3.94 Buckingham  37     59    170 medium
-1016   male  177       87  49   3.6  4.84 Buckingham  45     69    166  large
-1022 female  263       89  40   6.6  5.78 Buckingham  55     63    202  small
-1024 female  242       82  54   4.5  4.77     Louisa  60     65    156 medium
-     bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
-1000   118    59    NA    NA    29  38      720
-1001   112    68    NA    NA    46  48      360
-1002   190    92   185    92    49  57      180
-1003   110    50    NA    NA    33  38      480
-1005   138    80    NA    NA    44  41      300
-1008   132    86    NA    NA    36  42      195
-1011   161   112   161   112    46  49      720
-1015    NA    NA    NA    NA    34  39     1020
-1016   160    80   128    86    34  40      300
-1022   108    72    NA    NA    45  50      240
-1024   130    90   130    90    39  45      300
+   gender chol stab.glu hdl ratio glyhb   location age height weight  frame
+1  female  203       82  56   3.6  4.31 Buckingham  46     62    121 medium
+2  female  165       97  24   6.9  4.44 Buckingham  29     64    218  large
+3  female  228       92  37   6.2  4.64 Buckingham  58     61    256  large
+4    male   78       93  12   6.5  4.63 Buckingham  67     67    119  large
+5    male  249       90  28   8.9  7.72 Buckingham  64     68    183 medium
+6    male  248       94  69   3.6  4.81 Buckingham  34     71    190  large
+7    male  195       92  41   4.8  4.84 Buckingham  30     69    191 medium
+8    male  227       75  44   5.2  3.94 Buckingham  37     59    170 medium
+9    male  177       87  49   3.6  4.84 Buckingham  45     69    166  large
+10 female  263       89  40   6.6  5.78 Buckingham  55     63    202  small
+11 female  242       82  54   4.5  4.77     Louisa  60     65    156 medium
+   bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
+1    118    59    NA    NA    29  38      720
+2    112    68    NA    NA    46  48      360
+3    190    92   185    92    49  57      180
+4    110    50    NA    NA    33  38      480
+5    138    80    NA    NA    44  41      300
+6    132    86    NA    NA    36  42      195
+7    161   112   161   112    46  49      720
+8     NA    NA    NA    NA    34  39     1020
+9    160    80   128    86    34  40      300
+10   108    72    NA    NA    45  50      240
+11   130    90   130    90    39  45      300
  [ reached 'max' / getOption("max.print") -- omitted 392 rows ]
 ```
 
@@ -139,30 +184,30 @@ dat.clean %>% relocate(gender, .before = age)
 ```
 
 ```
-     chol stab.glu hdl ratio glyhb   location gender age height weight  frame
-1000  203       82  56   3.6  4.31 Buckingham female  46     62    121 medium
-1001  165       97  24   6.9  4.44 Buckingham female  29     64    218  large
-1002  228       92  37   6.2  4.64 Buckingham female  58     61    256  large
-1003   78       93  12   6.5  4.63 Buckingham   male  67     67    119  large
-1005  249       90  28   8.9  7.72 Buckingham   male  64     68    183 medium
-1008  248       94  69   3.6  4.81 Buckingham   male  34     71    190  large
-1011  195       92  41   4.8  4.84 Buckingham   male  30     69    191 medium
-1015  227       75  44   5.2  3.94 Buckingham   male  37     59    170 medium
-1016  177       87  49   3.6  4.84 Buckingham   male  45     69    166  large
-1022  263       89  40   6.6  5.78 Buckingham female  55     63    202  small
-1024  242       82  54   4.5  4.77     Louisa female  60     65    156 medium
-     bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
-1000   118    59    NA    NA    29  38      720
-1001   112    68    NA    NA    46  48      360
-1002   190    92   185    92    49  57      180
-1003   110    50    NA    NA    33  38      480
-1005   138    80    NA    NA    44  41      300
-1008   132    86    NA    NA    36  42      195
-1011   161   112   161   112    46  49      720
-1015    NA    NA    NA    NA    34  39     1020
-1016   160    80   128    86    34  40      300
-1022   108    72    NA    NA    45  50      240
-1024   130    90   130    90    39  45      300
+   chol stab.glu hdl ratio glyhb   location gender age height weight  frame
+1   203       82  56   3.6  4.31 Buckingham female  46     62    121 medium
+2   165       97  24   6.9  4.44 Buckingham female  29     64    218  large
+3   228       92  37   6.2  4.64 Buckingham female  58     61    256  large
+4    78       93  12   6.5  4.63 Buckingham   male  67     67    119  large
+5   249       90  28   8.9  7.72 Buckingham   male  64     68    183 medium
+6   248       94  69   3.6  4.81 Buckingham   male  34     71    190  large
+7   195       92  41   4.8  4.84 Buckingham   male  30     69    191 medium
+8   227       75  44   5.2  3.94 Buckingham   male  37     59    170 medium
+9   177       87  49   3.6  4.84 Buckingham   male  45     69    166  large
+10  263       89  40   6.6  5.78 Buckingham female  55     63    202  small
+11  242       82  54   4.5  4.77     Louisa female  60     65    156 medium
+   bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
+1    118    59    NA    NA    29  38      720
+2    112    68    NA    NA    46  48      360
+3    190    92   185    92    49  57      180
+4    110    50    NA    NA    33  38      480
+5    138    80    NA    NA    44  41      300
+6    132    86    NA    NA    36  42      195
+7    161   112   161   112    46  49      720
+8     NA    NA    NA    NA    34  39     1020
+9    160    80   128    86    34  40      300
+10   108    72    NA    NA    45  50      240
+11   130    90   130    90    39  45      300
  [ reached 'max' / getOption("max.print") -- omitted 392 rows ]
 ```
 
@@ -175,20 +220,20 @@ head(dat.clean)
 ```
 
 ```
-     chol stab.glu hdl ratio glyhb age height weight bp.1s bp.1d bp.2s bp.2d
-1000  203       82  56   3.6  4.31  46     62    121   118    59    NA    NA
-1001  165       97  24   6.9  4.44  29     64    218   112    68    NA    NA
-1002  228       92  37   6.2  4.64  58     61    256   190    92   185    92
-1003   78       93  12   6.5  4.63  67     67    119   110    50    NA    NA
-1005  249       90  28   8.9  7.72  64     68    183   138    80    NA    NA
-1008  248       94  69   3.6  4.81  34     71    190   132    86    NA    NA
-     waist hip time.ppn   location gender  frame
-1000    29  38      720 Buckingham female medium
-1001    46  48      360 Buckingham female  large
-1002    49  57      180 Buckingham female  large
-1003    33  38      480 Buckingham   male  large
-1005    44  41      300 Buckingham   male medium
-1008    36  42      195 Buckingham   male  large
+  chol stab.glu hdl ratio glyhb age height weight bp.1s bp.1d bp.2s bp.2d waist
+1  203       82  56   3.6  4.31  46     62    121   118    59    NA    NA    29
+2  165       97  24   6.9  4.44  29     64    218   112    68    NA    NA    46
+3  228       92  37   6.2  4.64  58     61    256   190    92   185    92    49
+4   78       93  12   6.5  4.63  67     67    119   110    50    NA    NA    33
+5  249       90  28   8.9  7.72  64     68    183   138    80    NA    NA    44
+6  248       94  69   3.6  4.81  34     71    190   132    86    NA    NA    36
+  hip time.ppn   location gender  frame
+1  38      720 Buckingham female medium
+2  48      360 Buckingham female  large
+3  57      180 Buckingham female  large
+4  38      480 Buckingham   male  large
+5  41      300 Buckingham   male medium
+6  42      195 Buckingham   male  large
 ```
 
 
@@ -203,30 +248,30 @@ dat.clean %>% relocate(where(is.character))
 ```
 
 ```
-       location gender  frame chol stab.glu hdl ratio glyhb age height weight
-1000 Buckingham female medium  203       82  56   3.6  4.31  46     62    121
-1001 Buckingham female  large  165       97  24   6.9  4.44  29     64    218
-1002 Buckingham female  large  228       92  37   6.2  4.64  58     61    256
-1003 Buckingham   male  large   78       93  12   6.5  4.63  67     67    119
-1005 Buckingham   male medium  249       90  28   8.9  7.72  64     68    183
-1008 Buckingham   male  large  248       94  69   3.6  4.81  34     71    190
-1011 Buckingham   male medium  195       92  41   4.8  4.84  30     69    191
-1015 Buckingham   male medium  227       75  44   5.2  3.94  37     59    170
-1016 Buckingham   male  large  177       87  49   3.6  4.84  45     69    166
-1022 Buckingham female  small  263       89  40   6.6  5.78  55     63    202
-1024     Louisa female medium  242       82  54   4.5  4.77  60     65    156
-     bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
-1000   118    59    NA    NA    29  38      720
-1001   112    68    NA    NA    46  48      360
-1002   190    92   185    92    49  57      180
-1003   110    50    NA    NA    33  38      480
-1005   138    80    NA    NA    44  41      300
-1008   132    86    NA    NA    36  42      195
-1011   161   112   161   112    46  49      720
-1015    NA    NA    NA    NA    34  39     1020
-1016   160    80   128    86    34  40      300
-1022   108    72    NA    NA    45  50      240
-1024   130    90   130    90    39  45      300
+     location gender  frame chol stab.glu hdl ratio glyhb age height weight
+1  Buckingham female medium  203       82  56   3.6  4.31  46     62    121
+2  Buckingham female  large  165       97  24   6.9  4.44  29     64    218
+3  Buckingham female  large  228       92  37   6.2  4.64  58     61    256
+4  Buckingham   male  large   78       93  12   6.5  4.63  67     67    119
+5  Buckingham   male medium  249       90  28   8.9  7.72  64     68    183
+6  Buckingham   male  large  248       94  69   3.6  4.81  34     71    190
+7  Buckingham   male medium  195       92  41   4.8  4.84  30     69    191
+8  Buckingham   male medium  227       75  44   5.2  3.94  37     59    170
+9  Buckingham   male  large  177       87  49   3.6  4.84  45     69    166
+10 Buckingham female  small  263       89  40   6.6  5.78  55     63    202
+11     Louisa female medium  242       82  54   4.5  4.77  60     65    156
+   bp.1s bp.1d bp.2s bp.2d waist hip time.ppn
+1    118    59    NA    NA    29  38      720
+2    112    68    NA    NA    46  48      360
+3    190    92   185    92    49  57      180
+4    110    50    NA    NA    33  38      480
+5    138    80    NA    NA    44  41      300
+6    132    86    NA    NA    36  42      195
+7    161   112   161   112    46  49      720
+8     NA    NA    NA    NA    34  39     1020
+9    160    80   128    86    34  40      300
+10   108    72    NA    NA    45  50      240
+11   130    90   130    90    39  45      300
  [ reached 'max' / getOption("max.print") -- omitted 392 rows ]
 ```
 
@@ -285,7 +330,8 @@ summary(dat.clean)
 The ordering and selection of columns looks right, however it seems that there are certain rows that have missing values (note which columns seem problematic!). 
 We will now deal with the missing values.
 
-## Dealing with NAs
+
+## 3.4 Dealing with NAs
 
 Some columns and rows contain missing values, which are encoded by `NA` in the data frame. Missing values, especially if there are many can be an issue, as it will bias the results.
 Dealing with missing values is a chapter in itself! Basically, there can be two strategies:
@@ -299,9 +345,6 @@ Dealing with missing values is a chapter in itself! Basically, there can be two 
 But you could also remove variables (i.e. columns) with a  lot of missing values!
   
 Let's implement some of these strategies:
-
-Before we do so, let's have a look at the `is.na` function
-
 
 ### Strategy 1: removing all rows which have **any** missing values:
 
@@ -338,20 +381,20 @@ head(dat.clean)
 ```
 
 ```
-     chol stab.glu hdl ratio glyhb age height weight bp.1s bp.1d waist hip
-1000  203       82  56   3.6  4.31  46     62    121   118    59    29  38
-1001  165       97  24   6.9  4.44  29     64    218   112    68    46  48
-1002  228       92  37   6.2  4.64  58     61    256   190    92    49  57
-1003   78       93  12   6.5  4.63  67     67    119   110    50    33  38
-1005  249       90  28   8.9  7.72  64     68    183   138    80    44  41
-1008  248       94  69   3.6  4.81  34     71    190   132    86    36  42
-     time.ppn   location gender  frame
-1000      720 Buckingham female medium
-1001      360 Buckingham female  large
-1002      180 Buckingham female  large
-1003      480 Buckingham   male  large
-1005      300 Buckingham   male medium
-1008      195 Buckingham   male  large
+  chol stab.glu hdl ratio glyhb age height weight bp.1s bp.1d waist hip
+1  203       82  56   3.6  4.31  46     62    121   118    59    29  38
+2  165       97  24   6.9  4.44  29     64    218   112    68    46  48
+3  228       92  37   6.2  4.64  58     61    256   190    92    49  57
+4   78       93  12   6.5  4.63  67     67    119   110    50    33  38
+5  249       90  28   8.9  7.72  64     68    183   138    80    44  41
+6  248       94  69   3.6  4.81  34     71    190   132    86    36  42
+  time.ppn   location gender  frame
+1      720 Buckingham female medium
+2      360 Buckingham female  large
+3      180 Buckingham female  large
+4      480 Buckingham   male  large
+5      300 Buckingham   male medium
+6      195 Buckingham   male  large
 ```
 
 We can now remove the rows with missing values:
@@ -368,94 +411,11 @@ dim(dat.nona)
 
 See? We have lost much less rows (or patients) here...
 
-### strategy 3: remove rows which have more than a certain number of missing values
-
-If you have many columns, it might be critical to remove rows with missing values in any column. Image a gene expression matrix with thousands of samples in columns: the likelihood that one gene might have a missing value in at least one of the samples is high!
-
-Let's say that we want to remove rows which have more than 2 missing values (i.e. 3 or more); let's detail the procedure:
-
-  + step 1: we need to determine the number of missing values in each row.
-
-
-```r
-dat.isna = is.na(dat.clean)
-head(dat.isna)
-```
-
-```
-      chol stab.glu   hdl ratio glyhb   age height weight bp.1s bp.1d waist
-1000 FALSE    FALSE FALSE FALSE FALSE FALSE  FALSE  FALSE FALSE FALSE FALSE
-1001 FALSE    FALSE FALSE FALSE FALSE FALSE  FALSE  FALSE FALSE FALSE FALSE
-1002 FALSE    FALSE FALSE FALSE FALSE FALSE  FALSE  FALSE FALSE FALSE FALSE
-1003 FALSE    FALSE FALSE FALSE FALSE FALSE  FALSE  FALSE FALSE FALSE FALSE
-1005 FALSE    FALSE FALSE FALSE FALSE FALSE  FALSE  FALSE FALSE FALSE FALSE
-1008 FALSE    FALSE FALSE FALSE FALSE FALSE  FALSE  FALSE FALSE FALSE FALSE
-       hip time.ppn location gender frame
-1000 FALSE    FALSE    FALSE  FALSE FALSE
-1001 FALSE    FALSE    FALSE  FALSE FALSE
-1002 FALSE    FALSE    FALSE  FALSE FALSE
-1003 FALSE    FALSE    FALSE  FALSE FALSE
-1005 FALSE    FALSE    FALSE  FALSE FALSE
-1008 FALSE    FALSE    FALSE  FALSE FALSE
-```
-
-> What just happened? Do you understand how the function `is.na` works?
-
-  + step 2: We now count the number of missing values in each row; we will sum up the number of `TRUE` in each row:
-
-
-
-```r
-nbr.na = rowSums(dat.isna)
-head(nbr.na)
-```
-
-```
-1000 1001 1002 1003 1005 1008 
-   0    0    0    0    0    0 
-```
-
-  + step 3: We now use the `filter` function, which allows to filter rows according to certain criteria:
-  
-
-```r
-dat.nona = dat.clean %>% filter(nbr.na < 3)
-```
-  
-> How big is the `dat.nona` matrix?
-> How many patients would you have kept if you had accept at most one missing value?
-
-<details>
-<summary><b>Click for solution!</b></summary> 
-
-
-```r
-dim(dat.nona)
-```
-
-```
-[1] 400  16
-```
-
-
-```r
-dim(dat.clean %>% filter(nbr.na < 2))
-```
-
-```
-[1] 393  16
-```
-</details> 
 
 Let's continue with the cleaned matrix obtained with strategy 2:
 
 
-
-```r
-dat.nona = dat.clean %>% drop_na()
-```
-
-## Converting strings into factors
+## 3.5 Converting strings into factors
 
 Factors is a data type besides `numeric`, `characters` (or strings) `boolean`. It is very similar to the string type, but introduces the notion of **levels**, which indicates which categories are represented. Let's see an example:
 
@@ -488,7 +448,6 @@ See the difference?
 > Convert the `gender` and `frame` columns into factors!
 
 
-----
 <details>
 <summary><b>Click for solution!</b></summary> 
 
@@ -499,9 +458,6 @@ dat.nona$frame = factor(dat.nona$frame, levels = c("small", "medium", "large")) 
 Notice that in the last command, we also indicated in which order the levels should be considered. Since we have ordinal data here (there is a clear order between small/medium/large), we should indicate this order here. Otherwise, the levels are ordered by alphabetical order!
 
 </details> 
-
-----
-
 <p></p>
 
 Let's inspect our cleaned dataset again:
@@ -543,7 +499,7 @@ summary(dat.nona)
 ```
 
 
-## Reordering rows
+## 3.6 Reordering rows
 
 We now have a clean dataset to work with, congratulations!
 Let's see how we can order the rows according to certain columns. We will use the function `arrange()` from the `dplyr` package.
@@ -678,3 +634,88 @@ head(dat.nona)
 ```
 
 </details>
+
+
+## 3.7 Filtering rows
+
+Often, we want to filter the rows accordin to certain criteria. This can be easily done using the `filter()` command from the `dplyr()` package.
+
+
+```r
+## filter femal patients
+dat.nona %>% filter(gender == "female")
+```
+
+```
+   chol stab.glu hdl ratio glyhb age height weight bp.1s bp.1d waist hip
+1   192      109  44   4.4  4.86  43     64    325   141    79    53  62
+2   235      109  59   4.0  7.48  62     63    290   175    80    55  62
+3   203      299  43   4.7 12.74  38     69    288   136    83    48  55
+4   193      106  63   3.1  6.35  20     68    274   165   110    49  58
+5   180       84  69   2.6  5.20  40     68    264   142    98    43  54
+6   228       92  37   6.2  4.64  58     61    256   190    92    49  57
+7   199      153  77   2.6  4.74  36     66    255   118    66    47  52
+8   176       90  34   5.2  4.24  32     63    252   100    72    45  58
+9   164       86  40   4.1  5.23  23     69    245   126    75    44  47
+10  228      115  61   3.7  6.39  71     63    244   170    92    48  51
+11  191      155  58   3.3  8.06  31     62    237   140    87    53  56
+12  443      185  23  19.3 14.31  51     70    235   158    98    43  48
+   time.ppn   location gender  frame
+1        60 Buckingham female  large
+2       300 Buckingham female  large
+3       240 Buckingham female  large
+4        60 Buckingham female  small
+5       240 Buckingham female medium
+6       180 Buckingham female  large
+7       360 Buckingham female  large
+8       180 Buckingham female medium
+9       420 Buckingham female  large
+10      660 Buckingham female  large
+11      240 Buckingham female  large
+12      420 Buckingham female medium
+ [ reached 'max' / getOption("max.print") -- omitted 202 rows ]
+```
+
+```r
+## filter female patients which are over 50
+dat.nona %>% filter(gender == "female" & age > 50)
+```
+
+```
+   chol stab.glu hdl ratio glyhb age height weight bp.1s bp.1d waist hip
+1   235      109  59   4.0  7.48  62     63    290   175    80    55  62
+2   228       92  37   6.2  4.64  58     61    256   190    92    49  57
+3   228      115  61   3.7  6.39  71     63    244   170    92    48  51
+4   443      185  23  19.3 14.31  51     70    235   158    98    43  48
+5   160      122  41   3.9  6.49  55     67    223   136    83    43  48
+6   289      111  50   5.8  9.39  70     60    220   126    80    51  54
+7   157       74  47   3.3  5.57  55     66    219   150    82    43  52
+8   165       94  69   2.4  4.98  92     62    217   160    82    51  51
+9   263       89  40   6.6  5.78  55     63    202   108    72    45  50
+10  342      251  48   7.1 12.67  63     65    201   178    88    45  46
+11  283      145  39   7.3  8.25  63     61    200   190   110    44  48
+12  242       74  55   4.4  3.97  70     66    200   140    65    41  47
+   time.ppn   location gender  frame
+1       300 Buckingham female  large
+2       180 Buckingham female  large
+3       660 Buckingham female  large
+4       420 Buckingham female medium
+5       960 Buckingham female medium
+6       780 Buckingham female medium
+7       360 Buckingham female medium
+8       180 Buckingham female  large
+9       240 Buckingham female  small
+10      180 Buckingham female medium
+11      720 Buckingham female medium
+12      180 Buckingham female medium
+ [ reached 'max' / getOption("max.print") -- omitted 70 rows ]
+```
+
+
+### Exercice 3.1: filtering according to bmi
+
+1. Compute the bmi index for all patients. Since the weight is in pound and the height in inches, the formula is `bmi = weight/height^2 *
+703`
+2. Add this bmi index as a new column `bmi` using the `mutate()` function.
+3. Filter the women with a bmi index over 30; how many do you find?
+4. Same question for the men younger that 50 with a bmi over 30.

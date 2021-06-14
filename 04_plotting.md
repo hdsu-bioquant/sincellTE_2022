@@ -1,3 +1,13 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+
+
+
+
 # 4. Plotting data
 
 To plot data with R, we can use two strategies
@@ -5,7 +15,7 @@ To plot data with R, we can use two strategies
 * use the built-in function from the base R: using these functions, we can plot boxplots, heatmaps, scatter plots, etc...
 * use the functions from the `ggplot2` package. 
 
-Similarly to the `tidyverse` package, `ggplot2` has implemented a new way to consider plotting. It is a very powerfull way to create beautiful plots. However, the learning curve is somewhat steep... Therefor, we will restrict ourselves to the basic R functions, and refer to numerous tutorials (such as in DataCamp) regarding ggplot.
+Similarly to the `tidyverse` package, `ggplot2` has implemented a new way to consider plotting. It is a very powerfull way to create beautiful plots. However, the learning curve is somewhat steep... Therefore, we will restrict ourselves to the basic R functions, and refer to numerous tutorials (such as in [DataCamp](https://learn.datacamp.com/courses/intermediate-data-visualization-with-ggplot2)) regarding ggplot.
 
 Let's start by reading in the cleaned data from the last chapter:
 
@@ -14,14 +24,14 @@ Let's start by reading in the cleaned data from the last chapter:
 dat = read.delim("https://tinyurl.com/87tpvd4c", stringsAsFactors = TRUE)
 ```
 
-We load the `tidyverse package again
+We load the `tidyverse` package again
 
 
 ```r
 library(tidyverse)
 ```
 
-## Histograms
+## 4.1 Histograms
 
 Histograms are used to represent the distribution of continuous values.
 
@@ -52,7 +62,7 @@ abline(v = mean(dat$stab.glu), lty = 3, lwd = 2, col = "red")
 > Check the help pages with ?`graphical parameter`
 
 
-## Density plots
+## 4.2 Density plots
 
 An alternative way to represent distributions is through a density plot; think of it as a smoothing of the histogram!
 
@@ -90,7 +100,7 @@ abline(v = 300, lwd = 2, lty = 3, col = "red")
 </details>
 <p></p>
 
-## Boxplots
+## 4.3 Boxplots
 
 Boxplots are great to compare distributions between groups; for example, we could compare the weights of men vs. women:
 
@@ -98,6 +108,7 @@ Boxplots are great to compare distributions between groups; for example, we coul
 
 
 ```r
+## this is the solution using the dplyr functions (we will see another )
 weight.w = dat %>% filter(gender == "female") %>% pull(weight)
 weight.m = dat %>% filter(gender == "male") %>% pull(weight)
 ```
@@ -158,7 +169,7 @@ The boxplot gives an indication about the most important features of a distribut
 </details>
 <p></p>
 
-## Violin plots
+## 4.4 Violin plots
 
 A similar, but more informative way to display this is using **violin plots**. In addition to displaying median/quartiles, the violing plot gives an idea about the shape of the distribution (like in the density plots).
 If we want to display violin plots, we need to load the package `vioplot`
@@ -191,7 +202,7 @@ vioplot(weights)
 </details> 
 <p></p>
 
-## Scatter plots
+## 4.5 Scatter plots
 
 So far, we have looked at one variable at a time. But sometimes, it is interesting to check the dependency between variables. This can be done using a **scatter plot**.
 For example, we could look at the dependency between weight and height, or weight and cholesterol!
@@ -342,7 +353,7 @@ plot(dat$weight,dat$height,
 </details>
 
 
-## Heatmaps
+## 4.6 Heatmaps
 
 Matrices containing numerical values are usually displayed as heatmaps; each numerical entry in the matrix is displayed using a color, which makes the interpretation very easy!
 This makes sense if the columns of the numerical matrix have comparable ranges. For example, the `age` and `weight` variables here have very different ranges, so it might be difficult to represent this by the same color scale. However, if we would have gene expression data, then we could use a heatmap.
@@ -356,7 +367,7 @@ We first extract the numerical variables
 dat.num = dat %>% select(where(is.numeric))
 ```
 
-We now compute th pairwise correlation between the columns. We have previously used the `cor` function to compute the correlation between 2 vectors. However, this is an 'intelligent' function. Is instead of giving 2 vectors as entries, we give a numerical matrix, the function will understand that we want to compute all pariwise correlation values!
+We now compute the pairwise correlation between the columns. We have previously used the `cor` function to compute the correlation between 2 vectors. However, this is an 'intelligent' function. If instead of giving 2 vectors as entries, we give a numerical matrix, the function will understand that we want to compute all pairiwise correlation values!
 
 
 ```r
@@ -422,7 +433,7 @@ See how the columns and rows have been clustered automatically.
 
 The default colors are ugly... especially, we would like to use a **symmetrical color palette**, with a different color for the positive and negative values!
 
-We introduce now a wonderfull package, [**RColorBrewer**](https://rdrr.io/cran/RColorBrewer/man/ColorBrewer.html), which offers a plethora of beautifull colo palettes
+We introduce now a wonderful package, [**RColorBrewer**](https://rdrr.io/cran/RColorBrewer/man/ColorBrewer.html), which offers a plethora of beautiful colo palettes
 
 
 ```r
@@ -459,5 +470,23 @@ pheatmap(all.cor, col = col.cor)
 ```
 
 ![](04_plotting_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
+
+
+
+### Exercice: plotting expression values
+
+1. Load the matrix of expression values from an ALL/AML patients
+
+```r
+## read the expression values
+all.aml = read.delim("https://tinyurl.com/4w6n3x9k", header = TRUE)
+## read the annotation table
+all.aml.anno = read.delim("https://www.dropbox.com/s/rxw02jry9y6wgwk/all.aml.anno.csv?dl=1", 
+    header = TRUE)
+```
+2. Check the type of the `all.aml` object using `type`; as the heatmap function only accepts the type `matrix`, you need to convert the object using the function `data.matrix()`!
+3. Use the  `pheatmap` function to plot the expresion matrix as a heatmap; check the meaning of the `scale=...` argument
+4. use the `annotation_col=...` argument, and pass the annotation data frame, to add some additional information about the patients!
+
 
 

@@ -1,3 +1,11 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+
+
 # 5. Statistical tests
 
 We have so far performed an **exploratory** or **descriptive** analysis of the data. This is the first important step! 
@@ -5,7 +13,7 @@ Usually, in a second step, we want to test some statistical hypothesis: do women
 We do not want to given a statistics class, but we will see how to answer these 3 questions using R functions!
 
 
-## 1. Testing the mean
+## 5.1. Testing the mean
 
 This is the most widely used class of statistical tests; we use them to test the value of the mean of a vector of numerical values. Let us test if men have significant different cholesterol values compared to women!
 
@@ -120,7 +128,7 @@ Check again the corresponding violin plot!
 <p></p>
 
 
-## 2. correlation tests
+## 5.2 Correlation tests
 
 We have previously computed the correlations between the numeric variables, and displayed them as heatmaps. Now, even if the correlation is non zero, maybe the correlation is not really significant. Hence, it does not indicate a strong relationship between the 2 variables... Let's see an example:
 
@@ -165,7 +173,7 @@ Well, nice  try, but these 2 variables indeed do not seem to be significantly as
 > Try to find two variables with a significant correlation; maybe you can inspect the previous heatmap to guess which could be interesting to check!
 
 
-## 3. Proportion tests
+## 5.3 Proportion tests
 
 As the name indicates, we use these types of tests to compute the relationship between **categorical** variables. In particular, we can test if the *proportions* in different categories are significantly different.
 
@@ -291,3 +299,10 @@ Nice!!
 
 </details>
 <p></p>
+
+
+#### Exercise: correlation heatmap for expression values
+
+1. compute the pairwise correlation between all patients in the `all.aml` dataset
+2. plot the heatmap; use the `annotation_row=...` argument to add additional information
+3. select a pair of positively/negatively correlated patients; determine if the correlation is significant
