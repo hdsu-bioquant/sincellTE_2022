@@ -45,12 +45,14 @@ Notice that the result of the second line is printed in the console. Before you 
 
 ### Exercise 1.1: simple variables and variable types
 
+<blockquote>
 1. Summing up numbers
    + assign the value 7 to a variable `a` and -2.2 to a variable `b`
    + assign the sum of `a` and `b` to a new variable `c`
    + check the type of `a`, `b` and `c` using the `class()` function
-2. Assign the string corresponding to your surname to a variable called `myName`, and check the type of `myName` using the `class` function
 
+2. Assign the string corresponding to your surname to a variable called `myName`, and check the type of `myName` using the `class` function
+</blockquote>
 
 <details>
 <summary><b>Click for Answer</b></summary>
@@ -107,11 +109,17 @@ class(myName)
 
 <blockquote>
 1. Create a vector `alpha` using the function `c()` containing all letters from `a` to `g`
+
 2. Print the 5th letter
+
 3. Print the length of the vector `alpha` using the `length()` function
+
 4. What is the type of `alpha`?
+
 5. Create a matrix `mat` using the `matrix()` function which contains all numbers between 1 and 100, such that the matrix has 10 rows and 10 columns *(check the help page for the `matrix` function!!)*
+
 6. Create a matrix `mat2` which contains all numbers between 1 and 100, such that the matrix has 5 rows and 20 columns
+
 7. Check the dimension of the matrix using the `dim()` function
 
 
