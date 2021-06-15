@@ -57,7 +57,7 @@ On the second day, we will go through a step by step simple analysis of a small 
 3. [Feature selection](./day2/03-Feature_selection.md)
 4. [Normalization and Dimensionality reduction](./day2/04-Normalization_and_Dimensional_Reduction.md)
 5. [Cluster visualization](./day2/05-Cluster-visualization.md)
-6. [Differential gene expression analysis]()./day2/06-Differential_Expression.md)
+6. [Differential gene expression analysis](./day2/06-Differential_Expression.md)
 7. [Profiling cells](./day2/07-Profiling_cells.md)
 
 
