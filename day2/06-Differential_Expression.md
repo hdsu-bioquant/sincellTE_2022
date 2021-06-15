@@ -1,14 +1,4 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-
-# Differential Expression Analysis
+# 6. Differential Expression Analysis
 
 The main advantage of using scRNA-Seq technologies is the possibility of 
 assessing cell type specificity and heterogeneity, which is not possible while

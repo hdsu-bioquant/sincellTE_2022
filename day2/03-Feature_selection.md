@@ -1,14 +1,4 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-
-# Feature selection
+# 3. Feature selection
 
 
 Because of the sparsity in the sequencing data many genes or features are almost no expressed.

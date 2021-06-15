@@ -1,13 +1,4 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-# Standard Preprocessing using Seurat
+# 1. Standard Preprocessing using Seurat
 
 
 Some standard steps are usually carried out in scRNA-Seq prior to further analysis as QC, dimensional

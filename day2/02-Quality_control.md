@@ -1,13 +1,4 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-# Quality control
+# 2. Quality control
 
 
 Filtering cells with low sequencing quality is a very important step since it can greatly
