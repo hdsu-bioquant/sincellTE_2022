@@ -51,7 +51,7 @@ On the first day, we will guide you through the first steps of working with R, f
 
 On the second day, we will go through a step by step simple analysis of a small scRNA-seq dataset using the Seurat toolkit.
 
-0. [Intro on scRNA-seq analysis](./day2/00-intro.md)
+0. [Intro on scRNA-seq analysis](./day2/index.md)
 1. [Creating a SEURAT object](./day2/01-Seurat.md)
 2. [Basic QC and normalization ](./day2/02-Quality_control.md)
 3. [Feature selection](./day2/03-Feature_selection.md)

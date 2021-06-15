@@ -1,3 +1,13 @@
+---
+output:
+  html_document:
+    keep_md: yes
+---
+
+
+
+
+
 # Differential Expression Analysis
 
 The main advantage of using scRNA-Seq technologies is the possibility of 
@@ -94,7 +104,7 @@ pbmc.degs %>%
       theme_bw()
 ```
 
-<img src="./figure-html/vulcano_plot-1.png" style="display: block; margin: auto;" />
+<img src="06-Differential_Expression_files/figure-html/vulcano_plot-1.png" style="display: block; margin: auto;" />
 
 
 ## Exercises

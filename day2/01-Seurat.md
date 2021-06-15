@@ -1,4 +1,13 @@
-# 1. Standard Preprocessing using Seurat
+---
+output:
+  html_document:
+    keep_md: yes
+---
+
+
+
+
+# Standard Preprocessing using Seurat
 
 
 Some standard steps are usually carried out in scRNA-Seq prior to further analysis as QC, dimensional
@@ -113,7 +122,7 @@ actin <- FetchData(pbmc.seurat, vars = 'ACTB')
 hist(actin$ACTB)
 ```
 
-<img src="./figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="01-Seurat_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 
 
@@ -121,7 +130,7 @@ hist(actin$ACTB)
 
 <br>
 <details>
-<summary> Find and display the metadata in the seurat object.
+<summary> *Found and display the metadata in the seurat object* 
 <br>
 TIP: You can have 
 a look at the [documentation](https://github.com/satijalab/seurat/wiki/Seurat#object-information) 
@@ -135,11 +144,11 @@ of the seurat objects from the GitHub Wiki.
 
 
 
-## Exercises: creating Seurat objects
+## Exercises
 
 > Create a Seurat object 
 
-The file in the following URL:
+The file in the follwing URL:
 
 `https://raw.githubusercontent.com/caramirezal/caramirezal.github.io/master/bookdown-minimal/data/pbmc_10X_250_cells.tsv` 
 

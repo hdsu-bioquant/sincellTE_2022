@@ -1,4 +1,14 @@
-# 0. scRNA-Seq Course Syllabus 
+---
+output:
+  html_document:
+    keep_md: yes
+---
+
+
+
+
+
+# scRNA-Seq Course Syllabus {#intro}
 
 
 We will use available data from 10X genomics of Peripheral Blood Mononuclear cells (PBMC). In order

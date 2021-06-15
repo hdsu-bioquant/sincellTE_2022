@@ -1,4 +1,14 @@
-# 3. Feature selection
+---
+output:
+  html_document:
+    keep_md: yes
+---
+
+
+
+
+
+# Feature selection
 
 
 Because of the sparsity in the sequencing data many genes or features are almost no expressed.
@@ -46,7 +56,7 @@ plot1 <- LabelPoints(plot = plot1,
 plot1 
 ```
 
-<img src="./figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="03-Feature_selection_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 For further analysis we will use only HVGs. 
 
