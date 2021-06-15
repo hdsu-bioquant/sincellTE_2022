@@ -1,4 +1,4 @@
-# Dimensional Reduction
+# 4. Dimensional Reduction
 
 
 ## Normalization

@@ -1,4 +1,4 @@
-# Markers visualization
+# 7. Markers visualization
 
 
 First, we will take top 10 ranked genes based in Log FC and visualize their

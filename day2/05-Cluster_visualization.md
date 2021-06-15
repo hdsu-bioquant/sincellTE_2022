@@ -1,4 +1,4 @@
-# Cell clustering
+# 5. Cell clustering
 
 
 Detection of groups or cluster of cells is an important task in scRNA-Seq 
