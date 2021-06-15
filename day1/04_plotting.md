@@ -478,5 +478,5 @@ all.aml.anno = read.delim("https://www.dropbox.com/s/rxw02jry9y6wgwk/all.aml.ann
 3. Use the  `pheatmap` function to plot the expresion matrix as a heatmap; check the meaning of the `scale=...` argument
 4. use the `annotation_col=...` argument, and pass the annotation data frame, to add some additional information about the patients!
 
-[Previous Chapter (Cleaning the dataset)](./03_cleanup.md)
+[Previous Chapter (Cleaning the dataset)](./03_cleanup.md)|
 [Next Chapter (Hypothesis testing)](./05_test.md)

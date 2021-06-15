@@ -242,5 +242,5 @@ Let's do some practice with the dataset we have downloaded and the new functions
 3. The weights (column `weight`) are given in pounds; convert the weights in this columns into kilograms, by multiplying the column by 2.25
 4. Same as question 3, but now assign the result to a new column in the data frame, called `weight.kg`.
 
-[Previous Chapter (Getting started with RStudio)](./01_rstudio.md)
+[Previous Chapter (Getting started with RStudio)](./01_rstudio.md)|
 [Next Chapter (Cleaning the dataset)](./03_cleanup.md)
