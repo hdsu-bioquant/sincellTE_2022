@@ -101,7 +101,7 @@ mean of x mean of y
 
 Beware that the `alternative='greater'` refers to the first sample indicated in the function! So here, the order matters!
 
-### Exercice: 
+### Exercise: 
 
 Test if men have a significantly higher weight compared to women!
 
