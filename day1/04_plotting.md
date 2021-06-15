@@ -465,10 +465,9 @@ pheatmap(all.cor, col = col.cor)
 
 
 
-
-<blockquote>
 ### Exercise: plotting expression values
 
+<blockquote>
 1. Load the matrix of expression values from an ALL/AML patients
 
 ```r
