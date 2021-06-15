@@ -113,7 +113,7 @@ actin <- FetchData(pbmc.seurat, vars = 'ACTB')
 hist(actin$ACTB)
 ```
 
-<img src="01-Seurat_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 
 

@@ -14,7 +14,7 @@ DoHeatmap(pbmc.filtered,
           features = top10$gene) + NoLegend()
 ```
 
-<img src="07-Profiling_cells_files/figure-html/heatmap-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/heatmap-1.png" style="display: block; margin: auto;" />
 
 IL-7 is a marker for naive CD4+ T cells, while GZMB is a marker for CD8 T cells.
 Then, we can tentatively consider cluster 0 and 2 as CD4 and CD8 T cells,
@@ -40,7 +40,7 @@ FeaturePlot(pbmc.filtered,
             ncol = 2)
 ```
 
-<img src="07-Profiling_cells_files/figure-html/umap_markers_vis-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/umap_markers_vis-1.png" style="display: block; margin: auto;" />
 
 Now, we will annotate the cells with their identified identities in the seurat 
 object. We will map the cluster names as follows:
@@ -87,7 +87,7 @@ DimPlot(pbmc.filtered,
         NoLegend()                ## remove legends
 ```
 
-<img src="07-Profiling_cells_files/figure-html/cell_types-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/cell_types-1.png" style="display: block; margin: auto;" />
 
 
 ## Visualization of gene expression levels of markers in clusters
@@ -102,7 +102,7 @@ VlnPlot(pbmc.filtered,
         group.by = 'cell_type')
 ```
 
-<img src="07-Profiling_cells_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
 
 Because of the signal dropout it's hard to say what is the proportion of cells that are actually
@@ -118,7 +118,7 @@ DotPlot(pbmc.filtered,
         dot.scale = 12)
 ```
 
-<img src="07-Profiling_cells_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 
 ## Exercises

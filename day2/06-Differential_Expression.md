@@ -94,7 +94,7 @@ pbmc.degs %>%
       theme_bw()
 ```
 
-<img src="06-Differential_Expression_files/figure-html/vulcano_plot-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/vulcano_plot-1.png" style="display: block; margin: auto;" />
 
 
 ## Exercises

@@ -102,7 +102,7 @@ After the calculation of the UMAP we can visualize it using the function
 DimPlot(pbmc.filtered)
 ```
 
-<img src="05-Cluster_visualization_files/figure-html/umap_plot-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/umap_plot-1.png" style="display: block; margin: auto;" />
 
 
 ## Exercise

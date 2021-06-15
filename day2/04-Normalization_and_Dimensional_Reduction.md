@@ -54,7 +54,7 @@ We will use the function `ElbowPlot()`.
 ElbowPlot(pbmc.filtered)
 ```
 
-<img src="04-Normalization_and_Dimensional_Reduction_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 The PC components in a PCA reflects corresponds to the directions in which
 more variability is observed. These PCs are ranked by using the eigenvalues

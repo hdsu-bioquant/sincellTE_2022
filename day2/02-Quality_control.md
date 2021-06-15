@@ -44,7 +44,7 @@ We can plot these metrics using the function `VlnPlot()` as follows:
 VlnPlot(pbmc.seurat, features = c('nFeature_RNA', 'nCount_RNA', 'percent.mt'))
 ```
 
-<img src="02-Quality_control_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
 The violin plots show the values of the metrics for each cell along with an adjusted violin 
 distribution.

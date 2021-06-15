@@ -46,7 +46,7 @@ plot1 <- LabelPoints(plot = plot1,
 plot1 
 ```
 
-<img src="03-Feature_selection_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="./figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 For further analysis we will use only HVGs. 
 
