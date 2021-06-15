@@ -1,13 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 1. First steps in RStudio and R
 
 R is a powerful programming language for the analysis of data. It is recommended that you take the introductory classes for R in DataCamp to get to know this language before you start coding here. In this course you will learn to use RStudio, a software that allows you to use R in a very user-friendly way. When you open RStudio you can see the console on the left side of your screen. The console is one of the two panes you can write you code in. Let's find out more about them.
@@ -176,3 +166,4 @@ Note how the `matrix` function arranges the  numbers inside the matrix; if you w
 
 
 
+[Next Chapter (Reading in a data table)](./02_dataframe.md)

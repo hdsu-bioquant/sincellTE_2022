@@ -253,3 +253,4 @@ Let's do some practice with the dataset we have downloaded and the new functions
 4. Same as question 3, but now assign the result to a new column in the data frame, called `weight.kg`.
 
 
+[Next Chapter (Cleaning the dataset)](./03_cleanup.md)

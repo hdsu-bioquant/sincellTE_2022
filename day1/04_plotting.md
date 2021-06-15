@@ -489,4 +489,4 @@ all.aml.anno = read.delim("https://www.dropbox.com/s/rxw02jry9y6wgwk/all.aml.ann
 4. use the `annotation_col=...` argument, and pass the annotation data frame, to add some additional information about the patients!
 
 
-
+[Next Chapter (Hypothesis testing)](./05_test.md)

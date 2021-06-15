@@ -1,13 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 3. Data filtering and cleanup
 
 Very often the first thing one needs to do before any data science project is to clean up the raw data and transform it into a format that is readily understood and easy to use for all downstream analysis. This process usually involves:
@@ -719,3 +709,6 @@ dat.nona %>% filter(gender == "female" & age > 50)
 2. Add this bmi index as a new column `bmi` using the `mutate()` function.
 3. Filter the women with a bmi index over 30; how many do you find?
 4. Same question for the men younger that 50 with a bmi over 30.
+
+
+[Next Chapter (Plotting)](./04_plotting.md)
