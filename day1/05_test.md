@@ -103,7 +103,9 @@ Beware that the `alternative='greater'` refers to the first sample indicated in 
 
 ### Exercise: 
 
+<blockquote>
 Test if men have a significantly higher weight compared to women!
+</blockquote>
 
 <details>
 <summary><b>Click here for solution!</b></summary>
@@ -295,8 +297,12 @@ Nice!!
 
 #### Exercise: correlation heatmap for expression values
 
+<blockquote>
 1. compute the pairwise correlation between all patients in the `all.aml` dataset
+
 2. plot the heatmap; use the `annotation_row=...` argument to add additional information
+
 3. select a pair of positively/negatively correlated patients; determine if the correlation is significant
+</blockquote>
 
 [Previous Chapter (Plotting)](./04_plotting.md)

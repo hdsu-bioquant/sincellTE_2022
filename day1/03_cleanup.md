@@ -707,8 +707,11 @@ dat.nona %>% filter(gender == "female" & age > 50)
 <blockquote>
 1. Compute the bmi index for all patients. Since the weight is in pound and the height in inches, the formula is `bmi = weight/height^2 *
 703`
+
 2. Add this bmi index as a new column `bmi` using the `mutate()` function.
+
 3. Filter the women with a bmi index over 30; how many do you find?
+
 4. Same question for the men younger that 50 with a bmi over 30.
 </blockquote>
 

@@ -240,8 +240,11 @@ Let's do some practice with the dataset we have downloaded and the new functions
 
 <blockquote>
 1. Compute the mean age of the patients in the dataset. Remember that R functions often have intuitive names....
+
 2. Compute the mean hdl level for the patients; do you understand why there is a problem here?
+
 3. The weights (column `weight`) are given in pounds; convert the weights in this columns into kilograms, by multiplying the column by 2.25
+
 4. Same as question 3, but now assign the result to a new column in the data frame, called `weight.kg`.
 </blockquote>
 
