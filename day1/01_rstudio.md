@@ -165,5 +165,5 @@ Note how the `matrix` function arranges the  numbers inside the matrix; if you w
 </details>
 
 
-
+[Previous Chapter (Objectives)](./00_Objectives.md)
 [Next Chapter (Reading in a data table)](./02_dataframe.md)

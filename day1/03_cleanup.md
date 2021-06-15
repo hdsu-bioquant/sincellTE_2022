@@ -710,5 +710,5 @@ dat.nona %>% filter(gender == "female" & age > 50)
 3. Filter the women with a bmi index over 30; how many do you find?
 4. Same question for the men younger that 50 with a bmi over 30.
 
-
+[Previous Chapter (Reading in a data table)](./02_dataframe.md)
 [Next Chapter (Plotting)](./04_plotting.md)

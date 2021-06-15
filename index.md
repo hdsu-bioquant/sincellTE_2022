@@ -19,7 +19,7 @@ The course will run over 2 days **(Wednesday, 16.06 and Thursday, 17.06)** from 
 ## Is this course for me?
 
 In this two-day course, we want to give you an **introduction to working with R in simple data analysis tasks**; you will learn the basic principles of reading in a data table, doing some descriptive statistics, making nice plots.
-On the second day, we will focus on a simple single-cell analysis workflow, which will guide you through the first steps of this kind of analysi!
+On the second day, we will focus on a simple single-cell analysis workflow, which will guide you through the first steps of this kind of analysis!
 
 ### IMPORTANT NOTE! 
 
@@ -49,14 +49,14 @@ On the first day, we will guide you through the first steps of working with R, f
 
 ### Day 2: a simple single-cell RNA-seq analysis workflow
 
-On the second day, we will go through a step by step simple analysis of a small scRNA-seq dataset using the Seurat toolkit.
+On the second day, we will go through a step by step simple analysis of a small scRNA-seq dataset using the Seurat toolkit. **Don't expect to be able to carry a full scRNA-seq analysis after this!** This is meant to give you an idea of a typical workflow rather.
 
 0. [Intro on scRNA-seq analysis](./day2/index.md)
 1. [Creating a SEURAT object](./day2/01-Seurat.md)
 2. [Basic QC and normalization ](./day2/02-Quality_control.md)
 3. [Feature selection](./day2/03-Feature_selection.md)
 4. [Normalization and Dimensionality reduction](./day2/04-Normalization_and_Dimensional_Reduction.md)
-5. [Cluster visualization](./day2/05-Cluster_visualization.md)
+5. [Cluster visualization](./day2/05-Clustervisualization.md)
 6. [Differential gene expression analysis](./day2/06-Differential_Expression.md)
 7. [Profiling cells](./day2/07-Profiling_cells.md)
 

@@ -1,11 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
 # 5. Statistical tests
 
 We have so far performed an **exploratory** or **descriptive** analysis of the data. This is the first important step! 
@@ -306,3 +298,5 @@ Nice!!
 1. compute the pairwise correlation between all patients in the `all.aml` dataset
 2. plot the heatmap; use the `annotation_row=...` argument to add additional information
 3. select a pair of positively/negatively correlated patients; determine if the correlation is significant
+
+[Previous Chapter (Plotting)](./04_plotting.md)
