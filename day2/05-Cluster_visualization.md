@@ -1,12 +1,3 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
 # Cell clustering
 
 

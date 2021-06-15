@@ -1,13 +1,3 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-
 # scRNA-Seq Course Syllabus {#intro}
 
 
