@@ -1,13 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 4. Plotting data
 
 To plot data with R, we can use two strategies

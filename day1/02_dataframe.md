@@ -1,13 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
-
-
-
-
-
 # 2. First steps in the analysis of a data matrix
 
 ## 2.1 reading in the data!
