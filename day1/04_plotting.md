@@ -476,8 +476,11 @@ all.aml = read.delim("https://tinyurl.com/4w6n3x9k", header = TRUE)
 all.aml.anno = read.delim("https://www.dropbox.com/s/rxw02jry9y6wgwk/all.aml.anno.csv?dl=1", 
     header = TRUE)
 ```
+
 2. Check the type of the `all.aml` object using `type`; as the heatmap function only accepts the type `matrix`, you need to convert the object using the function `data.matrix()`!
+
 3. Use the  `pheatmap` function to plot the expresion matrix as a heatmap; check the meaning of the `scale=...` argument
+
 4. use the `annotation_col=...` argument, and pass the annotation data frame, to add some additional information about the patients!
 </blockquote>
 
