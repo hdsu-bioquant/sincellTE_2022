@@ -95,7 +95,7 @@ features recorded.
 
 
 
-## Exercises
+## Exercises: quality control
 
 
 > Performing your own QC

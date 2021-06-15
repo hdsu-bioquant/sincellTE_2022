@@ -121,7 +121,7 @@ hist(actin$ACTB)
 
 <br>
 <details>
-<summary> *Found and display the metadata in the seurat object* 
+<summary> Find and display the metadata in the seurat object.
 <br>
 TIP: You can have 
 a look at the [documentation](https://github.com/satijalab/seurat/wiki/Seurat#object-information) 
@@ -135,11 +135,11 @@ of the seurat objects from the GitHub Wiki.
 
 
 
-## Exercises
+## Exercises: creating Seurat objects
 
 > Create a Seurat object 
 
-The file in the follwing URL:
+The file in the following URL:
 
 `https://raw.githubusercontent.com/caramirezal/caramirezal.github.io/master/bookdown-minimal/data/pbmc_10X_250_cells.tsv` 
 
