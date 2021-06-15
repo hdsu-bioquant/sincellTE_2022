@@ -2,10 +2,10 @@
 
 To plot data with R, we can use two strategies
 
-* use the built-in function from the base R: using these functions, we can plot boxplots, heatmaps, scatter plots, etc...
-* use the functions from the `ggplot2` package. 
+* use the **built-in functions from the base R**: using these functions, we can plot boxplots, heatmaps, scatter plots, etc...
+* use the **functions from the `ggplot2`** package. 
 
-Similarly to the `tidyverse` package, `ggplot2` has implemented a new way to consider plotting. It is a very powerfull way to create beautiful plots. However, the learning curve is somewhat steep... Therefore, we will restrict ourselves to the basic R functions, and refer to numerous tutorials (such as in [DataCamp](https://learn.datacamp.com/courses/intermediate-data-visualization-with-ggplot2)) regarding ggplot.
+As part of the `tidyverse` package and eco-system, `ggplot2` has implemented a new way to consider plotting. It is a very powerful way to create beautiful plots. However, the learning curve is somewhat steep... Therefore, we will restrict ourselves to the basic R functions, and refer to numerous tutorials (such as in [DataCamp](https://learn.datacamp.com/courses/intermediate-data-visualization-with-ggplot2)) regarding ggplot.
 
 Let's start by reading in the cleaned data from the last chapter:
 

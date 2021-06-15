@@ -15,7 +15,7 @@ Here, we will learn how to
 * clean up the data
 * filter the data
 
-In order to do these manipulations easily, we will rely on a library which has a lot of functions to easily manipulate tables: [dplyr](https://dplyr.tidyverse.org/). This library is part of a large eco-system of data analysis called **tidyverse**.
+In order to do these manipulations easily, we will rely on a library which has a lot of functions to easily manipulate tables: [dplyr](https://dplyr.tidyverse.org/). You can download a nice cheatsheet [here](./data-transformation.pdf). This library is part of a large eco-system of data analysis called **tidyverse**.
 
 Let's load the library
 
@@ -64,7 +64,7 @@ We could extend the pipe principle and chain several commands!
 
 ## 3.2 Adding new columns
 
-Very often, we want to add new columns to an existing data frame! For example, we could add a column names `ageMont` in which we compute the age in month instead of year.
+Very often, we want to add new columns to an existing data frame! For example, we could add a column names `ageMonth` in which we compute the age in month instead of year.
 
 This can be done with the function `mutate()` from the `dplyr` package:
 

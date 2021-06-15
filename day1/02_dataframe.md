@@ -44,7 +44,7 @@ head(dat, 10)  # Look at the first 10 lines of the table
 
 **Note that we indicated here a url to a remote file! If you have instead a local file stored on your computer, indicate the path to this file instead of the url!**
 
-<detail>
+<details>
 <summary><b>What if I have an Excel sheet to read in?</b></summary>
 
 If on the other hand the file is an Excel file, then you can use a specific library containing a command to read in Excel formated files.
@@ -70,7 +70,7 @@ An alternative could there for be:
 1. read in your excel sheet in the Excel program
 2. use "save as..." to export the sheet in tab-separated format
 3. read in using the `read.table` function
-</detail>
+</details>
 <p></p>
 
 ## 2.2 explore and understand our dataset
@@ -232,6 +232,7 @@ dat$age  # Returns the column age
 
 Feel free to play around with this syntax until you feel comfortable with it. You can open a window with View(dat) to compare your results.
 </details>
+<p></p>
 
 Let's do some practice with the dataset we have downloaded and the new functions we have learned.
 
