@@ -466,7 +466,7 @@ pheatmap(all.cor, col = col.cor)
 
 ### Exercise: plotting expression values
 
-<pre>
+<blockquote>
 1. Load the matrix of expression values from an ALL/AML patients
 
 ```r
@@ -479,7 +479,7 @@ all.aml.anno = read.delim("https://www.dropbox.com/s/rxw02jry9y6wgwk/all.aml.ann
 2. Check the type of the `all.aml` object using `type`; as the heatmap function only accepts the type `matrix`, you need to convert the object using the function `data.matrix()`!
 3. Use the  `pheatmap` function to plot the expresion matrix as a heatmap; check the meaning of the `scale=...` argument
 4. use the `annotation_col=...` argument, and pass the annotation data frame, to add some additional information about the patients!
-</pre>
+</blockquote>
 
 [Previous Chapter (Cleaning the dataset)](./03_cleanup.md)|
 [Next Chapter (Hypothesis testing)](./05_test.md)
