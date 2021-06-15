@@ -105,6 +105,7 @@ class(myName)
 
 ### Exercise 1.2: more sophisticated data types
 
+<blockquote>
 1. Create a vector `alpha` using the function `c()` containing all letters from `a` to `g`
 2. Print the 5th letter
 3. Print the length of the vector `alpha` using the `length()` function
@@ -163,7 +164,7 @@ dim(mat2)
 
 Note how the `matrix` function arranges the  numbers inside the matrix; if you want to change the ordering, you can change the `byrow=...` argument in the `matrix` function! Try it out, and check the difference!
 </details>
-
+</blockquote>
 
 [Previous Chapter (Objectives)](./00_Objectives.md)|
 [Next Chapter (Reading in a data table)](./02_dataframe.md)
