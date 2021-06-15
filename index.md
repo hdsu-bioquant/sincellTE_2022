@@ -39,23 +39,25 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
 
-0. [Goals of Day 1](./00_Objectives.md)
-1. [Getting started with RStudio](./01_rstudio.md)
-2. [Reading in a data table](./02_dataframe.md)
-3. [Cleaning the dataset](./03_cleanup.md)
-4. [Making plots](./04_plotting.md)
-5. [Statistical tests](./05_test.md)
+0. [Goals of Day 1](./day1/00_Objectives.md)
+1. [Getting started with RStudio](./day1/01_rstudio.md)
+2. [Reading in a data table](./day1/02_dataframe.md)
+3. [Cleaning the dataset](./day1/03_cleanup.md)
+4. [Making plots](./day1/04_plotting.md)
+5. [Statistical tests](./day1/05_test.md)
                                                    
 
 ### Day 2: a simple single-cell RNA-seq analysis workflow
 
 On the second day, we will go through a step by step simple analysis of a small scRNA-seq dataset using the Seurat toolkit.
 
-1. Reading the data
-2. Creating a SEURAT object
-3. Basic QC and normalization 
-4. Visualization (UMAP) and cell clustering
-5. Differential expression analysis
+0. [Intro on scRNA-seq analysis](./day2/00-intro.md)
+1. [Creating a SEURAT object](./day2/01-Seurat.md)
+2. [Basic QC and normalization ](./day2/02-Quality_control.md)
+3. [Feature selection](./day2/03-Feature_selection.md)
+4. [Normalization and Dimensionality reduction](./day2/04-Normalization_and_Dimensional_Reduction.md)
+5. [Cluster visualization](./day2/05-Cluster-visualization.md)
+7. [Profiling cells](./day2/07-Profiling_cells.md)
 
 
 
