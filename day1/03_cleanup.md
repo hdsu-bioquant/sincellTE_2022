@@ -705,6 +705,7 @@ dat.nona %>% filter(gender == "female" & age > 50)
 ### Exercise 3.1: filtering according to bmi
 
 <blockquote>
+
 1. Compute the bmi index for all patients. Since the weight is in pound and the height in inches, the formula is `bmi = weight/height^2 *
 703`
 

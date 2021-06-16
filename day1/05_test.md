@@ -298,6 +298,7 @@ Nice!!
 #### Exercise: correlation heatmap for expression values
 
 <blockquote>
+
 1. compute the pairwise correlation between all patients in the `all.aml` dataset
 
 2. plot the heatmap; use the `annotation_row=...` argument to add additional information

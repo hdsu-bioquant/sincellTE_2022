@@ -239,6 +239,7 @@ Let's do some practice with the dataset we have downloaded and the new functions
 #### Exercise 2.1: manipulating data frames
 
 <blockquote>
+
 1. Compute the mean age of the patients in the dataset. Remember that R functions often have intuitive names....
 
 2. Compute the mean hdl level for the patients; do you understand why there is a problem here?
