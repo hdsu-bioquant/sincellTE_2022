@@ -47,8 +47,11 @@ Notice that the result of the second line is printed in the console. Before you 
 
 <blockquote>
 1. Summing up numbers
+
    + assign the value 7 to a variable `a` and -2.2 to a variable `b`
+
    + assign the sum of `a` and `b` to a new variable `c`
+   
    + check the type of `a`, `b` and `c` using the `class()` function
 
 2. Assign the string corresponding to your surname to a variable called `myName`, and check the type of `myName` using the `class` function
