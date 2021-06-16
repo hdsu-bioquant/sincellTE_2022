@@ -107,7 +107,7 @@ here.
 > Manipulation of count matrices
 
 <details>
-<summary> *What is the mean and median number of UMI counts in these cells?* 
+<summary> What is the mean and median number of UMI counts in these cells?
 <br>
  a) median = 301, mean = 343
 <br>

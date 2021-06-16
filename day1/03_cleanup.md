@@ -701,8 +701,70 @@ dat.nona %>% filter(gender == "female" & age > 50)
  [ reached 'max' / getOption("max.print") -- omitted 70 rows ]
 ```
 
+## 3.8 Applying operations on all rows or columns
 
-### Exercise 3.1: filtering according to bmi
+If we have a matrix or data frame consisting only of numerical values, we sometimes want to apply a certain operation on all rows or columns; some examples might be
+
+* compute the standard deviation on all genes (=rows) in a gene expression matrix!
+* compute the median value on all numerical variables (=columns) in our diabetes matrix.
+
+To do this, we can use the function `apply()`; let us see an example to understand how it works:
+
+
+```r
+## we generate a matrix with random numbers
+X = matrix(rnorm(50), nrow = 10)
+colnames(X) = paste0("Patient_", 1:5)
+rownames(X) = paste0("Gene_", 1:10)
+X
+```
+
+```
+           Patient_1  Patient_2   Patient_3   Patient_4   Patient_5
+Gene_1  -0.642850422  0.2082593  0.06076296 -0.47294686  1.02932897
+Gene_2  -2.342413559 -0.7357086  1.28711595 -1.09925472 -0.39417331
+Gene_3  -0.135153430  0.2476242  0.27649464 -0.78488392 -0.08263922
+Gene_4  -1.877205879  1.0377687  1.43434256  1.51335535  0.88305311
+Gene_5  -1.508192721 -0.5228552 -1.98692275 -0.20357999  1.95837784
+Gene_6   2.187096034 -1.1210439  0.05821113  0.79418218  2.63162760
+Gene_7   0.807973477 -3.0603129 -1.12875259 -0.31617807  0.62522740
+Gene_8  -0.001030084  2.2060391 -1.67553435 -0.08741737  1.43354321
+Gene_9  -0.272979511  0.4592043 -0.16011621  0.79268712  1.42489121
+Gene_10 -1.264476879  0.6239750  0.47079525 -0.73233590  1.34029653
+```
+
+Suppose we want to compute the mean expression of the 10 genes for all patients; hence, we want to apply the `mean()` function on all columns. Here we go...
+
+
+```r
+## mean over all columns
+apply(X, 2, mean)
+```
+
+```
+  Patient_1   Patient_2   Patient_3   Patient_4   Patient_5 
+-0.50492330 -0.06570500 -0.13636034 -0.05963722  1.08495333 
+```
+
+The arguments in the `apply` function are as follows:
+
+1. the name of the matrix or data frame
+2. 1=on all rows, 2=on all columns
+3. the function to apply
+
+### Exercise 3.1
+
+<blockquote>
+
+1. Compute the maximum expression for all genes
+
+2. Compute the standard deviation for all genes
+
+3. Order the genes in the matrix by decreasing standard deviation (see 3.6)
+</blockquote>
+
+
+### Exercise 3.2: filtering according to bmi
 
 <blockquote>
 
