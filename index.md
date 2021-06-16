@@ -33,6 +33,7 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 **You need to install a couple of R packages; you can download the 
 [following script](./install_packages.R). Load it into RStudio, and then hit the *Run* button at the top to execute it. It should run smoothly!**
 
+**Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/1rFcWJJD-qOqeRWZvhqPEqMCt_ddtinvdTlLPl2Syomw/edit?usp=sharing)**
 
 ### Day 1: General introduction - (almost) first steps in R!                                        
 
