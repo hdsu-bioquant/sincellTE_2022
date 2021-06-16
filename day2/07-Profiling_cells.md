@@ -136,4 +136,5 @@ DotPlot(pbmc.filtered,
 > Provide a report of all your findings (QC, clustering) including plots, parameter selection
 and conclusions using the 10x PBMC 250 subsampled data.
 
+[Previous Chapter](./06-Differential_Expression.m) | 
 

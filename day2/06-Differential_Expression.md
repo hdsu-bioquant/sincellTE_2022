@@ -111,3 +111,5 @@ url:
  
  * Intersect both lists of genes 
 
+[Previous Chapter](./05-Cluster_visualization.md) | 
+[Next Chapter](./07-Profiling_cells.md)
