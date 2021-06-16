@@ -142,7 +142,7 @@ Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
 <br>
 <br>
 
-```
+```r
 ## Getting sum of umi counts per row (gene)
 umi.sum.gene <- apply(pbmc.mtx, 1, sum)
 

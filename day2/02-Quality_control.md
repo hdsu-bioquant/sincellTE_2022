@@ -85,9 +85,11 @@ TIP: Use the function `FeatureScatter`, inspect the manual using `?function`.
 <br>
 <b>Answer:</b>
 <br>
-```
+
+```r
 FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
 ```
+
 <br>
 
 

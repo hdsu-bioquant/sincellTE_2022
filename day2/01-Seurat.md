@@ -130,7 +130,11 @@ of the seurat objects from the GitHub Wiki.
 <br>
 <b>Answer:</b>
 <br>
-`pbmc.seurat@meta.data %>% head`
+
+```r
+pbmc.seurat@meta.data %>% head
+```
+
 </details> 
 
 
