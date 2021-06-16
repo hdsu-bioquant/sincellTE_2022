@@ -1,13 +1,4 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-# Cell clustering
+# 5. Cell clustering
 
 
 Detection of groups or cluster of cells is an important task in scRNA-Seq 
@@ -116,11 +107,13 @@ DimPlot(pbmc.filtered)
 
 ## Exercise
 
+<blockquote>
 
-> Perform UMAP visualization with the 10x PBMC 250 cells with your own set
+* Perform UMAP visualization with the 10x PBMC 250 cells with your own set
 of parameters
 
 * How does subsampling and parameters selection affects clustering?
+</blockquote>
 
 [Previous Chapter](./04-Normalization_and_Dimensional_Reduction.md)|
-[Next Chapter](.06-Differential_Expression.md)
+[Next Chapter](./06-Differential_Expression.md)

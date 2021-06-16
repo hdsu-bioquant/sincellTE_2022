@@ -1,20 +1,10 @@
----
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
-
-# Dimensional Reduction
+# 4. Dimensional Reduction
 
 
 ## Normalization
 
 There are several methods for normalization of scRNA-Seq data. A commonly
-used strategy is the log normalization which basically corrects sequencing
+used strategy is the **log normalization** which basically corrects sequencing
 deep in cells by dividing each feature by the total number of counts and
 then multiplied the result by a factor, usually 10000, and finally the
 values are log transformed.
@@ -78,11 +68,14 @@ the number of PC equal to 7.
 
 ## Exercises
 
-> Manipulation of PCA embedded projection
+<blockquote>
+Manipulation of PCA embedded projection
 
  * Extract PCA embedding matrix
+
  * Make a PCA plot showing the first 2 principal components 
  
+ </blockquote>
 
 [Previous Chapter](./03-Feature_selection.md)|
 [Next Chapter](./05-Cluster_visualization.md)

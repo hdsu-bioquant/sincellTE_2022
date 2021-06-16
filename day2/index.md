@@ -1,4 +1,4 @@
-# 0. scRNA-Seq Course Syllabus
+# 0. First steps in scRNA-Seq analysis
 
 
 We will use available data from 10X genomics of Peripheral Blood Mononuclear cells (PBMC). In order

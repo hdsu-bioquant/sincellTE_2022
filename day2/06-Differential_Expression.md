@@ -99,7 +99,8 @@ pbmc.degs %>%
 
 ## Exercises
 
-> Compare the DEGs from the above shown results with that calculated using the 10X PBMC 250 cells downsample data clusters in the previous exercises
+<blockquote>
+Compare the DEGs from the above shown results with that calculated using the 10X PBMC 250 cells downsample data clusters in the previous exercises
 
 
  * Load the tsv file containing the calculated DEGs from above using the following
@@ -110,6 +111,8 @@ url:
  obtained using your parameters
  
  * Intersect both lists of genes 
+
+</blockquote>
 
 [Previous Chapter](./05-Cluster_visualization.md) | 
 [Next Chapter](./07-Profiling_cells.md)
