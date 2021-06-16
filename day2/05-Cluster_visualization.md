@@ -121,3 +121,6 @@ DimPlot(pbmc.filtered)
 of parameters
 
 * How does subsampling and parameters selection affects clustering?
+
+[Previous Chapter](./04-Normalization_and_Dimensional_Reduction.md)|
+[Next Chapter](.06-Differential_Expression.md)

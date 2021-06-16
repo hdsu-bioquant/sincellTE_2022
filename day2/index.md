@@ -117,18 +117,19 @@ here.
 </summary>
 <br>
 <b>Answer:</b>
-<br>
-`umi.sum <- apply(pbmc.mtx, 2, sum)`
-<br>
-`summary(umi.sum)`
 
-`Min. 1st Qu.  Median    Mean 3rd Qu.    Max.` <br>
-`561      1741      2216      2354      2746      7928`  
+```
+umi.sum <- apply(pbmc.mtx, 2, sum)
+summary(umi.sum)
+
+Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+561      1741      2216      2354      2746      7928
+```
 </details> 
 
 <br>
 <details>
-<summary> *What are the top genes with highest number of UMI counts in decreasing order?* 
+<summary> What are the top genes with highest number of UMI counts in decreasing order?
 <br>
  a) MALAT1, B2M, TMSB4X, RPL10, RPL13, RPL13A
 <br>
@@ -140,17 +141,17 @@ here.
 <b>Answer:</b>
 <br>
 <br>
-`## Getting sum of umi counts per row (gene)`
-<br>
-`umi.sum.gene <- apply(pbmc.mtx, 1, sum)`
-<br>
 
-`## Sorting and showing top 6 genes with highest number of UMIs`
-<br>
-`sort(umi.sum.gene, decreasing = TRUE) %>% head()`
-<br>
-`MALAT1    B2M TMSB4X  RPL10  RPL13 RPL13A` 
-<br>
-`28672  22976  22741  16616  14179  13975` 
+```
+## Getting sum of umi counts per row (gene)
+umi.sum.gene <- apply(pbmc.mtx, 1, sum)
+
+
+## Sorting and showing top 6 genes with highest number of UMIs
+sort(umi.sum.gene, decreasing = TRUE) %>% head()
+MALAT1    B2M TMSB4X  RPL10  RPL13 RPL13A
+28672  22976  22741  16616  14179  13975
+```
 </details> 
 
+[Next Chapter](./01-Seurat.md)

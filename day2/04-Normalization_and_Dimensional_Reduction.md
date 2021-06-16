@@ -84,6 +84,7 @@ the number of PC equal to 7.
  * Make a PCA plot showing the first 2 principal components 
  
 
-
+[Previous Chapter](./03-Feature_selection.md)|
+[Next Chapter](./05-Cluster_visualization.md)
 
 

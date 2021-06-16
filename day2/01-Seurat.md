@@ -121,7 +121,7 @@ hist(actin$ACTB)
 
 <br>
 <details>
-<summary> *Found and display the metadata in the seurat object* 
+<summary> Find and display the metadata in the seurat object
 <br>
 TIP: You can have 
 a look at the [documentation](https://github.com/satijalab/seurat/wiki/Seurat#object-information) 
@@ -137,7 +137,8 @@ of the seurat objects from the GitHub Wiki.
 
 ## Exercises
 
-> Create a Seurat object 
+<blockquote>
+Create a Seurat object 
 
 The file in the follwing URL:
 
@@ -146,8 +147,13 @@ The file in the follwing URL:
 contains 250 cells downsampled from the 10x PBMC data and stored in tsv format
 
  * Load the count matrix in tsv format
+ 
  * Create a Seurat object using the count matrix
+ 
  * How many features and cells are present in the count matrix?
 
+</blockquote>
 
 
+[Previous Chapter](./index.md)|
+[Next Chapter](./02-Quality_control.md)

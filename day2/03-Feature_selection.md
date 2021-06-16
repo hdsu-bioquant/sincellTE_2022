@@ -60,4 +60,5 @@ by variance.
 * Sort genes based on variances in decreasing order and show top 6 genes
 
 
-
+[Previous Chapter](./02-Quality_control.md)|
+[Next Chapter](./04-Normalization_and_Dimensional_Reduction.md)

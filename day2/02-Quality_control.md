@@ -104,3 +104,7 @@ Perform a QC using the downsampled 10 PBMC 250 cells data
 
 * Calculate and visualize QC metrics
 * Filter out cells based on the calculated values
+
+
+[Previous Chapter](./01-Seurat.md)|
+[Next Chapter](./03-Feature_selection.md)
