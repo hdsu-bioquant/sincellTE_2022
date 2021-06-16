@@ -50,9 +50,9 @@ Notice that the result of the second line is printed in the console. Before you 
 
    + assign the value 7 to a variable `a` and -2.2 to a variable `b`
 
-   + assign the sum of `a` and `b` to a new variable `c`
-   
-   + check the type of `a`, `b` and `c` using the `class()` function
+   +  assign the sum of `a` and `b` to a new variable `c`
+
+   +  check the type of `a`, `b` and `c` using the `class()` function
 
 2. Assign the string corresponding to your surname to a variable called `myName`, and check the type of `myName` using the `class` function
 </blockquote>
@@ -111,6 +111,7 @@ class(myName)
 ### Exercise 1.2: more sophisticated data types
 
 <blockquote>
+
 1. Create a vector `alpha` using the function `c()` containing all letters from `a` to `g`
 
 2. Print the 5th letter
