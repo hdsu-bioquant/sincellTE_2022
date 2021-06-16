@@ -58,11 +58,11 @@ So, 297 cells were assigned to the cluster 0.
 
 ## Exercises
 
-> Testing clustering 
-
- * Try different different parameters for the clustering. For example,
+<blockquote>
+Testing clustering: Try different different parameters for the clustering. For example,
 `k.param` in the *FindNeighbors()* function and higher levels of
 resolution.
+</blockquote>
 
 
 
