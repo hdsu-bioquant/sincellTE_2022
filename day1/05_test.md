@@ -306,4 +306,49 @@ Nice!!
 3. select a pair of positively/negatively correlated patients; determine if the correlation is significant
 </blockquote>
 
+<details>
+<summary><b>Click for solution!</b></summary>
+
+```r
+aml.cor = cor(all.aml,method='spearman')
+```
+
+Now make the heatmap:
+
+Choose a nice color palette:
+
+```r
+library(RColorBrewer)
+
+## 10 colors from the PiYG palette
+col.cor = brewer.pal(10, "PiYG")
+
+## we can extrapolate to more colors shades
+col.cor = colorRampPalette(col.cor)(100)
+```
+
+```r
+pheatmap(aml.cor,col=col.cor,annotation_row=all.aml.anno,annotation_col=all.aml.anno)
+```
+
+Testing the correlation between patient 34 and 66:
+
+```r
+cor.test(all.aml$pat34,all.aml$pat66)
+```
+
+```
+	Pearson's product-moment correlation
+
+data:  all.aml$pat34 and all.aml$pat66
+t = 26.702, df = 829, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6416567 0.7149375
+sample estimates:
+      cor 
+0.6799916 
+
+```
+</details>
 [Previous Chapter (Plotting)](./04_plotting.md)
