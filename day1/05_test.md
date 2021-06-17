@@ -351,4 +351,5 @@ sample estimates:
 
 ```
 </details>
+
 [Previous Chapter (Plotting)](./04_plotting.md)
