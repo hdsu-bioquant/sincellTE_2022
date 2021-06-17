@@ -36,7 +36,7 @@ Here are the links to the slides
 * Day 1 : [Data types](./irtg2021_datatypes.pdf)
 * Day 1 : [Statistical tests](./irtg2021_tests.pdf)
 
-
+* Day 2 : [Introduction to single-cell analysis](https://docs.google.com/presentation/d/1DSC6gUIbO6PzrqLCt1jp-sIx1U31TvMdDGgKdhohCIY/edit?ts=60c8bafb#slide=id.gdf238a40cf_0_5)
 ## Practical parts
 
 
