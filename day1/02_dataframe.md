@@ -248,8 +248,11 @@ Let's do some practice with the dataset we have downloaded and the new functions
 
 4. Same as question 3, but now assign the result to a new column in the data frame, called `weight.kg`.
 
+</blockquote>
+
 <details>
-<summary>Click here for solution!</summary>
+<summary><b>Click here for solution!</b></summary>
+
 ```r
 ## mean age
 mean(dat$age)
@@ -260,9 +263,8 @@ mean(dat$hdl)  # gives NA because there are NA values ...
 mean(dat$hdl,na.rm=TRUE)
 
 dat$weight.kg = dat$weight*2.25
-````
+```
 </details>
-</blockquote>
 
 [Previous Chapter (Getting started with RStudio)](./01_rstudio.md)|
 [Next Chapter (Cleaning the dataset)](./03_cleanup.md)

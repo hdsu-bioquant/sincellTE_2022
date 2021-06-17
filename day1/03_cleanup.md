@@ -792,8 +792,11 @@ X %>% arrange(desc(sd.exp))
 
 4. Same question for the men younger that 50 with a bmi over 30.
 
+</blockquote>
+
 <details>
-<summary>Click here for solution!</summary>
+<summary><b>Click here for solution!</b></summary>
+
 ```r
 ## bmi
 bmi = dat$weight/dat$height^2*703
@@ -810,7 +813,6 @@ dat %>% filter(gender=='male' & age < 50 & bmi  > 30) %>% nrow()
 ```
 </details>
 
-</blockquote>
 
 [Previous Chapter (Reading in a data table)](./02_dataframe.md)|
 [Next Chapter (Plotting)](./04_plotting.md)

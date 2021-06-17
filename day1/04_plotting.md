@@ -485,9 +485,12 @@ all.aml.anno = read.delim("https://www.dropbox.com/s/rxw02jry9y6wgwk/all.aml.ann
 
 4. use the `annotation_col=...` argument, and pass the annotation data frame, to add some additional information about the patients!
 
+</blockquote>
+
 <details>
-<summary>Clicke for solution!</summary>
- ```r
+<summary><b>Click for solution!</b></summary>
+
+```r
 ## plotting the expression values
 
 library(pheatmap)
@@ -509,13 +512,13 @@ pheatmap(log(all.aml+1),show_rownames=FALSE) # the +1 is to avoid error if one e
 ```
 
 We can add annotations for the patients
+
 ```r
 pheatmap(log(all.aml+1),show_rownames=FALSE,annotation_col=all.aml.anno) 
 ```
 
 </details>
 
-</blockquote>
 
 [Previous Chapter (Cleaning the dataset)](./03_cleanup.md)|
 [Next Chapter (Hypothesis testing)](./05_test.md)
