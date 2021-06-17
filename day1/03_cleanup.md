@@ -761,6 +761,21 @@ The arguments in the `apply` function are as follows:
 2. Compute the standard deviation for all genes
 
 3. Order the genes in the matrix by decreasing standard deviation (see 3.6)
+
+<details>
+<summary>Click here for solution!</summary>
+```r
+## maximum expression for all genes
+max.exp = apply(X,1,max)
+
+## standard deviation for all genes
+sd.exp = apply(X,1,sd)
+
+X %>% arrange(desc(sd.exp))
+
+```
+</details>
+
 </blockquote>
 
 
@@ -776,6 +791,25 @@ The arguments in the `apply` function are as follows:
 3. Filter the women with a bmi index over 30; how many do you find?
 
 4. Same question for the men younger that 50 with a bmi over 30.
+
+<details>
+<summary>Click here for solution!</summary>
+```r
+## bmi
+bmi = dat$weight/dat$height^2*703
+
+##
+dat = dat %>% mutate(bmi=weight/height^2*703)
+
+##
+dat %>% filter(gender=='female' & bmi >  30) %>% nrow()
+
+##
+dat %>% filter(gender=='male' & age < 50 & bmi  > 30) %>% nrow()
+
+```
+</details>
+
 </blockquote>
 
 [Previous Chapter (Reading in a data table)](./02_dataframe.md)|
