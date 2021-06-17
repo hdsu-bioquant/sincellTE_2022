@@ -764,6 +764,7 @@ The arguments in the `apply` function are as follows:
 
 <details>
 <summary>Click here for solution!</summary>
+
 ```r
 ## maximum expression for all genes
 max.exp = apply(X,1,max)
