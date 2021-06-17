@@ -1,4 +1,14 @@
-# 7. Markers visualization
+---
+output:
+  html_document:
+    keep_md: yes
+---
+
+
+
+
+
+# Markers visualization
 
 
 First, we will take top 10 ranked genes based in Log FC and visualize their
@@ -126,5 +136,18 @@ DotPlot(pbmc.filtered,
 > Provide a report of all your findings (QC, clustering) including plots, parameter selection
 and conclusions using the 10x PBMC 250 subsampled data.
 
-[Previous Chapter](./06-Differential_Expression.m) | 
+> Using the scRNA-Seq workflow that we have seen analize a dataset of PBMC cells stimulated
+with IFN beta. 
+
+* Load the seurat object containing the data to a variable named `ifnb` using the following commands:
+
+```
+url_ifn <- 'https://github.com/caramirezal/caramirezal.github.io/blob/master/bookdown-minimal/data/pbmc_ifnb_stimulated.seu.rds?raw=true'
+ifnb <- readRDS(url(url_ifn))
+```
+
+* This data is downsampled from the [Kang HM et al, 2017 data](https://www.nature.com/articles/nbt.4042).
+* Provide a report in a Rmd file.   
+
+
 

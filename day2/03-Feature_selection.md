@@ -1,4 +1,18 @@
-# 3. Feature selection
+---
+output:
+  html_document:
+    keep_md: yes
+---
+
+
+
+
+
+
+
+
+
+# Feature selection
 
 
 Because of the sparsity in the sequencing data many genes or features are almost no expressed.
@@ -52,18 +66,12 @@ For further analysis we will use only HVGs.
 
 ## Exercises
 
-<blockquote>
-
-Extract normalized expression values and calculate the variance in genes and order them
+> Extract normalized expression values and calculate the variance in genes and order them
 by variance.
 
 * Extract the matrix of gene expression normalized values from the Seurat object
-
 * Calculate variances manually from the matrix
-
 * Sort genes based on variances in decreasing order and show top 6 genes
 
-</blockquote>
 
-[Previous Chapter](./02-Quality_control.md)|
-[Next Chapter](./04-Normalization_and_Dimensional_Reduction.md)
+
