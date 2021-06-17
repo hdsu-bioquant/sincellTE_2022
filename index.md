@@ -27,6 +27,16 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
  We will send you a link so that you can freely register to DataCamp and follow this course. 
 
 ********
+## Slides
+
+Here are the links to the slides
+
+* Day 1 : [introduction](./irtg2021_intro.pdf)
+* Day 1 : [R markdown](./irtg2021_rmarkdown.pdf)
+* Day 1 : [Data types](./irtg2021_datatypes.pdf)
+* Day 1 : [Statistical tests](./irtg2021_tests.pdf)
+
+
 ## Practical parts
 
 
