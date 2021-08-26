@@ -4,7 +4,7 @@
 
 Welcome to the **[BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This workshop is meant for individuals with little previous knowledge R. 
 
-The course will run over 2 days **(Wednesday, 16.06 and Thursday, 17.06)** from 10 am - 12.30 pm and 1.30 pm - 5.30 pm.
+The course will run over one complete day **(Monday, 13 September 2021)** from 9:00 am to 4:00 pm.
 
 
 ******
@@ -25,6 +25,65 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
  While we will start at a very basic level, we would **strongly encourage absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
  We will send you a link so that you can freely register to DataCamp and follow this course. 
+
+********
+
+
+## Table Styling in Markdown
+
+<style>
+.heatMap {
+    width: 70%;
+    text-align: center;
+}
+.heatMap th {
+background: grey;
+word-wrap: break-word;
+text-align: center;
+}
+.heatMap tr:nth-child(1) { background: firebrick; }
+.heatMap tr:nth-child(4) { background: cadetblue; }
+.heatMap tr:nth-child(5) { background: firebrick; }
+.heatMap tr:nth-child(9) { background: cadetblue; }
+.heatMap tr:nth-child(10) { background: firebrick; }
+.heatMap tr:nth-child(15) { background: firebrick; }
+.heatMap tr:nth-child(17) { background: darkcyan; }
+
+table th:first-of-type {
+    width: 50%;
+}
+table th:nth-of-type(2) {
+    width: 20%;
+}
+
+</style>
+
+<div class="heatMap">
+
+| Activity | Time |
+| -- | ----------- |
+| Session 1 - Introduction |  |
+| Ice breaker: Course expectations | 9:00 - 9:30 | 
+| Introduction to Non-Negative Matrix Factorization (NMF) and its usage in genomics | 9:30 - 10:15 | 
+| Cofee break and discussion | 10:15 - 10:45| 
+| Session 2 - Matrix decomposition |  |
+| How to use ButchR with Docker | 10:45 - 11:15 | 
+| Pre-processing data to use with NMF | 11:15 - 11:45 | 
+| Matrix decomposition with ButchR | 11:45 - 12:15 | 
+| Lunch break | 12:15 - 13:30 | 
+| Session 3 - Result interpretation |  |
+| Selection of optimal factorizatin rank | 13:30 - 14:00 | 
+| Signature identification | 14:00 - 14:30 | 
+| Feature extraction and enrichment analysis | 14:30 - 15:00 | 
+| Interactive analysis with ShinyButchR | 15:00 - 15:30| 
+| Session 4 - Discussion | | 
+| Discussion and concluding remarks | 15:30 - 16:00| 
+| [BC]<sup>2</sup> Welcome lecture | 17:00 | 
+
+</div>
+
+
+
 
 ********
 ## Slides
