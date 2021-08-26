@@ -11,7 +11,7 @@ The course will run over 2 days **(Wednesday, 16.06 and Thursday, 17.06)** from 
 ## Tutors
 
 * Carl Herrmann, [Health Data Science Unit](https://www.hdsu.org/) Medical Faculty Heidelberg and BioQuant (carl.herrmann@bioquant.uni-heidelberg.de)
-* Carlos Ramirez, [Health Data Science Unit](https://www.hdsu.org/) Medical Faculty Heidelberg and BioQuant (carlos.ramirez@bioquant.uni-heidelberg.de)
+* Andres Quintero, [Health Data Science Unit](https://www.hdsu.org/) Medical Faculty Heidelberg and BioQuant (andres.quintero@bioquant.uni-heidelberg.de)
 
 
 ********
