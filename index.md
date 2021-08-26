@@ -49,12 +49,8 @@ text-align: center;
 .heatMap tr:nth-child(15) { background: firebrick; }
 .heatMap tr:nth-child(17) { background: darkcyan; }
 
-table th:first-of-type {
-    width: 50%;
-}
-table th:nth-of-type(2) {
-    width: 20%;
-}
+.heatMap th:first-of-type { width: 50%; }
+.heatMap th:nth-of-type(2) { width: 20%; }
 
 </style>
 
