@@ -1,8 +1,8 @@
-# [BC]<sup></sup>2 Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization
+# [BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization
 
 ![circos](./circos.png)
 
-Welcome to the **[BC]<sup></sup>2 Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This workshop is meant for individuals with little previous knowledge R. 
+Welcome to the **[BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This workshop is meant for individuals with little previous knowledge R. 
 
 The course will run over 2 days **(Wednesday, 16.06 and Thursday, 17.06)** from 10 am - 12.30 pm and 1.30 pm - 5.30 pm.
 
