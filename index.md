@@ -31,7 +31,7 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 
 ## Table Styling in Markdown
 
-<style>
+<!-- <style>
 .heatMap {
     width: 70%;
     text-align: center;
@@ -52,7 +52,7 @@ text-align: center;
 .heatMap th:first-of-type { width: 50%; }
 .heatMap th:nth-of-type(2) { width: 20%; }
 
-</style>
+</style> -->
 
 <div class="heatMap">
 
