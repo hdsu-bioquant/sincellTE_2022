@@ -1,6 +1,6 @@
 # [BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization
 
-![circos](./circos.png)
+![](./The_end.png)
 
 Welcome to the **[BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This tutorial will guide you through all the necessary steps to extract genomic signatures from high-dimensional data using Non-Negative Matrix Factorization (NMF). 
 
