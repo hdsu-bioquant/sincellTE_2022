@@ -1,4 +1,4 @@
 theme: jekyll-theme-minimal
 markdown: GFM
-title: IRTG Course
-description: <h3>[BC]<sup>2</sup> Tutorial</h3>  <figure><img src="./TRR179.png"></figure><h4>Carl Herrmann & Andres Quintero</h4>13 September 2021 
+title: [BC]<sup>2</sup> Tutorial
+description: <h3>Defining genomic signatures with Non-Negative Matrix Factorization</h3>  <figure><img src="./logo_bc2.png"></figure><h4>Carl Herrmann & Andres Quintero</h4>13 September 2021 
