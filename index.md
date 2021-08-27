@@ -2,10 +2,9 @@
 
 ![circos](./circos.png)
 
-Welcome to the **[BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This workshop is meant for individuals with little previous knowledge R. 
+Welcome to the **[BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This tutorial will guide you through all the necessary steps to extract genomic signatures from high-dimensional data using Non-Negative Matrix Factorization (NMF). 
 
-The course will run over one complete day **(Monday, 13 September 2021)** from 9:00 am to 4:00 pm.
-
+The tutorial will run over one complete day **(Monday, 13 September 2021)** from 9:00 am to 4:00 pm.
 
 ******
 ## Tutors
@@ -16,7 +15,7 @@ The course will run over one complete day **(Monday, 13 September 2021)** from 9
 
 ********
 
-## Is this course for me?
+## Is this tutorial for me?
 
 In this two-day course, we want to give you an **introduction to working with R in simple data analysis tasks**; you will learn the basic principles of reading in a data table, doing some descriptive statistics, making nice plots.
 On the second day, we will focus on a simple single-cell analysis workflow, which will guide you through the first steps of this kind of analysis!
@@ -29,7 +28,7 @@ On the second day, we will focus on a simple single-cell analysis workflow, whic
 ********
 
 
-## Table Styling in Markdown
+## Schedule
 
 <!-- <style>
 .heatMap {
