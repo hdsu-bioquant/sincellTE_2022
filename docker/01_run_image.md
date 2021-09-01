@@ -2,7 +2,7 @@
 
 # ButcherR-[BC]<sup>2</sup> Docker image
 
-We created a Docker image running RStudio, including all the package dependencies, and example datasets required to run a complete NMF workflow and infer molecular signatures. 
+We created a Docker image that runs RStudio, including all the package dependencies, and example datasets required to run a complete NMF workflow and infer molecular signatures. 
 
 ## Pull image
 
@@ -27,6 +27,15 @@ Once the image has been pulled from DockerHub you can run it from the command-li
 docker run --rm -p 8787:8787 -e USER=hdsu -e PASSWORD=pass hdsu/butchr-bc2
 ```
 
+Output messages expected after running the previous command:
+
+![](figs/run_output.png)
+
+
 And open the app in a browser:
 http://localhost:8787/
 
+
+
+First screen seen after launching the image without errors: 
+![](figs/run_screen.png)
