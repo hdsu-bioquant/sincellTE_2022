@@ -26,7 +26,7 @@ If you are a computational biologist dealing with large scale omics datasets (e.
 
  While we will start at a very basic level, we would **strongly encourage absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
 
-In order to avoid any software compatibility and installation issues the practical sessions of the tutorial will be done using a Docker image, please follow the instruction given in [Run Docker image](#dockerins) to install Docker and run the Docker image for the tutorial before Monday, 13 September 2021..
+In order to avoid any software compatibility and installation issues the practical sessions of the tutorial will be done using a Docker image, please follow the instruction given in [Run Docker image](#run-docker-image) to install Docker and run the Docker image for the tutorial before Monday, 13 September 2021..
 
 
 
@@ -71,7 +71,7 @@ text-align: center;
 | Pre-processing data to use with NMF | 11:15 - 11:45 | 
 | Matrix decomposition with ButchR | 11:45 - 12:15 | 
 | Lunch break | 12:15 - 13:30 | 
-| Session 3 - Result interpretation |  |
+| Session 3 - Results interpretation |  |
 | Selection of optimal factorization rank | 13:30 - 14:00 | 
 | Signature identification | 14:00 - 14:30 | 
 | Feature extraction and enrichment analysis | 14:30 - 15:00 | 
@@ -98,9 +98,9 @@ Here are the links to the slides
 * Day 2 : [Introduction to single-cell analysis](https://docs.google.com/presentation/d/1DSC6gUIbO6PzrqLCt1jp-sIx1U31TvMdDGgKdhohCIY/edit?ts=60c8bafb#slide=id.gdf238a40cf_0_5) -->
 
 
-## Practical sessions
+## Preparation before tutorial
 
-###  Run Docker image {#dockerins}  
+### Run Docker image
 
 0. Install Docker
 1. Run Docker image hdsu/butcher-bc2
@@ -108,32 +108,33 @@ Here are the links to the slides
 
 **Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/1rFcWJJD-qOqeRWZvhqPEqMCt_ddtinvdTlLPl2Syomw/edit?usp=sharing)**
 
-### Day 1: General introduction - (almost) first steps in R!                                        
+## Practical sessions
+
+### Session 2 - Matrix decomposition
+
+On the "Matrix decomposition" session, we will guide you through the steps to perform a NMF decomposition using the R package ButchR on a publicly available RNA-seq dataset from the human hematopoietic system (Corces et al. 2016)
 
 
-On the first day, we will guide you through the first steps of working with R, from reading data to exploratory analysis and basic statistics.
+0. How to use ButchR with Docker 
+1. Pre-processing data to use with NMF 
+2. Matrix decomposition with ButchR 
+                               
 
-0. [Goals of Day 1](./day1/00_Objectives.md)
+<!-- 0. [Goals of Day 1](./day1/00_Objectives.md)
 1. [Getting started with RStudio](./day1/01_rstudio.md)
 2. [Reading in a data table](./day1/02_dataframe.md)
 3. [Cleaning the dataset](./day1/03_cleanup.md)
 4. [Making plots](./day1/04_plotting.md)
-5. [Statistical tests](./day1/05_test.md)
+5. [Statistical tests](./day1/05_test.md) -->
                                                    
 
-### Day 2: a simple single-cell RNA-seq analysis workflow
+### Session 3 - Results interpretation
 
-On the second day, we will go through a step by step simple analysis of a small scRNA-seq dataset using the Seurat toolkit. **Don't expect to be able to carry a full scRNA-seq analysis after this!** This is meant to give you an idea of a typical workflow rather.
+On the "Results interpretation" session, we will analyze the NMF decomposition results and learn how to extract relevant features from the inferred molecular signatures.
 
-0. [Intro on scRNA-seq analysis](./day2/00.md)
-1. [Creating a SEURAT object](./day2/01.md)
-2. [Basic QC and normalization ](./day2/02.md)
-3. [Feature selection](./day2/03.md)
-4. [Normalization and Dimensionality reduction](./day2/04.md)
-5. [Cluster visualization](./day2/05.md)
-6. [Differential gene expression analysis](./day2/06.md)
-7. [Profiling cells](./day2/07.md)
-
+0. Selection of optimal factorization rank 
+1. Signature identification  
+2. Feature extraction and enrichment analysis
 
 
 
