@@ -133,7 +133,7 @@ On the second day, we will go through a step by step simple analysis of a small 
 
 
 *********
-## Organisation
+## Organization
 
 The course will be onsite only! 
 
