@@ -69,7 +69,7 @@ text-align: center;
 | Matrix decomposition with ButchR | 11:45 - 12:15 | 
 | Lunch break | 12:15 - 13:30 | 
 | Session 3 - Result interpretation |  |
-| Selection of optimal factorizatin rank | 13:30 - 14:00 | 
+| Selection of optimal factorization rank | 13:30 - 14:00 | 
 | Signature identification | 14:00 - 14:30 | 
 | Feature extraction and enrichment analysis | 14:30 - 15:00 | 
 | Interactive analysis with ShinyButchR | 15:00 - 15:30| 
