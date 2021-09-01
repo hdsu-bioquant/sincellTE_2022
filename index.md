@@ -135,9 +135,9 @@ On the second day, we will go through a step by step simple analysis of a small 
 *********
 ## Organisation
 
-The course will be online only! 
-* Lectures will be over **Zoom** (we will send the link via email prior to the course)
-* We will use **Discord channels** for the practical sessions (register [using this link](https://discord.gg/gPXJDukGfQ))
+The course will be onsite only! 
+
+Registration starts at 8:30 at the Kollegienhaus, please don't forget your Covid Certificate ([see [BC]<sup>2</sup> Covid-19 Protection Plan](https://www.bc2.ch/covid-19-protection-plan)).
 
 **********
 ## Technical pre-requisites
