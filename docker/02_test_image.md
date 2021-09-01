@@ -406,7 +406,7 @@ These quality measures can be displayed together:
 gg_plotKStats(leukemia_nmf_exp)
 ```
 
-![](vignettes/figs/ButchR/kstats-1.png)
+![](figs/kstats-1.png)
 
 Visualize the matrix H (exposures)
 ----------------------------------
@@ -510,7 +510,7 @@ w_heatmap
 
 ```
 
-![](vignettes/figs/ButchR/wspecific-1.png)
+![](figs/wspecific-1.png)
 
 
 # References
