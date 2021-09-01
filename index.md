@@ -26,6 +26,7 @@ If you are a computational biologist dealing with large scale omics datasets (e.
 
  While we will start at a very basic level, we would **strongly encourage absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
 
+
 ********
 
 
@@ -141,10 +142,7 @@ The course will be online only!
 **********
 ## Technical pre-requisites
 
-Every participant will work on her/his own laptop. The easiest way to work with R is using the **RStudio** interface.
-Please install RStudio Desktop prior to the start of the course:
+ The attendees are expected to bring their own laptop with Docker pre-installed. To avoid any delay in setting up the container during the practice sessions, the Docker image for the workshop should be downloaded beforehand. This can be done by opening a command-line terminal (e.g., Powershell and Terminal) and running the command “docker pull hdsu/butchr”. A complete overview of how to install Docker can be found here: https://docs.docker.com/desktop/. 
 
-1. first install R for your operating system; you will find the correct version [on this website](https://cran.rstudio.com/) 
-2. once R is installed, you can isntall the RStudio Desktop version, which you find [here](https://www.rstudio.com/products/rstudio/download/#download)
 
-Please check that you can open RStudio without error message!
+Please check that you can run the hdsu/butchr image without error message!
