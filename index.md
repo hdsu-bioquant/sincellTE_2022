@@ -102,9 +102,9 @@ Here are the links to the slides
 
 ### Run Docker image
 
-0. Install Docker
-1. Run Docker image hdsu/butcher-bc2
-2. Test Docker image hdsu/butcher-bc2
+0. [Install Docker](./docker/00_install.md)
+1. [Run Docker image hdsu/butcher-bc2](./docker/01_run_image.md)
+2. [Test Docker image hdsu/butcher-bc2](./docker/02_test_image.md)
 
 **Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/1rFcWJJD-qOqeRWZvhqPEqMCt_ddtinvdTlLPl2Syomw/edit?usp=sharing)**
 
