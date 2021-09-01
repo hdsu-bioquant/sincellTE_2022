@@ -17,13 +17,14 @@ The tutorial will run over one complete day **(Monday, 13 September 2021)** from
 
 ## Is this tutorial for me?
 
-In this two-day course, we want to give you an **introduction to working with R in simple data analysis tasks**; you will learn the basic principles of reading in a data table, doing some descriptive statistics, making nice plots.
-On the second day, we will focus on a simple single-cell analysis workflow, which will guide you through the first steps of this kind of analysis!
+The aim of this tutorial is to learn how to use the R package ButchR to **perform signature identification in different types of genomic data using NMF**. To explore the results of an NMF analysis, we will provide a ready to use Docker image with RStudio, ButchR, and pre-loaded publicly available datasets, including bulk and single-cell RNA-seq data, as well as an interactive application. The tutorial will show how to run an NMF-based analysis from start to end.
+
+If you are a computational biologist dealing with large scale omics datasets (e.g. RNA-seq, ATAC-seq, …) looking for solutions to reduce the dimensionality of the data to a small set of informative signatures, this tutorial will be perfect for you.
+
 
 ### IMPORTANT NOTE! 
 
  While we will start at a very basic level, we would **strongly encourage absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
- We will send you a link so that you can freely register to DataCamp and follow this course. 
 
 ********
 
@@ -81,7 +82,7 @@ text-align: center;
 
 
 ********
-## Slides
+<!-- ## Slides
 
 Here are the links to the slides
 
@@ -90,7 +91,9 @@ Here are the links to the slides
 * Day 1 : [Data types](./irtg2021_datatypes.pdf)
 * Day 1 : [Statistical tests](./irtg2021_tests.pdf)
 
-* Day 2 : [Introduction to single-cell analysis](https://docs.google.com/presentation/d/1DSC6gUIbO6PzrqLCt1jp-sIx1U31TvMdDGgKdhohCIY/edit?ts=60c8bafb#slide=id.gdf238a40cf_0_5)
+* Day 2 : [Introduction to single-cell analysis](https://docs.google.com/presentation/d/1DSC6gUIbO6PzrqLCt1jp-sIx1U31TvMdDGgKdhohCIY/edit?ts=60c8bafb#slide=id.gdf238a40cf_0_5) -->
+
+
 ## Practical parts
 
 
