@@ -141,7 +141,9 @@ On the "Results interpretation" session, we will analyze the NMF decomposition r
 *********
 ## Organization
 
-The course will be onsite only! 
+<!-- The course will be onsite only!  -->
+
+The course will take place onsite.
 
 Registration starts at 8:30 at the Kollegienhaus, please don't forget your Covid Certificate ([see [BC]<sup>2</sup> Covid-19 Protection Plan](https://www.bc2.ch/covid-19-protection-plan)).
 
