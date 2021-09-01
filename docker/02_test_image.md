@@ -59,7 +59,7 @@ implementing several NMF solvers was published (Gaujoux and Seoighe
 figure (Image taken from
 <a href="https://en.wikipedia.org/wiki/Non-negative_matrix_factorization" class="uri">https://en.wikipedia.org/wiki/Non-negative_matrix_factorization</a>):
 
-![NMF](vignettes/figs/ButchR/NMF.png)
+![NMF](figs/NMF.png)
 
 Here, *V* is an input matrix with dimensions *n* × *m*. It is decomposed
 into two matrices *W* of dimension *n* × *l* and *H* of dimension
@@ -446,15 +446,15 @@ for(ki in k_min:k_max) {
 
 #### H matrix for k= 2
 
-![](vignettes/figs/ButchR/hheatmap-1.png)
+![](figs/hheatmap-1.png)
 
 #### H matrix for k= 3
 
-![](vignettes/figs/ButchR/hheatmap-2.png)
+![](figs/hheatmap-2.png)
 
 #### H matrix for k= 4
 
-![](vignettes/figs/ButchR/hheatmap-3.png)
+![](figs/hheatmap-3.png)
 
 Feature selection
 -----------------
