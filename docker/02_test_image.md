@@ -38,9 +38,7 @@ https://hub.docker.com/r/hdsu/shinybutchr
 
 
 ``` r
-library(BiocStyle)
 library(ButchR)
-library(knitr)
 library(ComplexHeatmap)
 library(viridis)
 library(tidyverse)
