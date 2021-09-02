@@ -119,7 +119,7 @@ On the "Matrix decomposition" session, we will guide you through the steps to pe
 
 <!-- 0. How to use ButchR with Docker  -->
 1. [Pre-processing data to use with NMF](./session2/01_preprocessing.md)
-2. [Matrix decomposition with ButchR](./session2/02_NMF.md)
+2. [Matrix decomposition with ButchR](./session2/02_run_NMF.md)
                                
 
 <!-- 0. [Goals of Day 1](./day1/00_Objectives.md)
