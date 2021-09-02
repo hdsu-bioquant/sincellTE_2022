@@ -9,9 +9,9 @@ For the tutorial we will use RNA-seq and ATAC-seq datasets from labeled cell typ
 
 In this session we will download and pre-process the data. The data will be downloaded as counts matrices from GEO.
 
-## RNAseq data
+## Process RNAseq data
 
-Download and read RNAseq data
+Download and read RNAseq data.
 
 
 ```r
@@ -65,7 +65,7 @@ dim(rna.counts)
 </details>
 
 
-Remove leukemic and erythroblast samples
+Remove leukemic and erythroblast samples.
 ```r
 rna.counts <- rna.counts[,-grep("Ery|rHSC|LSC|Blast", colnames(rna.counts))]
 dim(rna.counts)
@@ -81,7 +81,7 @@ dim(rna.counts)
 </details>
 
 
-Inspect correlation matrix
+Inspect correlation matrix.
 ```r
 cor.dm <- cor(rna.counts)
 Heatmap(cor.dm, col = magma(100), name = "Correlation")
@@ -96,7 +96,7 @@ Heatmap(cor.dm, col = magma(100), name = "Correlation")
 </details>
 
 
-X5852.GMP is an outlier and will be removed, has much smaller library size as other GMPS.
+X5852.GMP is an outlier and will be removed, has much smaller library size as other GMPS.  
 Also remove genes with 0 counts.
 
 ```r
@@ -155,6 +155,7 @@ saveRDS(rna.annot, "data/rnaseq/rnaseq_annotation.RDS")
 
 ## Process ATACseq data
 
+Download and read RNAseq data
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -194,8 +195,8 @@ atac.counts[1:5,1:5]
 
 </details>
 
+Separate annotation column from data
 ```r
-# separate annotation column from data
 atac.row.anno <- atac.counts[,1:3]
 atac.counts <- atac.counts[,-c(1:3)]
 dim(atac.counts)
@@ -210,6 +211,8 @@ dim(atac.counts)
 
 </details>
 
+
+Remove rows with rowSums < 2000 and leukemic and erythroblast samples
 
 ```r
 rownames(atac.counts) <- do.call(paste, c(as.list(atac.row.anno), sep = "_"))
@@ -239,8 +242,8 @@ sum(rowSums(atac.counts) == 0)
 </details>
 
 
+Compute correlation matrix
 ```r
-# compute correlation matrix
 Heatmap(cor(atac.counts), col = magma(100), name = "Correlation")
 ```
 
@@ -253,11 +256,13 @@ Heatmap(cor(atac.counts), col = magma(100), name = "Correlation")
 
 
 
+Remove X6792.7A, due to low coverage
 ```r
-# remove X6792.7A, due to low coverage
 atac.counts <- atac.counts[,-grep("X6792.7A", colnames(atac.counts))]
+```
 
-
+Normalize counts and format annotation data frame.
+```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                              Normalize counts                              ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -310,7 +315,6 @@ col.anno
 
 </details>
 
-
 ```r
 # Annotation data frame
 atac.annot <- data.frame(sampleID = colnames(atac.norm.mat),
@@ -318,10 +322,10 @@ atac.annot <- data.frame(sampleID = colnames(atac.norm.mat),
                         color    = type.color[match(col.anno, names(type.color))],
                         row.names = colnames(atac.norm.mat),
                         stringsAsFactors = FALSE)
+```
 
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                        Save normalized matrix                              ##
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+Save data.
+```r
 saveRDS(atac.norm.mat, "data/atacseq/atacseq_normalized_counts.RDS")
 saveRDS(atac.annot, "data/atacseq/atacseq_annotation.RDS")
 ```
