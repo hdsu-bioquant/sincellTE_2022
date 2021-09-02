@@ -33,7 +33,8 @@ docker run --rm -p 8787:8787 -e USER=hdsu -e PASSWORD=pass hdsu/butchr-bc2
 | ![](figs/run_output.png) | 
 |:--:| 
 | *Output messages expected after running the previous command* |
-
+||
+   
 
 2. Open the app in a browser:
 http://localhost:8787/
@@ -45,3 +46,4 @@ http://localhost:8787/
 | ![](figs/run_screen.png) | 
 |:--:| 
 | *First screen seen after launching the image without errors* |
+||
