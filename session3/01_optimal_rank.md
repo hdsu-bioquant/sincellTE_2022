@@ -332,6 +332,9 @@ Based on the results of the factorization quality metrics, an optimal number of 
 ## Plot K stats
 gg_plotKStats(rna_norm_nmf_exp)
 ```
+<details>
+<summary><b>Click for Answer</b></summary>
 
 ![](./figs/rna_NMF_optK-1.png)
   
+</details>
