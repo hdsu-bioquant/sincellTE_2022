@@ -10,10 +10,23 @@ With the app open, sign in to RStudio using the following credentials:
 - Username: hdsu  
 - Password: pass
 
+<details>
+<summary><b>Click for Answer</b></summary>
+
 | ![](figs/run_start.png) | 
 |:--:| 
 | *To start use "hdsu" as username and "pass" as password* |
 ||
+
+| ![](figs/run_login.png) | 
+|:--:| 
+| *Screen you should see after logging in to RStudio* |
+||
+
+
+
+</details>
+
 
 
 
