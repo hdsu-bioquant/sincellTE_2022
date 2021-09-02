@@ -41,7 +41,7 @@ library(viridis)
 library(tidyverse)
 ```
 
-# Step 3 - Load leukemia data
+## Step 3 - Load leukemia data
 
 Load the example data
 
@@ -95,7 +95,7 @@ Depending on the choice of parameters (dimensions of the input matrix,
 number of iterations), this step may take some time. Note that the
 algorithm updates the user about the progress in the iterations.
 
-### Step 5 - Normalize W matrix
+## Step 5 - Normalize W matrix
 
 To make the features in the *W* matrix comparable, the factorization is
 normalized to make all columns of *W* sum 1.
@@ -104,7 +104,7 @@ normalized to make all columns of *W* sum 1.
 leukemia_nmf_exp <- normalizeW(leukemia_nmf_exp)
 ```
 
-### Step 6 - Visualize the matrix H (exposures)
+## Step 6 - Visualize the matrix H (exposures)
 
 The matrices `H` may be visualized as heatmaps. We can define a meta
 information object and annotate meta data:
