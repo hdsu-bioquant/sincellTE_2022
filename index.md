@@ -26,7 +26,7 @@ If you are a computational biologist dealing with large scale omics datasets (e.
 
  While we will start at a very basic level, we would **strongly encourage absolute beginners**, who have never ever worked with R, to complete a very simple online R intro course on DataCamp (["Introduction to R"](https://learn.datacamp.com/courses/free-introduction-to-r)), which will give you the very basic first concepts on what R is, and how to do some very simple operations with it.
 
-In order to avoid any software compatibility and installation issues the practical sessions of the tutorial will be done using a Docker image, please follow the instruction given in [Run Docker image](#run-docker-image) to install Docker and run the Docker image for the tutorial before Monday, 13 September 2021..
+In order to avoid any software compatibility and installation issues the practical sessions of the tutorial will be done using a Docker image, please follow the instruction given in [Run Docker image](#run-docker-image) to install Docker and run the Docker image for the tutorial before Monday, 13 September 2021.
 
 
 
@@ -102,11 +102,13 @@ Here are the links to the slides
 
 ### Run Docker image
 
+Please complete the following three steps before Monday, 13 September 2021.
+
 0. [Install Docker](./docker/00_install.md)
 1. [Run Docker image hdsu/butcher-bc2](./docker/01_run_image.md)
 2. [Test Docker image hdsu/butcher-bc2](./docker/02_test_image.md)
 
-**Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/1rFcWJJD-qOqeRWZvhqPEqMCt_ddtinvdTlLPl2Syomw/edit?usp=sharing)**
+**Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/13SpUParjsYxF-9OnwbnTKaw3n3dA_bNBS_Ogn9Vsl7Y/edit?usp=sharing)**
 
 ## Practical sessions
 
