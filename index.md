@@ -117,9 +117,9 @@ Please complete the following three steps before Monday, 13 September 2021.
 On the "Matrix decomposition" session, we will guide you through the steps to perform a NMF decomposition using the R package ButchR on a publicly available RNA-seq dataset from the human hematopoietic system (Corces et al. 2016)
 
 
-0. How to use ButchR with Docker 
-1. Pre-processing data to use with NMF 
-2. Matrix decomposition with ButchR 
+<!-- 0. How to use ButchR with Docker  -->
+1. [Pre-processing data to use with NMF](./session2/01_preprocessing.md)
+2. [Matrix decomposition with ButchR](./session2/02_NMF.md)
                                
 
 <!-- 0. [Goals of Day 1](./day1/00_Objectives.md)
@@ -134,9 +134,9 @@ On the "Matrix decomposition" session, we will guide you through the steps to pe
 
 On the "Results interpretation" session, we will analyze the NMF decomposition results and learn how to extract relevant features from the inferred molecular signatures.
 
-0. Selection of optimal factorization rank 
-1. Signature identification  
-2. Feature extraction and enrichment analysis
+1. Selection of optimal factorization rank 
+2. Signature identification  
+3. Feature extraction and enrichment analysis
 
 
 
