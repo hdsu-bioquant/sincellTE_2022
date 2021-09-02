@@ -64,30 +64,6 @@ The matrix decomposition results are stored in an S4 object called
 factorzation after *n* initailization *W* and *H* matrices for a given
 factorzation rank.
 
-A crucial step in data analysis with NMF is the determination of the
-optimal factorization rank, i.e. the number of columns of the matrix *W*
-or equivalently the number of rows of the matrix *H*. No consensus
-method for an automatic evaluation of the optimal factorization rank has
-been found to date. Instead, the decomposition is usually performed
-iteratively over a range of possible factorization ranks and different
-quality measures are computed for every tested factorization ranks. Many
-quality measures have been proposed:
-
--   The `Frobenius reconstruction error`, i.e. the Frobenius norm of the
-    residuals of the decomposition:
-    \|\|*W* ⋅ *H* − *V*\|\|<sub>*F*</sub>
-
--   Criteria to assess the stability of the decomposition:
-
-    -   The `cophenetic correlation coefficient`
-    -   An `Amari type distance`
-    -   `Silhouette values` over clusters of patterns extracted
-        iteratively at the same factorization rank
-
-The package `ButchR` provides a function to visualize all factorization
-metrics.
-
-
 # NMF example - STAGE 1 preprocessing
 
 For the tutorial we will use an RNA-seq dataset from labeled cell types of the human hematopoietic system, originally published on:
