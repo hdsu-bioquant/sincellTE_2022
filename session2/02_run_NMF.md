@@ -37,6 +37,7 @@ rna_nmf_exp <- run_NMF_tensor(X                     = corces_rna_norm,
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## [1] "2021-09-02 16:23:14 UTC"
 ## Factorization rank:  2 
@@ -75,6 +76,7 @@ rna_nmf_exp
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## class: ButchR_NMF 
 ## Original matrix dimension:  21811 45 
@@ -118,6 +120,7 @@ class(Hk2)
 ```
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## [1] "matrix" "array"
 ```
@@ -178,6 +181,8 @@ class(Hlist)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
+
 ```
 ## [1] "list"
 ```
@@ -244,6 +249,7 @@ class(Wk2)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## [1] "matrix" "array"
 ```
@@ -318,6 +324,7 @@ class(Wlist)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## [1] "list"
 ```

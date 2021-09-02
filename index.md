@@ -134,9 +134,9 @@ On the "Matrix decomposition" session, we will guide you through the steps to pe
 
 On the "Results interpretation" session, we will analyze the NMF decomposition results and learn how to extract relevant features from the inferred molecular signatures.
 
-1. Selection of optimal factorization rank 
-2. Signature identification  
-3. Feature extraction and enrichment analysis
+1. [Selection of optimal factorization rank](./session3/01_optimal_rank.md)
+2. [Signature identification](./session3/02_signature_identification.md)
+3. [Feature extraction and enrichment analysis](./session3/03_feature_enrichment.md)
 
 
 
