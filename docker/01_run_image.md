@@ -50,4 +50,4 @@ http://localhost:8787/
 
 *********
 
-Next [Test Docker image hdsu/butcher-bc2](./docker/02_test_image.md)
+Next [Test Docker image hdsu/butcher-bc2](./02_test_image.md)
