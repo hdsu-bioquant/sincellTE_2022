@@ -239,9 +239,13 @@ Heatmap(cor(atac.counts), col = magma(100), name = "Correlation")
 ```
 
 <details>
-<summary><b>Click for Answer</b></summary>
-<img src="figs_preprocessing/ATACseqCounts-1.png" width="90%" />
-<details>
+<summary><b>Click for Answer</b></summary>  
+
+<img src="figs_preprocessing/ATACseqCounts-1.png" width="90%" />  
+
+</details>
+
+
 
 ```r
 # remove X6792.7A, due to low coverage
