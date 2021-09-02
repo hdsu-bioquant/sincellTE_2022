@@ -9,7 +9,9 @@ For the tutorial we will use RNA-seq and ATAC-seq datasets from labeled cell typ
 
 In this session we will download and pre-process the data. The data will be downloaded as counts matrices from GEO.
 
-## Download and process RNAseq data
+## RNAseq data
+
+Download and read RNAseq data
 
 
 ```r
@@ -63,8 +65,8 @@ dim(rna.counts)
 </details>
 
 
+Remove leukemic and erythroblast samples
 ```r
-# remove leukemic and erythroblast samples
 rna.counts <- rna.counts[,-grep("Ery|rHSC|LSC|Blast", colnames(rna.counts))]
 dim(rna.counts)
 ```
@@ -79,8 +81,8 @@ dim(rna.counts)
 </details>
 
 
+Inspect correlation matrix
 ```r
-# inspect correlation matrix
 cor.dm <- cor(rna.counts)
 Heatmap(cor.dm, col = magma(100), name = "Correlation")
 ```
@@ -94,16 +96,19 @@ Heatmap(cor.dm, col = magma(100), name = "Correlation")
 </details>
 
 
-```r
-rm(cor.dm)
+X5852.GMP is an outlier and will be removed, has much smaller library size as other GMPS.
+Also remove genes with 0 counts.
 
-# X5852.GMP is an outlier and will be removed, 
-# has much smaller library size as other GMPS
+```r
 rna.counts <- rna.counts[,-grep("X5852.GMP", colnames(rna.counts))]
 
 # remove rows with rowSum==0
 rna.counts <- rna.counts[!rowSums(rna.counts) == 0,]
+```
 
+Normalize counts and format annotation data frame.
+
+```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                              Normalize counts                              ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -137,10 +142,11 @@ rna.annot <- data.frame(sampleID = colnames(rna.norm.mat),
                         color    = type.color[match(col.anno, names(type.color))],
                         row.names = colnames(rna.norm.mat),
                         stringsAsFactors = FALSE)
+```
 
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                        Save normalized matrix                              ##
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+Save data
+
+```r
 saveRDS(rna.norm.mat, "data/rnaseq/rnaseq_normalized_counts.RDS")
 saveRDS(rna.annot, "data/rnaseq/rnaseq_annotation.RDS")
 ```
