@@ -47,3 +47,7 @@ http://localhost:8787/
 |:--:| 
 | *First screen seen after launching the image without errors* |
 ||
+
+*********
+
+Next [Test Docker image hdsu/butcher-bc2](./docker/02_test_image.md)

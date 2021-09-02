@@ -32,3 +32,7 @@ The **Docker Settings in Windows** and the **Docker Preferences in Mac** menu al
 ![](figs/docker_settings.png)
 
 We recommend to increase the resoures to at least **2 CPUs** and **5.00GB of memory** if your system allows it, and at least **10.GB for the Disk image size**.
+
+*********
+
+Next [Run Docker image hdsu/butcher-bc2](./01_run_image.md)
