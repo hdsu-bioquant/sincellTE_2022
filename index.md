@@ -138,6 +138,13 @@ On the "Results interpretation" session, we will analyze the NMF decomposition r
 2. [Signature identification](./session3/02_signature_identification.md)
 3. [Feature extraction and enrichment analysis](./session3/03_feature_enrichment.md)
 
+### Assignments
+
+To conclude the tutorial we ask you to select one of the four assignments found in the Docker image, run a NMF decomposition, use the resulting matrices to perform UMAP and identify the association of the NMF signatures with the annotation variable `Celltype` found in the metadata of each dataset.
+
+All the matrices have been previously normalized and are ready to use with ButchR.
+
+These datasets are a small sample from four different tissues of a scRNA-seq human atlas (Han, X., Zhou, Z., Fei, L. et al. Construction of a human cell landscape at single-cell level. Nature 581, 303–309 (2020). https://doi.org/10.1038/s41586-020-2157-4).
 
 
 *********
