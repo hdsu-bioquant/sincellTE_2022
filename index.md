@@ -65,7 +65,7 @@ text-align: center;
 | Session 1 - Introduction |  |
 | Ice breaker: Course expectations | 9:00 - 9:30 | 
 | Introduction to Non-Negative Matrix Factorization (NMF) and its usage in genomics | 9:30 - 10:15 | 
-| Cofee break and discussion | 10:15 - 10:45| 
+| Coffee break and discussion | 10:15 - 10:45| 
 | Session 2 - Matrix decomposition |  |
 | How to use ButchR with Docker | 10:45 - 11:15 | 
 | Pre-processing data to use with NMF | 11:15 - 11:45 | 

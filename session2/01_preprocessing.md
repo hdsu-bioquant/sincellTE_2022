@@ -76,6 +76,21 @@ In this session we will download and pre-process the data. The data will be down
 
 ## Preprocessing   
 
+Load required packages:
+```r
+library(tidyverse)
+library(viridis)
+library(ComplexHeatmap)
+library(DESeq2)
+library(ButchR)
+library(ggupset)
+library(clusterProfiler)
+library(msigdbr)
+library(umap)
+library(cowplot)
+```
+
+
 Download counts from GEO, select samples, and normalize data.
 
 
@@ -197,10 +212,6 @@ corces_rna_annot <- data.frame(sampleID = colnames(corces_rna_norm),
                         color    = type.color[match(col.anno, names(type.color))],
                         row.names = colnames(corces_rna_norm),
                         stringsAsFactors = FALSE)
-
-##----------------------------------------------------------------------------##
-##                          Print dataset dimension                           ##
-##----------------------------------------------------------------------------##
 
 ```
 
