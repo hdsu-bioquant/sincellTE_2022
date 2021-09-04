@@ -93,6 +93,7 @@ plot(river, plot_area=1, yscale=0.6, nodewidth=0.5)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ![](figs/rna_NMF_river-1.png)
 </details>
 
