@@ -146,6 +146,8 @@ All the matrices have been previously normalized and are ready to use with Butch
 
 These datasets are a small sample from four different tissues of a scRNA-seq human atlas (Han, X., Zhou, Z., Fei, L. et al. Construction of a human cell landscape at single-cell level. Nature 581, 303–309 (2020). https://doi.org/10.1038/s41586-020-2157-4).
 
+The data, and the assignments used in the tutorial can be also found [here](./data.zip).
+
 
 *********
 ## Organization
