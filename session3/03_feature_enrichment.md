@@ -29,7 +29,7 @@ ssf_gg
 </details>
 
 
-## Ectract top signature specfic features
+## Extract top signature specfic features
 
 Notice that when the return_all_features flag is not used, the function `SignatureSpecificFeatures` returns a list of associated features with every signature.
 
