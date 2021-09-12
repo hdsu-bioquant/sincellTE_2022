@@ -8,6 +8,7 @@ The function `SignatureSpecificFeatures` classifies one feature as non-contribut
 
 ```r
 ss_features <- SignatureSpecificFeatures(rna_norm_nmf_exp, k = 8,return_all_features = TRUE)
+colnames(ss_features) <- paste0("Sig", 1:8)
 ssf_gg <- ss_features %>% 
   as_tibble(rownames = "geneID") %>% 
   pivot_longer(cols = -geneID, names_to = "SigID", values_to = "IsSig") %>% 
@@ -29,7 +30,7 @@ ssf_gg
 </details>
 
 
-## Extract top signature specfic features
+## Ectract top signature specfic features
 
 Notice that when the return_all_features flag is not used, the function `SignatureSpecificFeatures` returns a list of associated features with every signature.
 
@@ -136,6 +137,7 @@ dotplot(sign_compare_t10_Msig, showCategory = 30)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ![](figs/enrichment-1.png)
 
 </details>
