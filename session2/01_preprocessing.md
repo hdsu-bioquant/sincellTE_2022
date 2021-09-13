@@ -120,6 +120,7 @@ corces_rna_counts[1:5,1:5]
 ```
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ##          X5852.HSC X6792.HSC X7256.HSC X7653.HSC X5852.MPP
 ## A1BG            14         9         1         5        13
@@ -146,6 +147,7 @@ dim(corces_rna_counts)
 ```
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## [1] 25498    46
 ```
@@ -159,7 +161,9 @@ Heatmap(cor_dm, col = magma(100), name = "Correlation")
 ```
 <details>
 <summary><b>Click for Answer</b></summary>
+
 <img src="figs/RNA-seqCounts-1.png" width="90%" />
+
 </details>
 
 
@@ -223,6 +227,7 @@ dim(corces_rna_norm)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
 ```
 ## [1] 21811    45
 ```
