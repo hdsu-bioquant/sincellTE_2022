@@ -1,10 +1,11 @@
-# [BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization
+# SinCellTE 2022 Single-cell Epigenomics & Multi-omics integration
 
 ![](./The_end.png)
 
-Welcome to the **[BC]<sup>2</sup> Tutorial - Defining genomic signatures with Non-Negative Matrix Factorization** This tutorial will guide you through all the necessary steps to extract genomic signatures from high-dimensional data using Non-Negative Matrix Factorization (NMF). 
+Welcome to the **SinCellTE 2022 Single-cell Epigenomics & Multi-omics integration tutorial** This tutorial is divided in two sessions:
+- On the first session we will guide you through all the necessary steps to perform a complete analysis of single-cell chromatin accessiblity (scATAC-seq) data, from raw files to inferring enrichment of transcription factors.
+- On the second session we will focus on different strategies to combine scATAC-seq data with scRNA-seq data, from assays where both madalities were measured from the same cell. 
 
-The tutorial will run over one complete day **(Monday, 13 September 2021)** from 9:00 am to 4:00 pm.
 
 ******
 ## Tutors
@@ -15,7 +16,7 @@ The tutorial will run over one complete day **(Monday, 13 September 2021)** from
 
 ********
 
-## Is this tutorial for me?
+<!-- ## Is this tutorial for me?
 
 The aim of this tutorial is to learn how to use the R package ButchR to **perform signature identification in different types of genomic data using NMF**. To explore the results of an NMF analysis, we will provide a ready to use Docker image with RStudio, ButchR, and pre-loaded publicly available datasets, including bulk and single-cell RNA-seq data, as well as an interactive application. The tutorial will show how to run an NMF-based analysis from start to end.
 
@@ -30,7 +31,7 @@ In order to avoid any software compatibility and installation issues the practic
 
 
 
-********
+******** -->
 
 
 ## Schedule
@@ -62,28 +63,15 @@ text-align: center;
 
 | Activity | Time |
 | -- | ----------- |
-| Session 1 - Introduction |  |
-| Ice breaker: Course expectations | 9:00 - 9:30 | 
-| Introduction to Non-Negative Matrix Factorization (NMF) and its usage in genomics | 9:30 - 10:15 | 
-| Coffee break and discussion | 10:15 - 10:45| 
-| Session 2 - Matrix decomposition |  |
-| How to use ButchR with Docker | 10:45 - 11:15 | 
-| Pre-processing data to use with NMF | 11:15 - 11:45 | 
-| Matrix decomposition with ButchR | 11:45 - 12:15 | 
-| Lunch break | 12:15 - 13:30 | 
-| Session 3 - Results interpretation |  |
-| Selection of optimal factorization rank | 13:30 - 14:00 | 
-| Signature identification | 14:00 - 14:30 | 
-| Feature extraction and enrichment analysis | 14:30 - 15:00 | 
-| Interactive analysis with ShinyButchR | 15:00 - 15:30| 
-| Session 4 - Discussion | | 
-| Discussion and concluding remarks | 15:30 - 16:00| 
-| [BC]<sup>2</sup> Welcome lecture | 17:00 | 
+| Session 1 - scATAC-seq analysis |  |
+| Introduction to single-cell epigenomics | 9:00 - 10:15 | 
+| Hands-on: Analysis of scATAC-seq data | 10:45 - 12:30| 
+| Lunch break | 13:00 - 14:15 | 
+| Session 2 - Multi-omics integration |  |
+| Session 2 - Introduction to multi-mics analysis | 14:30 - 15:15 |
+| Hands-on: Integrative analysis of scATAC-seq/scRNA-seq data | 15:15 - 16:00| 
 
 </div>
-
-
-
 
 ********
 <!-- ## Slides
