@@ -68,7 +68,7 @@ text-align: center;
 | Hands-on: Analysis of scATAC-seq data | 10:45 - 12:30| 
 | Lunch break | 13:00 - 14:15 | 
 | Session 2 - Multi-omics integration |  |
-| Session 2 - Introduction to multi-mics analysis | 14:30 - 15:15 |
+| Introduction to multi-mics analysis | 14:30 - 15:15 |
 | Hands-on: Integrative analysis of scATAC-seq/scRNA-seq data | 15:15 - 16:00| 
 
 </div>
@@ -86,23 +86,11 @@ Here are the links to the slides
 * Day 2 : [Introduction to single-cell analysis](https://docs.google.com/presentation/d/1DSC6gUIbO6PzrqLCt1jp-sIx1U31TvMdDGgKdhohCIY/edit?ts=60c8bafb#slide=id.gdf238a40cf_0_5) -->
 
 
-## Preparation before tutorial
-
-### Run Docker image
-
-Please complete the following three steps before Monday, 13 September 2021.
-
-0. [Install Docker](./docker/00_install.md)
-1. [Run Docker image hdsu/butcher-bc2](./docker/01_run_image.md)
-2. [Test Docker image hdsu/butcher-bc2](./docker/02_test_image.md)
-
-**Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/13SpUParjsYxF-9OnwbnTKaw3n3dA_bNBS_Ogn9Vsl7Y/edit?usp=sharing)**
-
 ## Practical sessions
 
-### Session 2 - Matrix decomposition
+### Session 1 - scATAC-seq analysis
 
-On the "Matrix decomposition" session, we will guide you through the steps to perform a NMF decomposition using the R package ButchR on a publicly available RNA-seq dataset from the human hematopoietic system (Corces et al. 2016)
+On the "scATAC-seq analysis" session, we will guide you through the steps to perform a NMF decomposition using the R package ButchR on a publicly available RNA-seq dataset from the human hematopoietic system (Corces et al. 2016)
 
 
 <!-- 0. How to use ButchR with Docker  -->
@@ -118,38 +106,11 @@ On the "Matrix decomposition" session, we will guide you through the steps to pe
 5. [Statistical tests](./day1/05_test.md) -->
                                                    
 
-### Session 3 - Results interpretation
+### Session 2 - Multi-omics integration
 
-On the "Results interpretation" session, we will analyze the NMF decomposition results and learn how to extract relevant features from the inferred molecular signatures.
+On the "Multi-omics integration" session, we will analyze the NMF decomposition results and learn how to extract relevant features from the inferred molecular signatures.
 
 1. [Selection of optimal factorization rank](./session3/01_optimal_rank.md)
 2. [Signature identification](./session3/02_signature_identification.md)
 3. [Feature extraction and enrichment analysis](./session3/03_feature_enrichment.md)
 
-### Assignments
-
-To conclude the tutorial we ask you to select one of the four assignments found in the Docker image, run a NMF decomposition, use the resulting matrices to perform UMAP and identify the association of the NMF signatures with the annotation variable `Celltype` found in the metadata of each dataset.
-
-All the matrices have been previously normalized and are ready to use with ButchR.
-
-These datasets are a small sample from four different tissues of a scRNA-seq human atlas (Han, X., Zhou, Z., Fei, L. et al. Construction of a human cell landscape at single-cell level. Nature 581, 303–309 (2020). https://doi.org/10.1038/s41586-020-2157-4).
-
-The data, and the assignments used in the tutorial can be also found [here](./data.zip).
-
-
-*********
-## Organization
-
-<!-- The course will be onsite only!  -->
-
-The course will take place onsite.
-
-Registration starts at 8:30 at the Kollegienhaus, please don't forget your Covid Certificate ([see [BC]<sup>2</sup> Covid-19 Protection Plan](https://www.bc2.ch/covid-19-protection-plan)).
-
-**********
-## Technical pre-requisites
-
- The attendees are expected to bring their own laptop with Docker pre-installed. To avoid any delay in setting up the container during the practice sessions, the Docker image for the workshop should be downloaded beforehand. This can be done by opening a command-line terminal (e.g., Powershell and Terminal) and running the command “docker pull hdsu/butchr”. A complete overview of how to install Docker can be found here: https://docs.docker.com/desktop/. 
-
-
-Please check that you can run the hdsu/butchr image without error message!
