@@ -114,6 +114,3 @@ On the "Multi-omics integration" session, we will analyze the NMF decomposition 
 2. [Signature identification](./session3/02_signature_identification.md)
 3. [Feature extraction and enrichment analysis](./session3/03_feature_enrichment.md)
 
-wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5
-wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz
-wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz.tbi
