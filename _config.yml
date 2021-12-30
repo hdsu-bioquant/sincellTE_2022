@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
 markdown: GFM
 title: "SinCellTE 2022"
-description: '<h3>Single-cell Epigenomics & Multi-omics integration</h3>  <div><figure><img style="float: left;" src="./logo_sincell2022.png"></figure></div> <h4>Carl Herrmann & Andres Quintero</h4>13 January 2022'
+description: '<h3>Single-cell Epigenomics & Multi-omics integration</h3>  <p class="aligncenter"><figure><img src="./logo_sincell2022.png"></figure></p> <h4>Carl Herrmann & Andres Quintero</h4>13 January 2022'
 
  
