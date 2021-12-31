@@ -1,5 +1,8 @@
 # Selection of optimal factorization rank
 
+## TSS enrichment
+# N frags
+
 A crucial step in data analysis with NMF is the determination of the
 optimal factorization rank, i.e. the number of columns of the matrix *W*
 or equivalently the number of rows of the matrix *H*. No consensus
