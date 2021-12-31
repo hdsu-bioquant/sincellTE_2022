@@ -1,7 +1,12 @@
 # Selection of optimal factorization rank
 
 ## TSS enrichment
-# N frags
+## N frags
+
+## LSI
+If you were to perform a standard dimensionality reduction, like Principal Component Analysis, on this sparse insertion counts matrix and plot the top two principal components, you would not obtain the desired result because the sparsity causes high inter-cell similarity at all of the 0 positions.
+
+
 
 A crucial step in data analysis with NMF is the determination of the
 optimal factorization rank, i.e. the number of columns of the matrix *W*
