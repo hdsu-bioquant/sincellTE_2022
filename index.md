@@ -4,7 +4,7 @@
 
 Welcome to the **SinCellTE 2022 Single-cell Epigenomics & Multi-omics integration tutorial** This tutorial is divided in two sessions:
 - On the first session we will guide you through all the necessary steps to perform a complete analysis of single-cell chromatin accessiblity (scATAC-seq) data, from raw files to inferring enrichment of transcription factors.
-- On the second session we will focus on different strategies to combine scATAC-seq data with scRNA-seq data, from assays where both madalities were measured from the same cell. 
+- On the second session we will focus on different strategies to combine scATAC-seq data with scRNA-seq data, from assays where both modalities were measured from the same cell. 
 
 
 ******
@@ -108,9 +108,9 @@ On the "scATAC-seq analysis" session, we will guide you through the steps to per
 
 ### Session 2 - Multi-omics integration
 
-On the "Multi-omics integration" session, we will analyze the NMF decomposition results and learn how to extract relevant features from the inferred molecular signatures.
+On the "Multi-omics integration" session we will complete an integrative analysis of single-cell chromatin accessibility and transcriptome data, using ArchR and Signac.
 
-1. [Selection of optimal factorization rank](./session3/01_optimal_rank.md)
-2. [Signature identification](./session3/02_signature_identification.md)
-3. [Feature extraction and enrichment analysis](./session3/03_feature_enrichment.md)
+1. [Multiome analysis with ArchR](./session2/01_multiome_ArchR.md)
+2. [Multiome analysis with Signac](./session2/02_signature_identification.md)
+
 
