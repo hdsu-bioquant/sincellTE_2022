@@ -112,9 +112,11 @@ signacobj[["ATAC"]] <- CreateChromatinAssay(
   annotation = annotation
 )
 
-
 DefaultAssay(signacobj) <- "ATAC"
 
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                                    QC                                      ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 signacobj <- NucleosomeSignal(signacobj)
 signacobj <- TSSEnrichment(signacobj)
 
@@ -134,3 +136,32 @@ VlnPlot(
 
 </details>
 
+
+Low quality cells filtering:
+
+```r
+signacobj <- subset(
+  x = signacobj,
+  subset = nCount_ATAC < 100000 &
+    nCount_RNA < 25000 &
+    nCount_ATAC > 1000 &
+    nCount_RNA > 1000 &
+    nucleosome_signal < 2 &
+    TSS.enrichment > 1
+)
+signacobj
+
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+An object of class Seurat 
+144978 features across 11331 samples within 2 assays 
+Active assay: ATAC (108377 features, 0 variable features)
+ 1 other assay present: RNA
+ 
+```
+
+</details>
