@@ -94,8 +94,9 @@ On the "scATAC-seq analysis" session, we will guide you through the steps to per
 
 
 <!-- 0. How to use ButchR with Docker  -->
-1. [Pre-processing data to use with NMF](./session2/01_preprocessing.md)
-2. [Matrix decomposition with ButchR](./session2/02_run_NMF.md)
+1. [Chromatin accessibility analysis with ArchR](./session2/01_scATAC-seq_ArchR.md)
+2. [Chromatin accessibility analysis with Signac](./session2/01_scATAC-seq_Signac.md)
+3. [Tricks to compute Arrow files](./session2/02_scATAC-seq_ArchR_tricks.md)
                                
 
 <!-- 0. [Goals of Day 1](./day1/00_Objectives.md)
@@ -111,6 +112,6 @@ On the "scATAC-seq analysis" session, we will guide you through the steps to per
 On the "Multi-omics integration" session we will complete an integrative analysis of single-cell chromatin accessibility and transcriptome data, using ArchR and Signac.
 
 1. [Multiome analysis with ArchR](./session2/01_multiome_ArchR.md)
-2. [Multiome analysis with Signac](./session2/02_signature_identification.md)
+2. [Multiome analysis with Signac](./session2/02_multiome_Signac.md)
 
 

@@ -4,7 +4,7 @@
 
 ## Data download
 
-In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data provided by 10x Genomicsfor human PBMCs.
+In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data provided by 10x Genomics for human PBMCs.
 
 The data was downloaded using the following commands:
 
