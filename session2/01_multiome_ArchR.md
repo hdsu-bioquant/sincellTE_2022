@@ -521,3 +521,21 @@ Elapsed time: 1 seconds
 ```
 </details>
 
+
+
+Plot UMAP embeddings:
+
+```r
+p1 <- plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
+p2 <- plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_RNA", size = 1.5, labelAsFactors=F, labelMeans=F)
+p3 <- plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_Combined", size = 1.5, labelAsFactors=F, labelMeans=F)
+
+p1 + p2 + p3 + patchwork::plot_layout(nrow = 1, guides = "collect")
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/scATAC_scRNA_UMAP.png" width="90%" />
+
+</details>
