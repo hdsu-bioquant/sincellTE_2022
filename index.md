@@ -90,23 +90,12 @@ Here are the links to the slides
 
 ### Session 1 - scATAC-seq analysis
 
-On the "scATAC-seq analysis" session, we will guide you through the steps to perform a NMF decomposition using the R package ButchR on a publicly available RNA-seq dataset from the human hematopoietic system (Corces et al. 2016)
+On the "scATAC-seq analysis" session we will focus on understanding the basic steps to perform a scATAC-seq data analysis. We wil use two of the most frequently used packages: ArchR and Signac. Additonally we will see a few tips to format the raw data in order to be used by these packages.
 
-
-<!-- 0. How to use ButchR with Docker  -->
 1. [Chromatin accessibility analysis with ArchR](./session2/01_scATAC-seq_ArchR.md)
 2. [Chromatin accessibility analysis with Signac](./session2/01_scATAC-seq_Signac.md)
 3. [Tricks to compute Arrow files](./session2/02_scATAC-seq_ArchR_tricks.md)
                                
-
-<!-- 0. [Goals of Day 1](./day1/00_Objectives.md)
-1. [Getting started with RStudio](./day1/01_rstudio.md)
-2. [Reading in a data table](./day1/02_dataframe.md)
-3. [Cleaning the dataset](./day1/03_cleanup.md)
-4. [Making plots](./day1/04_plotting.md)
-5. [Statistical tests](./day1/05_test.md) -->
-                                                   
-
 ### Session 2 - Multi-omics integration
 
 On the "Multi-omics integration" session we will complete an integrative analysis of single-cell chromatin accessibility and transcriptome data, using ArchR and Signac.
