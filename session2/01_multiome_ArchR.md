@@ -651,3 +651,63 @@ Remember to look in the **Plots** folder of you ArchR project output directory:
 <img src="figs/Peak-Call-Summary.png" width="90%" />
 
 </details>
+
+
+Afte computing the peak matrix, we can search for correlations between peak accessibility and gene expression:
+
+```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                             Peak-to-gene links                             ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+archrproj <- addPeak2GeneLinks(
+    ArchRProj = archrproj,
+    reducedDims = "LSI_Combined",
+    useMatrix = "GeneExpressionMatrix",
+)
+
+plotPeak2GeneHeatmap(ArchRProj = archrproj, groupBy = "Clusters")
+
+
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+ArchR logging to : ArchRLogs/ArchR-addPeak2GeneLinks-49f5a217963d-Date-2021-12-31_Time-10-39-09.log
+If there is an issue, please report to github with logFile!
+2021-12-31 10:39:10 : Getting Available Matrices, 0.006 mins elapsed.
+No predictionScore found. Continuing without predictionScore!
+2021-12-31 10:39:10 : Filtered Low Prediction Score Cells (0 of 11361, 0), 0.001 mins elapsed.
+2021-12-31 10:39:10 : Computing KNN, 0.004 mins elapsed.
+2021-12-31 10:39:10 : Identifying Non-Overlapping KNN pairs, 0.005 mins elapsed.
+2021-12-31 10:39:12 : Identified 489 Groupings!, 0.041 mins elapsed.
+2021-12-31 10:39:12 : Getting Group RNA Matrix, 0.042 mins elapsed.
+2021-12-31 10:39:27 : Getting Group ATAC Matrix, 0.291 mins elapsed.
+2021-12-31 10:40:07 : Normalizing Group Matrices, 0.958 mins elapsed.
+2021-12-31 10:40:15 : Finding Peak Gene Pairings, 1.095 mins elapsed.
+2021-12-31 10:40:16 : Computing Correlations, 1.111 mins elapsed.
+2021-12-31 10:40:27 : Completed Peak2Gene Correlations!, 1.287 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-addPeak2GeneLinks-49f5a217963d-Date-2021-12-31_Time-10-39-09.log
+
+
+ArchR logging to : ArchRLogs/ArchR-plotPeak2GeneHeatmap-49f5a542e003b-Date-2021-12-31_Time-10-43-30.log
+If there is an issue, please report to github with logFile!
+2021-12-31 10:43:39 : Determining KNN Groups!, 0.152 mins elapsed.
+2021-12-31 10:43:47 : Ordering Peak2Gene Links!, 0.287 mins elapsed.
+2021-12-31 10:44:33 : Constructing ATAC Heatmap!, 1.056 mins elapsed.
+Adding Annotations..
+Preparing Main Heatmap..
+2021-12-31 10:44:34 : Constructing RNA Heatmap!, 1.07 mins elapsed.
+Adding Annotations..
+Preparing Main Heatmap..
+ArchR logging successful to : ArchRLogs/ArchR-plotPeak2GeneHeatmap-49f5a542e003b-Date-2021-12-31_Time-10-43-30.log
+    
+```
+
+Heatmaps of linked ATAC and Gene regions:
+
+<img src="figs/scATAC_scRNA_Peak2GeneLinks.png" width="90%" />
+
+</details>
+
