@@ -264,15 +264,65 @@ signacobj <- RunSVD(signacobj)
 ## Annotating cell types with a reference dataset
 
 ```r
+# load PBMC reference
+reference <- readRDS("data/pbmc_10k_v3.rds")
+
+# transfer cell type labels from reference to query
+DefaultAssay(signacobj) <- "RNA"
+transfer_anchors <- FindTransferAnchors(
+  reference = reference,
+  query = signacobj,
+  reduction = 'cca'
+)
+
+predicted_labels <- TransferData(
+  anchorset = transfer_anchors,
+  refdata = reference$celltype,
+  weight.reduction = signacobj[['pca']],
+  dims = 1:50
+)
+
+signacobj <- AddMetaData(object = signacobj, metadata = predicted_labels)
+
+# set the cell identities to the cell type predictions
+Idents(signacobj) <- "predicted.id"
+
+# Re-order cell types for plot
+levels(signacobj) <- c("CD4 Naive", "CD4 Memory", "CD8 Naive", "CD8 effector", 
+                       "Double negative T cell", "NK dim", "NK bright", 
+                       "B cell progenitor", "pre-B cell", "CD14+ Monocytes", 
+                       "CD16+ Monocytes", "pDC", "Dendritic cell", "Platelet")
 
 ```
 
+After assigning identities to the cells in the Signac object, we can compute a joint UMAP representation using the gene expression and chromatin accessibility data.
+
+Signac uses the weighted nearest neighbor methods in Seurat v4, where a joint neighbor graph is calculated which represents both the ATAC and RNA data.
+
+```r
+# build a joint neighbor graph using both assays
+signacobj <- FindMultiModalNeighbors(
+  object = signacobj,
+  reduction.list = list("pca", "lsi"), 
+  dims.list = list(1:50, 2:40),
+  modality.weight.name = "RNA.weight",
+  verbose = TRUE
+)
+
+# build a joint UMAP visualization
+signacobj <- RunUMAP(
+  object = signacobj,
+  nn.name = "weighted.nn",
+  assay = "RNA",
+  verbose = TRUE
+)
+
+DimPlot(signacobj, label = TRUE, repel = TRUE, reduction = "umap") + NoLegend()
+```
 
 <details>
 <summary><b>Click for Answer</b></summary>
 
-```
-
-```
+<img src="figs/signac_UMAP.png" width="90%" />
 
 </details>
