@@ -1334,3 +1334,18 @@ p1 + p2 + p3 + patchwork::plot_layout(nrow = 1, guides = "collect") &
 
 </details>
 
+Heatmaps of linked ATAC and Gene regions grouped by predicted cell types:
+
+```r
+plotPeak2GeneHeatmap(ArchRProj = archrproj2, groupBy = "predictedGroup_Un")
+
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+
+<img src="figs/scATAC_scRNA_Peak2GeneLinks_prediction.png" width="90%" />
+
+</details>
+
