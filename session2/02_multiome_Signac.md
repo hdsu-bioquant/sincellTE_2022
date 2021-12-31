@@ -161,7 +161,75 @@ An object of class Seurat
 144978 features across 11331 samples within 2 assays 
 Active assay: ATAC (108377 features, 0 variable features)
  1 other assay present: RNA
- 
+
+```
+
+</details>
+
+## Call peaks and add peak counts matrix
+
+
+```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                    Call peaks and make feature matrix                      ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+# Call peaks using MACS2
+peaks <- CallPeaks(signacobj, macs2.path = "/shared/software/miniconda/envs/macs2-2.2.7.1/bin/macs2")
+
+# remove peaks on nonstandard chromosomes and in genomic blacklist regions
+peaks <- keepStandardChromosomes(peaks, pruning.mode = "coarse")
+peaks <- subsetByOverlaps(x = peaks, ranges = blacklist_hg38_unified, invert = TRUE)
+
+# quantify counts in each peak
+macs2_counts <- FeatureMatrix(
+  fragments = Fragments(signacobj),
+  features = peaks,
+  cells = colnames(signacobj)
+)
+
+# create a new assay using the MACS2 peak set and add it to the Seurat object
+signacobj[["peaks"]] <- CreateChromatinAssay(
+  counts = macs2_counts,
+  fragments = "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz",
+  annotation = annotation
+)
+
+peaks
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+GRanges object with 131364 ranges and 6 metadata columns:
+           seqnames              ranges strand |                   name     score fold_change neg_log10pvalue_summit
+              <Rle>           <IRanges>  <Rle> |            <character> <integer>   <numeric>              <numeric>
+       [1]     chr1         10032-10322      * |  SeuratProject_peak_44       142     4.99234                16.3379
+       [2]     chr1       180709-181030      * |  SeuratProject_peak_45       149     5.12372                17.1108
+       [3]     chr1       181296-181600      * |  SeuratProject_peak_46       291     7.35714                31.7325
+       [4]     chr1       191304-191914      * |  SeuratProject_peak_47       142     4.99234                16.3379
+       [5]     chr1       267874-268087      * |  SeuratProject_peak_48       134     4.86097                15.5761
+       ...      ...                 ...    ... .                    ...       ...         ...                    ...
+  [131360]     chrX 155880631-155881911      * | SeuratProject_peak_1..       824     8.67288                87.4204
+  [131361]     chrX 155891339-155891781      * | SeuratProject_peak_1..       105     4.30809                12.5625
+  [131362]     chrX 155966929-155967163      * | SeuratProject_peak_1..       134     4.86097                15.5761
+  [131363]     chrX 155997247-155997787      * | SeuratProject_peak_1..       263     6.17155                28.7770
+  [131364]     chrX 156029849-156030260      * | SeuratProject_peak_1..       106     4.33546                12.6467
+           neg_log10qvalue_summit relative_summit_position
+                        <numeric>                <integer>
+       [1]                14.2177                      126
+       [2]                14.9684                      124
+       [3]                29.1857                      137
+       [4]                14.2177                      145
+       [5]                13.4782                      134
+       ...                    ...                      ...
+  [131360]                82.4206                      637
+  [131361]                10.5583                      258
+  [131362]                13.4782                      112
+  [131363]                26.3134                      342
+  [131364]                10.6377                      245
+  -------
+  seqinfo: 24 sequences from an unspecified genome; no seqlengths
 ```
 
 </details>
