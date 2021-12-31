@@ -166,6 +166,7 @@ Active assay: ATAC (108377 features, 0 variable features)
 
 </details>
 
+
 ## Call peaks and add peak counts matrix
 
 
@@ -230,6 +231,48 @@ GRanges object with 131364 ranges and 6 metadata columns:
   [131364]                10.6377                      245
   -------
   seqinfo: 24 sequences from an unspecified genome; no seqlengths
+```
+
+</details>
+
+
+## Normalize data
+
+The gene expression data is normalized and scaled, followed by dimension reduction with PCA.
+The dimension of the peak matrix is reduced by performing latent semantic indexing (LSI).
+
+```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                             Normalize RNA data                             ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+DefaultAssay(signacobj) <- "RNA"
+signacobj <- NormalizeData(signacobj)
+signacobj <- FindVariableFeatures(signacobj, nfeatures = 3000)
+signacobj <- ScaleData(signacobj)
+signacobj <- RunPCA(signacobj)
+
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                             Normalize ATAC data                            ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+DefaultAssay(signacobj) <- "peaks"
+signacobj <- FindTopFeatures(signacobj, min.cutoff = 5)
+signacobj <- RunTFIDF(signacobj)
+signacobj <- RunSVD(signacobj)
+
+```
+
+## Annotating cell types with a reference dataset
+
+```r
+
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+
 ```
 
 </details>
