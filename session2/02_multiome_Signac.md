@@ -326,3 +326,61 @@ DimPlot(signacobj, label = TRUE, repel = TRUE, reduction = "umap") + NoLegend()
 <img src="figs/signac_UMAP.png" width="90%" />
 
 </details>
+
+## Finding peak to gene links
+
+Signac can find the set of peaks that may regulate each gene by computing the correlation between gene expression and accessibility at nearby peaks, and correcting for bias due to GC content, overall accessibility, and peak size.
+
+```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                   Peak to gene links for LYZ and MS4A1                     ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+
+
+DefaultAssay(signacobj) <- "peaks"
+
+# first compute the GC content for each peak
+signacobj <- RegionStats(signacobj, genome = BSgenome.Hsapiens.UCSC.hg38)
+
+# link peaks to genes
+signacobj <- LinkPeaks(
+  object = signacobj,
+  peak.assay = "peaks",
+  expression.assay = "RNA",
+  genes.use = c("LYZ", "MS4A1")
+)
+
+idents.plot <- c("CD8 Naive", "CD8 effector", 
+                 "B cell progenitor", "pre-B cell", 
+                 "CD14+ Monocytes", "CD16+ Monocytes")
+
+
+p1 <- CoveragePlot(
+  object = signacobj,
+  region = "MS4A1",
+  features = "MS4A1",
+  expression.assay = "RNA",
+  idents = idents.plot,
+  extend.upstream = 500,
+  extend.downstream = 10000
+)
+
+p2 <- CoveragePlot(
+  object = signacobj,
+  region = "LYZ",
+  features = "LYZ",
+  expression.assay = "RNA",
+  idents = idents.plot,
+  extend.upstream = 8000,
+  extend.downstream = 5000
+)
+
+patchwork::wrap_plots(p1, p2, ncol = 1)
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/signac_links.png" width="90%" />
+
+</details>
