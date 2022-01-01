@@ -382,6 +382,61 @@ DimPlot(object = signacobj, label = TRUE) + NoLegend()
 
 </details>
 
+## Computing a gene activity matrix
+
+The activity of each gene can be measured from the scATAC-seq data by quantifying the chromatin accessibility associated with each gene.
+In the case of Signac the gene activity matrix if computed by the following steps:
+
+1. Extract gene coordinates and extend them to include the 2 kb upstream region (promoter region).
+2. Count the number of fragments for each cell that map to each of these regions.
+
+
+```r
+gene_activities <- GeneActivity(signacobj)
+# add the gene activity matrix to the Seurat object as a new assay and normalize it
+
+head(signacobj@meta.data)
+signacobj[['RNA']] <- CreateAssayObject(counts = gene_activities)
+
+signacobj <- NormalizeData(
+  object = signacobj,
+  assay  = 'RNA',
+  normalization.method = 'LogNormalize',
+  scale.factor = median(signacobj$nCount_RNA)
+)
+
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/signac_atac_UMAP.png" width="90%" />
+
+</details>
+
+
+The gene activities can be used to visualize the expression of marker genes on the scATAC-seq clusters:
+
+```r
+
+DefaultAssay(signacobj) <- 'RNA'
+
+FeaturePlot(
+  object = signacobj,
+  features = c('MS4A1', 'CD3D', 'LEF1', 'NKG7', 'TREM1', 'LYZ'),
+  pt.size = 0.1,
+  max.cutoff = 'q95',
+  ncol = 3
+)
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/signac_atac_Markers.png" width="90%" />
+
+</details>
 
 
 
