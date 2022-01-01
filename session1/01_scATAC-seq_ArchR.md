@@ -586,7 +586,7 @@ Remember to look in the **Plots** folder of you ArchR project output directory:
 
 </details>
 
-## Annotating peaks and Footprinting
+## Annotating peaks and motif enrichment 
 
 One of the biggest advantages of ArchR is that it provides a complete set of functions to perform a downstream analysis on the identified peaks.
 
@@ -686,3 +686,75 @@ GRanges object with 18237 ranges and 1 metadata column:
 
 ```
 </details>
+
+Next we will use our set of marker peaks to find with motifs are enriched in them:
+
+```r
+enrichMotifs <- peakAnnoEnrichment(
+    seMarker = markersPeaks,
+    ArchRProj = archrproj,
+    peakAnnotation = "Motif",
+    cutOff = "FDR <= 0.1 & Log2FC >= 0.5"
+  )
+
+enrichMotifs
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+
+```
+ArchR logging to : ArchRLogs/ArchR-peakAnnoEnrichment-2cdba3de7ecfd-Date-2022-01-01_Time-20-03-14.log
+If there is an issue, please report to github with logFile!
+2022-01-01 20:03:21 : Computing Enrichments 1 of 14, 0.112 mins elapsed.
+2022-01-01 20:03:22 : Computing Enrichments 2 of 14, 0.13 mins elapsed.
+2022-01-01 20:03:23 : Computing Enrichments 3 of 14, 0.143 mins elapsed.
+2022-01-01 20:03:24 : Computing Enrichments 4 of 14, 0.154 mins elapsed.
+2022-01-01 20:03:25 : Computing Enrichments 5 of 14, 0.171 mins elapsed.
+2022-01-01 20:03:26 : Computing Enrichments 6 of 14, 0.185 mins elapsed.
+2022-01-01 20:03:26 : Computing Enrichments 7 of 14, 0.197 mins elapsed.
+2022-01-01 20:03:27 : Computing Enrichments 8 of 14, 0.212 mins elapsed.
+2022-01-01 20:03:28 : Computing Enrichments 9 of 14, 0.225 mins elapsed.
+2022-01-01 20:03:29 : Computing Enrichments 10 of 14, 0.235 mins elapsed.
+2022-01-01 20:03:29 : Computing Enrichments 11 of 14, 0.247 mins elapsed.
+2022-01-01 20:03:30 : Computing Enrichments 12 of 14, 0.26 mins elapsed.
+2022-01-01 20:03:31 : Computing Enrichments 13 of 14, 0.271 mins elapsed.
+2022-01-01 20:03:31 : Computing Enrichments 14 of 14, 0.283 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-peakAnnoEnrichment-2cdba3de7ecfd-Date-2022-01-01_Time-20-03-14.log
+
+class: SummarizedExperiment 
+dim: 870 14 
+metadata(0):
+assays(10): mlog10Padj mlog10p ... CompareFrequency feature
+rownames(870): TFAP2B_1 TFAP2D_2 ... TBX18_869 TBX22_870
+rowData names(0):
+colnames(14): B cell progenitor CD4 Memory ... Platelet pre-B cell
+colData names(0):
+```
+</details>
+
+
+
+We can visualize the enriched motifs with a heatmap:
+
+```r
+
+heatmapEM <- plotEnrichHeatmap(enrichMotifs, n = 5, transpose = TRUE)
+## Adding Annotations..
+## Preparing Main Heatmap..
+ComplexHeatmap::draw(heatmapEM, heatmap_legend_side = "bot", annotation_legend_side = "bot")
+plotPDF(heatmapEM, name = "Motifs-Enriched-Marker-Heatmap", width = 8, height = 6, ArchRProj = archrproj, addDOC = FALSE)
+
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/archr_atac_Motifs-Enriched-Marker-Heatmap.png" width="90%" />
+
+</details>
+
+
+## Footprinting
