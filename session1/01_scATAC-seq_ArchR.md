@@ -421,7 +421,7 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 reference <- readRDS("data/pbmc_10k_v3.rds")
 
 # add gene integration matrix
-archrproj2 <- addGeneIntegrationMatrix(
+archrproj <- addGeneIntegrationMatrix(
     ArchRProj   = archrproj, 
     useMatrix   = "GeneScoreMatrix",
     matrixName  = "GeneIntegrationMatrix",
@@ -435,7 +435,7 @@ archrproj2 <- addGeneIntegrationMatrix(
 )
 
 # Plot UMAP with predicted cell types
-plotEmbedding(archrproj2, name = "predictedGroup_Un", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
+plotEmbedding(archrproj, name = "predictedGroup_Un", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
 
 ```
 
@@ -444,28 +444,28 @@ plotEmbedding(archrproj2, name = "predictedGroup_Un", embedding = "UMAP_ATAC", s
 <summary><b>Click for Answer</b></summary>
 
 ```
-ArchR logging to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba1242ff97-Date-2022-01-01_Time-18-32-58.log
+ArchR logging to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba6d0bc070-Date-2022-01-01_Time-19-26-35.log
 If there is an issue, please report to github with logFile!
-2022-01-01 18:32:59 : Running Seurat's Integration Stuart* et al 2019, 0.005 mins elapsed.
-2022-01-01 18:32:59 : Checking ATAC Input, 0.009 mins elapsed.
-2022-01-01 18:32:59 : Checking RNA Input, 0.009 mins elapsed.
-2022-01-01 18:33:02 : Found 15350 overlapping gene names from gene scores and rna matrix!, 0.061 mins elapsed.
-2022-01-01 18:33:02 : Creating Integration Blocks, 0.061 mins elapsed.
-2022-01-01 18:33:02 : Prepping Interation Data, 0.062 mins elapsed.
-2022-01-01 18:33:02 : Computing Integration in 1 Integration Blocks!, 0 mins elapsed.
-2022-01-01 18:33:02 : Block (1 of 1) : Computing Integration, 0 mins elapsed.
-2022-01-01 18:33:05 : Block (1 of 1) : Identifying Variable Genes, 0.05 mins elapsed.
-2022-01-01 18:33:10 : Block (1 of 1) : Getting GeneScoreMatrix, 0.135 mins elapsed.
-2022-01-01 18:33:26 : Block (1 of 1) : Imputing GeneScoreMatrix, 0.389 mins elapsed.
+2022-01-01 19:26:35 : Running Seurat's Integration Stuart* et al 2019, 0.007 mins elapsed.
+2022-01-01 19:26:35 : Checking ATAC Input, 0.009 mins elapsed.
+2022-01-01 19:26:35 : Checking RNA Input, 0.009 mins elapsed.
+2022-01-01 19:26:39 : Found 15350 overlapping gene names from gene scores and rna matrix!, 0.074 mins elapsed.
+2022-01-01 19:26:39 : Creating Integration Blocks, 0.074 mins elapsed.
+2022-01-01 19:26:39 : Prepping Interation Data, 0.075 mins elapsed.
+2022-01-01 19:26:40 : Computing Integration in 1 Integration Blocks!, 0 mins elapsed.
+2022-01-01 19:26:40 : Block (1 of 1) : Computing Integration, 0 mins elapsed.
+2022-01-01 19:26:42 : Block (1 of 1) : Identifying Variable Genes, 0.035 mins elapsed.
+2022-01-01 19:26:47 : Block (1 of 1) : Getting GeneScoreMatrix, 0.113 mins elapsed.
+2022-01-01 19:27:02 : Block (1 of 1) : Imputing GeneScoreMatrix, 0.362 mins elapsed.
 Getting ImputeWeights
-2022-01-01 18:34:21 : Block (1 of 1) : Seurat FindTransferAnchors, 1.306 mins elapsed.
-2022-01-01 18:36:40 : Block (1 of 1) : Seurat TransferData Cell Group Labels, 3.637 mins elapsed.
-2022-01-01 18:36:43 : Block (1 of 1) : Seurat TransferData Cell Names Labels, 3.676 mins elapsed.
-2022-01-01 18:37:03 : Block (1 of 1) : Saving TransferAnchors Joint CCA, 4.018 mins elapsed.
-2022-01-01 18:37:05 : Block (1 of 1) : Completed Integration, 4.04 mins elapsed.
-2022-01-01 18:37:06 : Block (1 of 1) : Plotting Joint UMAP, 4.054 mins elapsed.
-2022-01-01 18:37:52 : Completed Integration with RNA Matrix, 4.833 mins elapsed.
-ArchR logging successful to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba1242ff97-Date-2022-01-01_Time-18-32-58.log
+2022-01-01 19:27:57 : Block (1 of 1) : Seurat FindTransferAnchors, 1.292 mins elapsed.
+2022-01-01 19:30:09 : Block (1 of 1) : Seurat TransferData Cell Group Labels, 3.48 mins elapsed.
+2022-01-01 19:30:11 : Block (1 of 1) : Seurat TransferData Cell Names Labels, 3.518 mins elapsed.
+2022-01-01 19:30:32 : Block (1 of 1) : Saving TransferAnchors Joint CCA, 3.865 mins elapsed.
+2022-01-01 19:30:33 : Block (1 of 1) : Completed Integration, 3.891 mins elapsed.
+2022-01-01 19:30:34 : Block (1 of 1) : Plotting Joint UMAP, 3.909 mins elapsed.
+2022-01-01 19:31:23 : Completed Integration with RNA Matrix, 4.717 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba6d0bc070-Date-2022-01-01_Time-19-26-35.log
 ```
 
 <img src="figs/archr_atac_UMAP_prediction.png" width="90%" />
@@ -484,7 +484,7 @@ First we have to define pseudo-bulk replicates to call peaks on them, ArchR merg
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                       Defining pseudo-bulk replicates                      ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-archrproj <- addGroupCoverages(ArchRProj = archrproj, groupBy = "Clusters")
+archrproj <- addGroupCoverages(ArchRProj = archrproj, groupBy = "predictedGroup_Un")
 
 ```
 
@@ -492,13 +492,13 @@ archrproj <- addGroupCoverages(ArchRProj = archrproj, groupBy = "Clusters")
 <summary><b>Click for Answer</b></summary>
 
 ```
-ArchR logging to : ArchRLogs/ArchR-addGroupCoverages-2cdba7390b40b-Date-2022-01-01_Time-18-43-51.log
+ArchR logging to : ArchRLogs/ArchR-addGroupCoverages-2cdba30dbb619-Date-2022-01-01_Time-19-32-02.log
 If there is an issue, please report to github with logFile!
-2022-01-01 18:43:52 : Creating Coverage Files!, 0.021 mins elapsed.
-2022-01-01 18:43:52 : Batch Execution w/ safelapply!, 0.021 mins elapsed.
-2022-01-01 18:44:44 : Adding Kmer Bias to Coverage Files!, 0.875 mins elapsed.
-2022-01-01 18:45:31 : Finished Creation of Coverage Files!, 1.672 mins elapsed.
-ArchR logging successful to : ArchRLogs/ArchR-addGroupCoverages-2cdba7390b40b-Date-2022-01-01_Time-18-43-51.log
+2022-01-01 19:32:03 : Creating Coverage Files!, 0.026 mins elapsed.
+2022-01-01 19:32:03 : Batch Execution w/ safelapply!, 0.026 mins elapsed.
+2022-01-01 19:33:04 : Adding Kmer Bias to Coverage Files!, 1.043 mins elapsed.
+2022-01-01 19:34:09 : Finished Creation of Coverage Files!, 2.115 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-addGroupCoverages-2cdba30dbb619-Date-2022-01-01_Time-19-32-02.log
     
 ```
 </details>
@@ -507,12 +507,12 @@ Now we can call peaks using the pseudo-bulk replicates, and add the peak matrix 
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                       Defining pseudo-bulk replicates                      ##
+##             Defining pseudo-bulk replicates and calling peaks              ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 pathToMacs2 <- "/shared/software/miniconda/envs/macs2-2.2.7.1/bin/macs2"
 archrproj <- addReproduciblePeakSet(
   ArchRProj = archrproj,
-  groupBy = "Clusters",
+  groupBy = "predictedGroup_Un",
   pathToMacs2 = pathToMacs2
 )
 
@@ -523,67 +523,60 @@ archrproj <- addPeakMatrix(archrproj)
 <summary><b>Click for Answer</b></summary>
 
 ```
-ArchR logging to : ArchRLogs/ArchR-addGroupCoverages-2cdba7390b40b-Date-2022-01-01_Time-18-43-51.log
+ArchR logging to : ArchRLogs/ArchR-addReproduciblePeakSet-2cdba3250975c-Date-2022-01-01_Time-19-34-21.log
 If there is an issue, please report to github with logFile!
-2022-01-01 18:43:52 : Creating Coverage Files!, 0.021 mins elapsed.
-2022-01-01 18:43:52 : Batch Execution w/ safelapply!, 0.021 mins elapsed.
-2022-01-01 18:44:44 : Adding Kmer Bias to Coverage Files!, 0.875 mins elapsed.
-2022-01-01 18:45:31 : Finished Creation of Coverage Files!, 1.672 mins elapsed.
-ArchR logging successful to : ArchRLogs/ArchR-addGroupCoverages-2cdba7390b40b-Date-2022-01-01_Time-18-43-51.log
-
-
-ArchR logging to : ArchRLogs/ArchR-addReproduciblePeakSet-2cdba65dbcb5a-Date-2022-01-01_Time-18-46-35.log
-If there is an issue, please report to github with logFile!
-2022-01-01 18:46:36 : Peak Calling Parameters!, 0.014 mins elapsed.
-    Group nCells nCellsUsed nReplicates nMin nMax maxPeaks
-C1     C1     93         93           2   40   53    46500
-C2     C2     26         26           2   19   19    13000
-C3     C3    163        163           2   40  123    81500
-C4     C4   2762        540           2   40  500   150000
-C5     C5    432        432           2   40  392   150000
-C6     C6    303        303           2   40  263   150000
-C7     C7    427        427           2   40  387   150000
-C8     C8   1550        540           2   40  500   150000
-C9     C9   1388        540           2   40  500   150000
-C10   C10   1438        540           2   40  500   150000
-C11   C11    740        540           2   40  500   150000
-C12   C12    425        425           2   40  385   150000
-2022-01-01 18:46:36 : Batching Peak Calls!, 0.015 mins elapsed.
-2022-01-01 18:46:36 : Batch Execution w/ safelapply!, 0 mins elapsed.
-2022-01-01 18:48:41 : Identifying Reproducible Peaks!, 2.09 mins elapsed.
-2022-01-01 18:48:52 : Creating Union Peak Set!, 2.27 mins elapsed.
+2022-01-01 19:34:22 : Peak Calling Parameters!, 0.016 mins elapsed.
+                                        Group nCells nCellsUsed nReplicates nMin nMax maxPeaks
+B cell progenitor           B cell progenitor    435        435           2   40  395   150000
+CD4 Memory                         CD4 Memory   1814        540           2   40  500   150000
+CD4 Naive                           CD4 Naive   1535        540           2   40  500   150000
+CD8 effector                     CD8 effector    537        537           2   40  497   150000
+CD8 Naive                           CD8 Naive   1019        540           2   40  500   150000
+CD14+ Monocytes               CD14+ Monocytes   2583        540           2   40  500   150000
+CD16+ Monocytes               CD16+ Monocytes    607        540           2   40  500   150000
+Dendritic cell                 Dendritic cell    166        166           2   40  126    83000
+Double negative T cell Double negative T cell    187        187           2   40  147    93500
+NK bright                           NK bright      7          7           2    6    7     3500
+NK dim                                 NK dim    443        443           2   40  403   150000
+pDC                                       pDC     94         94           2   40   54    47000
+Platelet                             Platelet     25         25           2   18   20    12500
+pre-B cell                         pre-B cell    295        295           2   40  255   147500
+2022-01-01 19:34:22 : Batching Peak Calls!, 0.016 mins elapsed.
+2022-01-01 19:34:22 : Batch Execution w/ safelapply!, 0 mins elapsed.
+2022-01-01 19:36:13 : Identifying Reproducible Peaks!, 1.87 mins elapsed.
+2022-01-01 19:36:23 : Creating Union Peak Set!, 2.024 mins elapsed.
 Converged after 9 iterations!
 Plotting Ggplot!
-2022-01-01 18:49:01 : Finished Creating Union Peak Set (155890)!, 2.434 mins elapsed.
+2022-01-01 19:36:32 : Finished Creating Union Peak Set (156943)!, 2.187 mins elapsed.
 
 
-ArchR logging to : ArchRLogs/ArchR-addPeakMatrix-2cdba71bf5d27-Date-2022-01-01_Time-18-57-12.log
+ArchR logging to : ArchRLogs/ArchR-addPeakMatrix-2cdba2f264879-Date-2022-01-01_Time-19-36-32.log
 If there is an issue, please report to github with logFile!
-2022-01-01 18:57:13 : Batch Execution w/ safelapply!, 0 mins elapsed.
-2022-01-01 18:57:13 : Adding PBMC_10k to PeakMatrix for Chr (1 of 23)!, 0.01 mins elapsed.
-2022-01-01 18:57:27 : Adding PBMC_10k to PeakMatrix for Chr (2 of 23)!, 0.23 mins elapsed.
-2022-01-01 18:57:35 : Adding PBMC_10k to PeakMatrix for Chr (3 of 23)!, 0.374 mins elapsed.
-2022-01-01 18:57:43 : Adding PBMC_10k to PeakMatrix for Chr (4 of 23)!, 0.495 mins elapsed.
-2022-01-01 18:57:47 : Adding PBMC_10k to PeakMatrix for Chr (5 of 23)!, 0.576 mins elapsed.
-2022-01-01 18:57:53 : Adding PBMC_10k to PeakMatrix for Chr (6 of 23)!, 0.678 mins elapsed.
-2022-01-01 18:58:01 : Adding PBMC_10k to PeakMatrix for Chr (7 of 23)!, 0.796 mins elapsed.
-2022-01-01 18:58:06 : Adding PBMC_10k to PeakMatrix for Chr (8 of 23)!, 0.892 mins elapsed.
-2022-01-01 18:58:11 : Adding PBMC_10k to PeakMatrix for Chr (9 of 23)!, 0.976 mins elapsed.
-2022-01-01 18:58:17 : Adding PBMC_10k to PeakMatrix for Chr (10 of 23)!, 1.065 mins elapsed.
-2022-01-01 18:58:22 : Adding PBMC_10k to PeakMatrix for Chr (11 of 23)!, 1.158 mins elapsed.
-2022-01-01 18:58:29 : Adding PBMC_10k to PeakMatrix for Chr (12 of 23)!, 1.268 mins elapsed.
-2022-01-01 18:58:35 : Adding PBMC_10k to PeakMatrix for Chr (13 of 23)!, 1.376 mins elapsed.
-2022-01-01 18:58:39 : Adding PBMC_10k to PeakMatrix for Chr (14 of 23)!, 1.436 mins elapsed.
-2022-01-01 18:58:44 : Adding PBMC_10k to PeakMatrix for Chr (15 of 23)!, 1.516 mins elapsed.
-2022-01-01 18:58:48 : Adding PBMC_10k to PeakMatrix for Chr (16 of 23)!, 1.592 mins elapsed.
-2022-01-01 18:58:54 : Adding PBMC_10k to PeakMatrix for Chr (17 of 23)!, 1.69 mins elapsed.
-2022-01-01 18:59:02 : Adding PBMC_10k to PeakMatrix for Chr (18 of 23)!, 1.814 mins elapsed.
-2022-01-01 18:59:05 : Adding PBMC_10k to PeakMatrix for Chr (19 of 23)!, 1.868 mins elapsed.
-2022-01-01 18:59:13 : Adding PBMC_10k to PeakMatrix for Chr (20 of 23)!, 2.002 mins elapsed.
-2022-01-01 18:59:17 : Adding PBMC_10k to PeakMatrix for Chr (21 of 23)!, 2.074 mins elapsed.
-2022-01-01 18:59:20 : Adding PBMC_10k to PeakMatrix for Chr (22 of 23)!, 2.123 mins elapsed.
-2022-01-01 18:59:24 : Adding PBMC_10k to PeakMatrix for Chr (23 of 23)!, 2.193 mins elapsed.
-ArchR logging successful to : ArchRLogs/ArchR-addPeakMatrix-2cdba71bf5d27-Date-2022-01-01_Time-18-57-12.log
+2022-01-01 19:36:33 : Batch Execution w/ safelapply!, 0 mins elapsed.
+2022-01-01 19:37:25 : Adding PBMC_10k to PeakMatrix for Chr (1 of 23)!, 0.022 mins elapsed.
+2022-01-01 19:37:37 : Adding PBMC_10k to PeakMatrix for Chr (2 of 23)!, 0.235 mins elapsed.
+2022-01-01 19:37:46 : Adding PBMC_10k to PeakMatrix for Chr (3 of 23)!, 0.387 mins elapsed.
+2022-01-01 19:37:54 : Adding PBMC_10k to PeakMatrix for Chr (4 of 23)!, 0.512 mins elapsed.
+2022-01-01 19:37:59 : Adding PBMC_10k to PeakMatrix for Chr (5 of 23)!, 0.602 mins elapsed.
+2022-01-01 19:38:06 : Adding PBMC_10k to PeakMatrix for Chr (6 of 23)!, 0.71 mins elapsed.
+2022-01-01 19:38:13 : Adding PBMC_10k to PeakMatrix for Chr (7 of 23)!, 0.835 mins elapsed.
+2022-01-01 19:38:20 : Adding PBMC_10k to PeakMatrix for Chr (8 of 23)!, 0.94 mins elapsed.
+2022-01-01 19:38:25 : Adding PBMC_10k to PeakMatrix for Chr (9 of 23)!, 1.032 mins elapsed.
+2022-01-01 19:38:31 : Adding PBMC_10k to PeakMatrix for Chr (10 of 23)!, 1.13 mins elapsed.
+2022-01-01 19:38:37 : Adding PBMC_10k to PeakMatrix for Chr (11 of 23)!, 1.23 mins elapsed.
+2022-01-01 19:38:44 : Adding PBMC_10k to PeakMatrix for Chr (12 of 23)!, 1.349 mins elapsed.
+2022-01-01 19:38:51 : Adding PBMC_10k to PeakMatrix for Chr (13 of 23)!, 1.465 mins elapsed.
+2022-01-01 19:38:55 : Adding PBMC_10k to PeakMatrix for Chr (14 of 23)!, 1.533 mins elapsed.
+2022-01-01 19:39:00 : Adding PBMC_10k to PeakMatrix for Chr (15 of 23)!, 1.619 mins elapsed.
+2022-01-01 19:39:06 : Adding PBMC_10k to PeakMatrix for Chr (16 of 23)!, 1.706 mins elapsed.
+2022-01-01 19:39:12 : Adding PBMC_10k to PeakMatrix for Chr (17 of 23)!, 1.809 mins elapsed.
+2022-01-01 19:39:20 : Adding PBMC_10k to PeakMatrix for Chr (18 of 23)!, 1.942 mins elapsed.
+2022-01-01 19:39:24 : Adding PBMC_10k to PeakMatrix for Chr (19 of 23)!, 2.006 mins elapsed.
+2022-01-01 19:39:32 : Adding PBMC_10k to PeakMatrix for Chr (20 of 23)!, 2.142 mins elapsed.
+2022-01-01 19:39:37 : Adding PBMC_10k to PeakMatrix for Chr (21 of 23)!, 2.221 mins elapsed.
+2022-01-01 19:39:40 : Adding PBMC_10k to PeakMatrix for Chr (22 of 23)!, 2.28 mins elapsed.
+2022-01-01 19:39:45 : Adding PBMC_10k to PeakMatrix for Chr (23 of 23)!, 2.356 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-addPeakMatrix-2cdba2f264879-Date-2022-01-01_Time-19-36-32.log
     
 ```
 
@@ -593,4 +586,103 @@ Remember to look in the **Plots** folder of you ArchR project output directory:
 
 </details>
 
+## Annotating peaks and Footprinting
 
+One of the biggest advantages of ArchR is that it provides a complete set of functions to perform a downstream analysis on the identified peaks.
+
+
+After identifying peaks for each cell type, we can also search for marker peaks for each of these groups.
+ArchR can also take into account differences in data quality between cell types by setting the bias parameter to account for TSS enrichment and the number of unique fragments per cell.
+
+
+```r
+markersPeaks <- getMarkerFeatures(
+    ArchRProj = archrproj, 
+    useMatrix = "PeakMatrix", 
+    groupBy = "predictedGroup_Un",
+  bias = c("TSSEnrichment", "log10(nFrags)"),
+  testMethod = "wilcoxon"
+)
+```
+
+The markersPeaks object is SummarizedExperiment that contains different assays containing marker peaks for each cell type.
+The following helper functions allow us to retreive markers we are interested in:
+
+- getMarkers(): The default behavior of this function is to return a list of DataFrame objects, one for each cell group.
+- getMarkers() with option returnGR = TRUE: Instead of a list of DataFrame objects returns a GRangesList object with the marker peaks.
+
+```r
+markersPeaks
+
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+class: SummarizedExperiment 
+dim: 156943 14 
+metadata(2): MatchInfo Params
+assays(7): Log2FC Mean ... AUC MeanBGD
+rownames(156943): 1 2 ... 156942 156943
+rowData names(4): seqnames idx start end
+colnames(14): B cell progenitor CD4 Memory ... Platelet pre-B cell
+colData names(0):
+
+```
+
+
+</details>
+
+
+Then, we will search for motifs that are enriched in peaks that are up or down in various cell types. 
+
+The first step to do this, is to match a set of motifs to our previously identified peaks:
+
+```r
+archrproj <- addMotifAnnotations(ArchRProj = archrproj, motifSet = "cisbp", name = "Motif", force=T)
+
+motifPositions <- getPositions(archrproj)
+motifPositions
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+
+```
+ArchR logging to : ArchRLogs/ArchR-addMotifAnnotations-2cdba5becc92d-Date-2022-01-01_Time-19-41-24.log
+If there is an issue, please report to github with logFile!
+2022-01-01 19:41:24 : Gettting Motif Set, Species : Homo sapiens, 0.008 mins elapsed.
+Using version 2 motifs!
+2022-01-01 19:41:27 : Finding Motif Positions with motifmatchr!, 0.051 mins elapsed.
+2022-01-01 19:44:58 : Creating Motif Overlap Matrix, 3.577 mins elapsed.
+2022-01-01 19:45:01 : Finished Getting Motif Info!, 3.621 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-addMotifAnnotations-2cdba5becc92d-Date-2022-01-01_Time-19-41-24.log
+
+GRangesList object of length 870:
+$TFAP2B_1
+GRanges object with 18237 ranges and 1 metadata column:
+          seqnames              ranges strand |     score
+             <Rle>           <IRanges>  <Rle> | <numeric>
+      [1]     chr1       925412-925423      - |   8.33885
+      [2]     chr1       938095-938106      + |   8.43023
+      [3]     chr1       961090-961101      + |   8.77640
+      [4]     chr1       961291-961302      + |   9.88526
+      [5]     chr1       961090-961101      - |   8.70388
+      ...      ...                 ...    ... .       ...
+  [18233]     chrX 154732833-154732844      + |   8.11530
+  [18234]     chrX 154751280-154751291      - |   9.03277
+  [18235]     chrX 154762826-154762837      + |   8.26625
+  [18236]     chrX 155071293-155071304      + |   8.82438
+  [18237]     chrX 155071293-155071304      - |   8.04768
+  -------
+  seqinfo: 23 sequences from an unspecified genome; no seqlengths
+
+...
+<869 more elements>
+
+
+```
+</details>
