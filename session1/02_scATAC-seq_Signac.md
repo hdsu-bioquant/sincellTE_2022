@@ -439,8 +439,6 @@ FeaturePlot(
 </details>
 
 
-
-
 ## Annotating cell types with a reference dataset
 
 We can use a reference scRNA-seq dataset to annotate cells from a scATAC-seq dataset. In this example, we will use different functions from the Seurat package for this.
@@ -448,22 +446,19 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 
 
 ```r
-# load PBMC reference
 reference <- readRDS("data/pbmc_10k_v3.rds")
 
-# transfer cell type labels from reference to query
-DefaultAssay(signacobj) <- "RNA"
 transfer_anchors <- FindTransferAnchors(
   reference = reference,
-  query = signacobj,
+  query     = signacobj,
   reduction = 'cca'
 )
 
 predicted_labels <- TransferData(
   anchorset = transfer_anchors,
-  refdata = reference$celltype,
-  weight.reduction = signacobj[['pca']],
-  dims = 1:50
+  refdata   = reference$celltype,
+  weight.reduction = signacobj[['lsi']],
+  dims = 2:30
 )
 
 signacobj <- AddMetaData(object = signacobj, metadata = predicted_labels)
@@ -471,100 +466,23 @@ signacobj <- AddMetaData(object = signacobj, metadata = predicted_labels)
 # set the cell identities to the cell type predictions
 Idents(signacobj) <- "predicted.id"
 
-# Re-order cell types for plot
+# set a reasonable order for cell types to be displayed when plotting
 levels(signacobj) <- c("CD4 Naive", "CD4 Memory", "CD8 Naive", "CD8 effector", 
                        "Double negative T cell", "NK dim", "NK bright", 
                        "B cell progenitor", "pre-B cell", "CD14+ Monocytes", 
                        "CD16+ Monocytes", "pDC", "Dendritic cell", "Platelet")
 
-```
+DimPlot(
+  object   = signacobj,
+  group.by = "predicted.id",
+  label    = TRUE,
+  repel    = TRUE) + NoLegend() 
 
-After assigning identities to the cells in the Signac object, we can compute a joint UMAP representation using the gene expression and chromatin accessibility data.
-
-Signac uses the weighted nearest neighbor methods in Seurat v4, where a joint neighbor graph is calculated which represents both the ATAC and RNA data.
-
-```r
-# build a joint neighbor graph using both assays
-signacobj <- FindMultiModalNeighbors(
-  object = signacobj,
-  reduction.list = list("pca", "lsi"), 
-  dims.list = list(1:50, 2:40),
-  modality.weight.name = "RNA.weight",
-  verbose = TRUE
-)
-
-# build a joint UMAP visualization
-signacobj <- RunUMAP(
-  object = signacobj,
-  nn.name = "weighted.nn",
-  assay = "RNA",
-  verbose = TRUE
-)
-
-DimPlot(signacobj, label = TRUE, repel = TRUE, reduction = "umap") + NoLegend()
 ```
 
 <details>
 <summary><b>Click for Answer</b></summary>
 
-<img src="figs/signac_UMAP.png" width="90%" />
-
-</details>
-
-## Finding peak to gene links
-
-Signac can find the set of peaks that may regulate each gene by computing the correlation between gene expression and accessibility at nearby peaks, and correcting for bias due to GC content, overall accessibility, and peak size.
-
-```r
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                   Peak to gene links for LYZ and MS4A1                     ##
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-
-
-DefaultAssay(signacobj) <- "peaks"
-
-# first compute the GC content for each peak
-signacobj <- RegionStats(signacobj, genome = BSgenome.Hsapiens.UCSC.hg38)
-
-# link peaks to genes
-signacobj <- LinkPeaks(
-  object = signacobj,
-  peak.assay = "peaks",
-  expression.assay = "RNA",
-  genes.use = c("LYZ", "MS4A1")
-)
-
-idents.plot <- c("CD8 Naive", "CD8 effector", 
-                 "B cell progenitor", "pre-B cell", 
-                 "CD14+ Monocytes", "CD16+ Monocytes")
-
-
-p1 <- CoveragePlot(
-  object = signacobj,
-  region = "MS4A1",
-  features = "MS4A1",
-  expression.assay = "RNA",
-  idents = idents.plot,
-  extend.upstream = 500,
-  extend.downstream = 10000
-)
-
-p2 <- CoveragePlot(
-  object = signacobj,
-  region = "LYZ",
-  features = "LYZ",
-  expression.assay = "RNA",
-  idents = idents.plot,
-  extend.upstream = 8000,
-  extend.downstream = 5000
-)
-
-patchwork::wrap_plots(p1, p2, ncol = 1)
-```
-
-<details>
-<summary><b>Click for Answer</b></summary>
-
-<img src="figs/signac_links.png" width="90%" />
+<img src="figs/signac_atac_UMAP_celltypes.png" width="90%" />
 
 </details>
