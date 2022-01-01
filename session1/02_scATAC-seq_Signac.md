@@ -118,16 +118,19 @@ signacobj <- CreateSeuratObject(
 # pull the gene annotation information directly from the object.
 Annotation(signacobj) <- annotation
 
-
 signacobj
+
+
 ```
 
 <details>
 <summary><b>Click for Answer</b></summary>
 
+```
 An object of class Seurat 
 106086 features across 11830 samples within 1 assay 
 Active assay: ATAC (106086 features, 0 variable features)
+```
 
 </details>
 
@@ -140,6 +143,8 @@ granges(signacobj)
 
 <details>
 <summary><b>Click for Answer</b></summary>
+
+```
 
 GRanges object with 106086 ranges and 0 metadata columns:
              seqnames        ranges strand
@@ -157,6 +162,8 @@ GRanges object with 106086 ranges and 0 metadata columns:
   [106086] KI270713.1   37129-37638      *
   -------
   seqinfo: 33 sequences from an unspecified genome; no seqlengths
+
+```
 
 </details>
 
@@ -298,7 +305,9 @@ peaks
 <details>
 <summary><b>Click for Answer</b></summary>
 
+
 ```
+
 GRanges object with 131364 ranges and 6 metadata columns:
            seqnames              ranges strand |                   name     score fold_change
               <Rle>           <IRanges>  <Rle> |            <character> <integer>   <numeric>
@@ -328,6 +337,7 @@ GRanges object with 131364 ranges and 6 metadata columns:
   [131364]                12.6467                10.6377                      245
   -------
   seqinfo: 24 sequences from an unspecified genome; no seqlengths
+
 ```
 
 </details>
