@@ -418,14 +418,6 @@ signacobj <- NormalizeData(
 ```
 
 
-<details>
-<summary><b>Click for Answer</b></summary>
-
-<img src="figs/signac_atac_UMAP.png" width="90%" />
-
-</details>
-
-
 The gene activities can be used to visualize the expression of marker genes on the scATAC-seq clusters:
 
 ```r

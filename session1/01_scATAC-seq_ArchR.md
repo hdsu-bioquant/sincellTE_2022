@@ -369,6 +369,112 @@ plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_ATAC", size = 1.5,
 </details>
 
 
+## Computing a gene activity matrix and marker genes
+
+The activity of each gene can be measured from the scATAC-seq data by quantifying the chromatin accessibility associated with each gene.
+ArchR computes a gene activity matrix for each sample at the time of creation of each Arrow file.
+
+In the case of ArchR the gene activity matrix if computed by the following steps:
+
+1. Creates a tile matrix  for each chromosome.
+2. Overlap these tiles with a user-defined gene window (default is 100 kb on either side of the gene)
+3. computes the distance from each tile (start or end) to the gene body or gene start. 
+4. The distance from each tile to the gene is then converted to a distance weight using a user-defined accessibility model (default is e(-abs(distance)/5000) + e-1). 
+5. To help adjust for large differences in gene size, ArchR applies a separate weight for the inverse of the gene size (1 / gene size) and scales this inverse weight linearly from 1 to a user-defined hard maximum (default of 5). 
+6. The corresponding distance and gene size weights are then multiplied by the number of Tn5 insertions within each tile and summed across all tiles within the gene window. 
+
+_Modified from: https://www.archrproject.com/bookdown/calculating-gene-scores-in-archr.html_
+
+
+The gene activities can be used to visualize the expression of marker genes on the scATAC-seq clusters:
+
+```r
+
+p <- plotEmbedding(
+    ArchRProj = archrproj, 
+    colorBy = "GeneScoreMatrix", 
+    name = c('MS4A1', 'CD3D', 'LEF1', 'NKG7', 'TREM1', 'LYZ'),
+    embedding = "UMAP_ATAC",
+    quantCut = c(0.01, 0.95),
+    imputeWeights = NULL
+)
+
+patchwork::wrap_plots(p) 
+
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/archr_atac_Markers.png" width="90%" />
+
+</details>
+
+
+## Annotating cell types with a reference dataset
+
+ArchR includes a function to align a reference scRNA-seq dataset, and impute cell type annotations based on the reference annotation (`addGeneIntegrationMatrix`).
+As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. Provided by 10x Genomics, and [pre-processed by the Satija Lab](https://github.com/satijalab/Integration2019/blob/master/preprocessing_scripts/pbmc_10k_v3.R). 
+
+```r
+# Read reference
+reference <- readRDS("data/pbmc_10k_v3.rds")
+
+# add gene integration matrix
+archrproj2 <- addGeneIntegrationMatrix(
+    ArchRProj   = archrproj, 
+    useMatrix   = "GeneScoreMatrix",
+    matrixName  = "GeneIntegrationMatrix",
+    reducedDims = "LSI_ATAC",
+    seRNA       = reference,
+    addToArrow  = FALSE,
+    groupRNA    = "celltype",
+    nameCell    = "predictedCell_Un",
+    nameGroup   = "predictedGroup_Un",
+    nameScore   = "predictedScore_Un"
+)
+
+# Plot UMAP with predicted cell types
+plotEmbedding(archrproj2, name = "predictedGroup_Un", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
+
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+ArchR logging to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba1242ff97-Date-2022-01-01_Time-18-32-58.log
+If there is an issue, please report to github with logFile!
+2022-01-01 18:32:59 : Running Seurat's Integration Stuart* et al 2019, 0.005 mins elapsed.
+2022-01-01 18:32:59 : Checking ATAC Input, 0.009 mins elapsed.
+2022-01-01 18:32:59 : Checking RNA Input, 0.009 mins elapsed.
+2022-01-01 18:33:02 : Found 15350 overlapping gene names from gene scores and rna matrix!, 0.061 mins elapsed.
+2022-01-01 18:33:02 : Creating Integration Blocks, 0.061 mins elapsed.
+2022-01-01 18:33:02 : Prepping Interation Data, 0.062 mins elapsed.
+2022-01-01 18:33:02 : Computing Integration in 1 Integration Blocks!, 0 mins elapsed.
+2022-01-01 18:33:02 : Block (1 of 1) : Computing Integration, 0 mins elapsed.
+2022-01-01 18:33:05 : Block (1 of 1) : Identifying Variable Genes, 0.05 mins elapsed.
+2022-01-01 18:33:10 : Block (1 of 1) : Getting GeneScoreMatrix, 0.135 mins elapsed.
+2022-01-01 18:33:26 : Block (1 of 1) : Imputing GeneScoreMatrix, 0.389 mins elapsed.
+Getting ImputeWeights
+2022-01-01 18:34:21 : Block (1 of 1) : Seurat FindTransferAnchors, 1.306 mins elapsed.
+2022-01-01 18:36:40 : Block (1 of 1) : Seurat TransferData Cell Group Labels, 3.637 mins elapsed.
+2022-01-01 18:36:43 : Block (1 of 1) : Seurat TransferData Cell Names Labels, 3.676 mins elapsed.
+2022-01-01 18:37:03 : Block (1 of 1) : Saving TransferAnchors Joint CCA, 4.018 mins elapsed.
+2022-01-01 18:37:05 : Block (1 of 1) : Completed Integration, 4.04 mins elapsed.
+2022-01-01 18:37:06 : Block (1 of 1) : Plotting Joint UMAP, 4.054 mins elapsed.
+2022-01-01 18:37:52 : Completed Integration with RNA Matrix, 4.833 mins elapsed.
+ArchR logging successful to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba1242ff97-Date-2022-01-01_Time-18-32-58.log
+```
+
+<img src="figs/archr_atac_UMAP_prediction.png" width="90%" />
+
+</details>
+
+
+
+
 ## Finding peak to gene links
 
 
@@ -540,61 +646,4 @@ Heatmaps of linked ATAC and Gene regions:
 </details>
 
 
-## Annotating cell types with a reference dataset
-
-ArchR includes a function to align a reference scRNA-seq dataset, and impute cell type annotations based on the reference annotation (`addGeneIntegrationMatrix`).
-As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. Provided by 10x Genomics, and [pre-processed by the Satija Lab](https://github.com/satijalab/Integration2019/blob/master/preprocessing_scripts/pbmc_10k_v3.R). 
-
-```r
-# Read reference
-reference <- readRDS("data/pbmc_10k_v3.rds")
-
-# add gene integration matrix
-archrproj2 <- addGeneIntegrationMatrix(
-    ArchRProj   = archrproj, 
-    useMatrix   = "GeneExpressionMatrix",
-    matrixName  = "GeneIntegrationMatrix",
-    reducedDims = "LSI_RNA",
-    seRNA       = reference,
-    addToArrow  = FALSE,
-    groupRNA    = "celltype",
-    nameCell    = "predictedCell_Un",
-    nameGroup   = "predictedGroup_Un",
-    nameScore   = "predictedScore_Un"
-)
-
-
-
-# Plot UMAP with predicted cell types
-p1 <- plotEmbedding(archrproj2, name = "predictedGroup_Un", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
-p2 <- plotEmbedding(archrproj2, name = "predictedGroup_Un", embedding = "UMAP_RNA", size = 1.5, labelAsFactors=F, labelMeans=F)
-p3 <- plotEmbedding(archrproj2, name = "predictedGroup_Un", embedding = "UMAP_Combined", size = 1.5, labelAsFactors=F, labelMeans=F)
-
-p1 + p2 + p3 + patchwork::plot_layout(nrow = 1, guides = "collect") &
-  theme(legend.position='bottom')
-
-```
-
-
-<details>
-<summary><b>Click for Answer</b></summary>
-
-<img src="figs/scATAC_scRNA_UMAP_prediction2.png" width="90%" />
-
-</details>
-
-Heatmaps of linked ATAC and Gene regions grouped by predicted cell types:
-
-```r
-plotPeak2GeneHeatmap(ArchRProj = archrproj2, groupBy = "predictedGroup_Un")
-
-```
-
-<details>
-<summary><b>Click for Answer</b></summary>
-
-
-<img src="figs/scATAC_scRNA_Peak2GeneLinks_prediction2.png" width="90%" />
-
-</details>
 
