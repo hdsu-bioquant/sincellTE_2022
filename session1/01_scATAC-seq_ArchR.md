@@ -161,6 +161,10 @@ Initializing ArchRProject...
 Filtering out low quality cells and doublets:
 
 ```r
+p1 <- plotFragmentSizes(ArchRProj = archrproj)
+p2 <- plotTSSEnrichment(ArchRProj = archrproj)
+p1 + p2
+
 # Low quality cells
 archrproj <- archrproj[archrproj$TSSEnrichment > 6 & archrproj$nFrags > 2500 ]
 
@@ -175,17 +179,19 @@ archrproj
 <summary><b>Click for Answer</b></summary>
 
 ```
-ArchR logging to : ArchRLogs/ArchR-addDoubletScores-49f5a3d2e03a0-Date-2021-12-31_Time-06-21-52.log
+> archrproj <- addDoubletScores(archrproj)
+ArchR logging to : ArchRLogs/ArchR-addDoubletScores-2cdba5b39f401-Date-2022-01-01_Time-16-07-37.log
 If there is an issue, please report to github with logFile!
-2021-12-31 06:21:52 : Batch Execution w/ safelapply!, 0 mins elapsed.
-2021-12-31 06:21:52 : PBMC_10k (1 of 1) :  Computing Doublet Statistics, 0 mins elapsed.
-PBMC_10k (1 of 1) : UMAP Projection R^2 = 0.9982
-ArchR logging successful to : ArchRLogs/ArchR-addDoubletScores-49f5a3d2e03a0-Date-2021-12-31_Time-06-21-52.log
-
-Filtering 1185 cells from ArchRProject!
-	PBMC_10k : 1185 of 10887 (10.9%)
-
-
+2022-01-01 16:07:38 : Batch Execution w/ safelapply!, 0 mins elapsed.
+2022-01-01 16:07:38 : PBMC_10k (1 of 1) :  Computing Doublet Statistics, 0 mins elapsed.
+PBMC_10k (1 of 1) : UMAP Projection R^2 = 0.99866
+ArchR logging successful to : ArchRLogs/ArchR-addDoubletScores-2cdba5b39f401-Date-2022-01-01_Time-16-07-37.log
+Warning message:
+`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead. 
+> archrproj <- filterDoublets(archrproj)
+Filtering 1197 cells from ArchRProject!
+	PBMC_10k : 1197 of 10944 (10.9%)
+> archrproj
 
            ___      .______        ______  __    __  .______      
           /   \     |   _  \      /      ||  |  |  | |   _  \     
@@ -195,13 +201,14 @@ Filtering 1185 cells from ArchRProject!
       /__/     \__\ | _| `._____| \______||__|  |__| | _| `._____|
     
 class: ArchRProject 
-outputDirectory: /home/bq_aquintero/projects/sincell_2022/results/ArchROutput 
+outputDirectory: /home/bq_aquintero/projects/sincell_2022/results/scATAC_ArchR 
 samples(1): PBMC_10k
 sampleColData names(1): ArrowFiles
-cellColData names(19): Sample TSSEnrichment ... DoubletScore DoubletEnrichment
-numberOfCells(1): 9702
-medianTSS(1): 13.598
-medianFrags(1): 13571
+cellColData names(15): Sample TSSEnrichment ... DoubletScore DoubletEnrichment
+numberOfCells(1): 9747
+medianTSS(1): 13.596
+medianFrags(1): 13557
+
 ```
 
 </details>
@@ -240,90 +247,28 @@ archrproj <- addIterativeLSI(
 
 ```
 Checking Inputs...
-ArchR logging to : ArchRLogs/ArchR-addIterativeLSI-49f5a5aabda3c-Date-2021-12-31_Time-07-28-01.log
+ArchR logging to : ArchRLogs/ArchR-addIterativeLSI-2cdba47f39cab-Date-2022-01-01_Time-16-14-30.log
 If there is an issue, please report to github with logFile!
-2021-12-31 07:28:02 : Computing Total Across All Features, 0.002 mins elapsed.
-2021-12-31 07:28:03 : Computing Top Features, 0.026 mins elapsed.
+2022-01-01 16:14:30 : Computing Total Across All Features, 0.002 mins elapsed.
+2022-01-01 16:14:32 : Computing Top Features, 0.026 mins elapsed.
 ###########
-2021-12-31 07:28:04 : Running LSI (1 of 2) on Top Features, 0.047 mins elapsed.
+2022-01-01 16:14:33 : Running LSI (1 of 2) on Top Features, 0.055 mins elapsed.
 ###########
-2021-12-31 07:28:04 : Creating Partial Matrix, 0.047 mins elapsed.
-2021-12-31 07:28:40 : Computing LSI, 0.648 mins elapsed.
-2021-12-31 07:30:36 : Identifying Clusters, 2.571 mins elapsed.
-2021-12-31 07:30:52 : Identified 8 Clusters, 2.84 mins elapsed.
-2021-12-31 07:30:52 : Creating Cluster Matrix on the total Group Features, 2.84 mins elapsed.
-2021-12-31 07:31:04 : Computing Variable Features, 3.036 mins elapsed.
+2022-01-01 16:14:33 : Creating Partial Matrix, 0.055 mins elapsed.
+2022-01-01 16:15:10 : Computing LSI, 0.673 mins elapsed.
+2022-01-01 16:16:59 : Identifying Clusters, 2.478 mins elapsed.
+2022-01-01 16:17:16 : Identified 7 Clusters, 2.764 mins elapsed.
+2022-01-01 16:17:16 : Creating Cluster Matrix on the total Group Features, 2.764 mins elapsed.
+2022-01-01 16:17:28 : Computing Variable Features, 2.974 mins elapsed.
 ###########
-2021-12-31 07:31:04 : Running LSI (2 of 2) on Variable Features, 3.04 mins elapsed.
+2022-01-01 16:17:29 : Running LSI (2 of 2) on Variable Features, 2.977 mins elapsed.
 ###########
-2021-12-31 07:31:04 : Creating Partial Matrix, 3.04 mins elapsed.
-2021-12-31 07:31:32 : Computing LSI, 3.506 mins elapsed.
-2021-12-31 07:32:24 : Finished Running IterativeLSI, 4.38 mins elapsed.
+2022-01-01 16:17:29 : Creating Partial Matrix, 2.977 mins elapsed.
+2022-01-01 16:17:57 : Computing LSI, 3.457 mins elapsed.
+2022-01-01 16:18:48 : Finished Running IterativeLSI, 4.295 mins elapsed.
     
 ```
 </details>
-
-
-```r
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                  Dimensionality reduction with LSI - RNA                   ##
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-archrproj <- addIterativeLSI(
-    ArchRProj = archrproj, 
-    clusterParams = list(
-      resolution = 0.2, 
-      sampleCells = 10000,
-      n.start = 10
-    ),
-    saveIterations = FALSE,
-    useMatrix = "GeneExpressionMatrix", 
-    depthCol = "Gex_nUMI",
-    varFeatures = 2500,
-    firstSelection = "variable",
-    binarize = FALSE,
-    name = "LSI_RNA"
-)
-
-```
-
-<details>
-<summary><b>Click for Answer</b></summary>
-
-```
-Checking Inputs...
-ArchR logging to : ArchRLogs/ArchR-addIterativeLSI-49f5a5c20b7f-Date-2021-12-31_Time-08-00-45.log
-If there is an issue, please report to github with logFile!
-2021-12-31 08:00:45 : Computing Variability Across All Features, 0.001 mins elapsed.
-2021-12-31 08:00:47 : Computing Variable Features, 0.028 mins elapsed.
-###########
-2021-12-31 08:00:48 : Running LSI (1 of 2) on Top Features, 0.042 mins elapsed.
-###########
-2021-12-31 08:00:48 : Creating Partial Matrix, 0.042 mins elapsed.
-2021-12-31 08:00:53 : Computing LSI, 0.127 mins elapsed.
-2021-12-31 08:01:07 : Identifying Clusters, 0.354 mins elapsed.
-2021-12-31 08:01:22 : Identified 9 Clusters, 0.607 mins elapsed.
-2021-12-31 08:01:22 : Creating Cluster Matrix on the total Group Features, 0.607 mins elapsed.
-2021-12-31 08:01:26 : Computing Variable Features, 0.678 mins elapsed.
-###########
-2021-12-31 08:01:26 : Running LSI (2 of 2) on Variable Features, 0.679 mins elapsed.
-###########
-2021-12-31 08:01:26 : Creating Partial Matrix, 0.679 mins elapsed.
-2021-12-31 08:01:32 : Computing LSI, 0.779 mins elapsed.
-2021-12-31 08:01:40 : Finished Running IterativeLSI, 0.919 mins elapsed.
-    
-```
-</details>
-
-
-After reducing the dimension of the scRNA-seq and scATAC-seq data individually, the reduced dimensions are normalzed and combined into one set of reduced dimensions:
-
-```r
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                  Combining LSI results for ATAC and RNA                    ##
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-archrproj <- addCombinedDims(archrproj, reducedDims = c("LSI_ATAC", "LSI_RNA"), name =  "LSI_Combined")
-
-```
 
 Then we use the LSI results to perform UMAP:
 
@@ -332,8 +277,6 @@ Then we use the LSI results to perform UMAP:
 ##                            UMAP on the LSI results                         ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 archrproj <- addUMAP(archrproj, reducedDims = "LSI_ATAC", name = "UMAP_ATAC", minDist = 0.8, force = TRUE)
-archrproj <- addUMAP(archrproj, reducedDims = "LSI_RNA", name = "UMAP_RNA", minDist = 0.8, force = TRUE)
-archrproj <- addUMAP(archrproj, reducedDims = "LSI_Combined", name = "UMAP_Combined", minDist = 0.8, force = TRUE)
 
 ```
 
@@ -342,73 +285,29 @@ archrproj <- addUMAP(archrproj, reducedDims = "LSI_Combined", name = "UMAP_Combi
 <summary><b>Click for Answer</b></summary>
 
 ```
-08:28:11 UMAP embedding parameters a = 0.2321 b = 1.681
-08:28:11 Read 9702 rows and found 30 numeric columns
-08:28:11 Using Annoy for neighbor search, n_neighbors = 40
-08:28:11 Building Annoy index with metric = cosine, n_trees = 50
+16:19:12 UMAP embedding parameters a = 0.2321 b = 1.681
+16:19:12 Read 9747 rows and found 30 numeric columns
+16:19:12 Using Annoy for neighbor search, n_neighbors = 40
+16:19:12 Building Annoy index with metric = cosine, n_trees = 50
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-08:28:13 Writing NN index file to temp file /tmp/RtmpzEKx5H/file49f5a475c2183
-08:28:13 Searching Annoy index using 36 threads, search_k = 4000
-08:28:13 Annoy recall = 100%
-08:28:14 Commencing smooth kNN distance calibration using 36 threads
-08:28:14 Initializing from normalized Laplacian + noise
-08:28:15 Commencing optimization for 500 epochs, with 575166 positive edges
+16:19:13 Writing NN index file to temp file /tmp/RtmpfoXwVR/file2cdba2aa1a20a
+16:19:13 Searching Annoy index using 36 threads, search_k = 4000
+16:19:14 Annoy recall = 100%
+16:19:14 Commencing smooth kNN distance calibration using 36 threads
+16:19:15 Initializing from normalized Laplacian + noise
+16:19:16 Commencing optimization for 500 epochs, with 577782 positive edges
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-08:28:50 Optimization finished
-08:28:50 Creating temp model dir /tmp/RtmpzEKx5H/dir49f5a24961fad
-08:28:50 Creating dir /tmp/RtmpzEKx5H/dir49f5a24961fad
-08:28:51 Changing to /tmp/RtmpzEKx5H/dir49f5a24961fad
-08:28:51 Creating /home/bq_aquintero/projects/sincell_2022/results/ArchROutput/Embeddings/Save-Uwot-UMAP-Params-LSI_ATAC-49f5a130b351e-Date-2021-12-31_Time-08-28-50.tar
+16:19:52 Optimization finished
+16:19:52 Creating temp model dir /tmp/RtmpfoXwVR/dir2cdba11a30a8c
+16:19:52 Creating dir /tmp/RtmpfoXwVR/dir2cdba11a30a8c
+16:19:52 Changing to /tmp/RtmpfoXwVR/dir2cdba11a30a8c
+16:19:52 Creating /home/bq_aquintero/projects/sincell_2022/results/scATAC_ArchR/Embeddings/Save-Uwot-UMAP-Params-LSI_ATAC-2cdba5341cff4-Date-2022-01-01_Time-16-19-52.tar
 
 
-08:29:15 UMAP embedding parameters a = 0.2321 b = 1.681
-08:29:15 Read 9702 rows and found 30 numeric columns
-08:29:15 Using Annoy for neighbor search, n_neighbors = 40
-08:29:15 Building Annoy index with metric = cosine, n_trees = 50
-0%   10   20   30   40   50   60   70   80   90   100%
-[----|----|----|----|----|----|----|----|----|----|
-**************************************************|
-08:29:16 Writing NN index file to temp file /tmp/RtmpzEKx5H/file49f5a3577fe0
-08:29:16 Searching Annoy index using 36 threads, search_k = 4000
-08:29:16 Annoy recall = 100%
-08:29:17 Commencing smooth kNN distance calibration using 36 threads
-08:29:17 Initializing from normalized Laplacian + noise
-08:29:18 Commencing optimization for 500 epochs, with 550504 positive edges
-0%   10   20   30   40   50   60   70   80   90   100%
-[----|----|----|----|----|----|----|----|----|----|
-**************************************************|
-08:29:52 Optimization finished
-08:29:52 Creating temp model dir /tmp/RtmpzEKx5H/dir49f5a76cf2e49
-08:29:52 Creating dir /tmp/RtmpzEKx5H/dir49f5a76cf2e49
-08:29:53 Changing to /tmp/RtmpzEKx5H/dir49f5a76cf2e49
-08:29:53 Creating /home/bq_aquintero/projects/sincell_2022/results/ArchROutput/Embeddings/Save-Uwot-UMAP-Params-LSI_RNA-49f5a17205478-Date-2021-12-31_Time-08-29-52.tar
-
-
-08:30:18 UMAP embedding parameters a = 0.2321 b = 1.681
-08:30:18 Read 9702 rows and found 60 numeric columns
-08:30:18 Using Annoy for neighbor search, n_neighbors = 40
-08:30:18 Building Annoy index with metric = cosine, n_trees = 50
-0%   10   20   30   40   50   60   70   80   90   100%
-[----|----|----|----|----|----|----|----|----|----|
-**************************************************|
-08:30:19 Writing NN index file to temp file /tmp/RtmpzEKx5H/file49f5a565c73a5
-08:30:19 Searching Annoy index using 36 threads, search_k = 4000
-08:30:20 Annoy recall = 100%
-08:30:20 Commencing smooth kNN distance calibration using 36 threads
-08:30:21 Initializing from normalized Laplacian + noise
-08:30:23 Commencing optimization for 500 epochs, with 569082 positive edges
-0%   10   20   30   40   50   60   70   80   90   100%
-[----|----|----|----|----|----|----|----|----|----|
-**************************************************|
-08:30:57 Optimization finished
-08:30:57 Creating temp model dir /tmp/RtmpzEKx5H/dir49f5a2f861f26
-08:30:57 Creating dir /tmp/RtmpzEKx5H/dir49f5a2f861f26
-08:30:58 Changing to /tmp/RtmpzEKx5H/dir49f5a2f861f26
-08:30:58 Creating /home/bq_aquintero/projects/sincell_2022/results/ArchROutput/Embeddings/Save-Uwot-UMAP-Params-LSI_Combined-49f5a254f5246-Date-2021-12-31_Time-08-30-57.tar
 ```
 </details>
 
@@ -420,7 +319,7 @@ And identify clusters of cells based con the combined reduced dimensions:
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                           Find clusters of cells                           ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-archrproj <- addClusters(archrproj, reducedDims = "LSI_Combined", name = "Clusters", resolution = 0.4, force = TRUE)
+archrproj <- addClusters(archrproj, reducedDims = "LSI_ATAC", name = "Clusters", resolution = 0.4, force = TRUE)
 ```
 
 
@@ -428,27 +327,27 @@ archrproj <- addClusters(archrproj, reducedDims = "LSI_Combined", name = "Cluste
 <summary><b>Click for Answer</b></summary>
 
 ```
-ArchR logging to : ArchRLogs/ArchR-addClusters-49f5a6d4348e5-Date-2021-12-31_Time-08-34-42.log
+ArchR logging to : ArchRLogs/ArchR-addClusters-2cdba5e121294-Date-2022-01-01_Time-16-20-29.log
 If there is an issue, please report to github with logFile!
-2021-12-31 08:34:42 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0.002 mins elapsed.
+2022-01-01 16:20:30 : Running Seurats FindClusters (Stuart et al. Cell 2019), 0.001 mins elapsed.
 Computing nearest neighbor graph
 Computing SNN
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
-Number of nodes: 9702
-Number of edges: 427966
+Number of nodes: 9747
+Number of edges: 426707
 
 Running Louvain algorithm...
 0%   10   20   30   40   50   60   70   80   90   100%
 [----|----|----|----|----|----|----|----|----|----|
 **************************************************|
-Maximum modularity in 10 random starts: 0.9291
-Number of communities: 14
-Elapsed time: 1 seconds
-2021-12-31 08:35:02 : Testing Biased Clusters, 0.323 mins elapsed.
-2021-12-31 08:35:02 : Testing Outlier Clusters, 0.324 mins elapsed.
-2021-12-31 08:35:02 : Assigning Cluster Names to 14 Clusters, 0.324 mins elapsed.
-2021-12-31 08:35:02 : Finished addClusters, 0.326 mins elapsed.
+Maximum modularity in 10 random starts: 0.9227
+Number of communities: 12
+Elapsed time: 0 seconds
+2022-01-01 16:20:44 : Testing Biased Clusters, 0.248 mins elapsed.
+2022-01-01 16:20:45 : Testing Outlier Clusters, 0.249 mins elapsed.
+2022-01-01 16:20:45 : Assigning Cluster Names to 12 Clusters, 0.249 mins elapsed.
+2022-01-01 16:20:45 : Finished addClusters, 0.251 mins elapsed.
     
 ```
 </details>
@@ -458,17 +357,14 @@ Elapsed time: 1 seconds
 Plot UMAP embeddings:
 
 ```r
-p1 <- plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
-p2 <- plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_RNA", size = 1.5, labelAsFactors=F, labelMeans=F)
-p3 <- plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_Combined", size = 1.5, labelAsFactors=F, labelMeans=F)
+plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_ATAC", size = 1.5, labelAsFactors=F, labelMeans=F)
 
-p1 + p2 + p3 + patchwork::plot_layout(nrow = 1, guides = "collect")
 ```
 
 <details>
 <summary><b>Click for Answer</b></summary>
 
-<img src="figs/scATAC_scRNA_UMAP.png" width="90%" />
+<img src="figs/archr_atac_UMAP.png" width="90%" />
 
 </details>
 
