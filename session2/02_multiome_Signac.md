@@ -263,6 +263,10 @@ signacobj <- RunSVD(signacobj)
 
 ## Annotating cell types with a reference dataset
 
+We can use a reference scRNA-seq dataset to annotate cells from a scATAC-seq dataset. In this example, we will use different functions from the Seurat package for this.
+As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. Provided by 10x Genomics, and [pre-processed by the Satija Lab](https://github.com/satijalab/Integration2019/blob/master/preprocessing_scripts/pbmc_10k_v3.R). 
+
+
 ```r
 # load PBMC reference
 reference <- readRDS("data/pbmc_10k_v3.rds")

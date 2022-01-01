@@ -346,9 +346,51 @@ signacobj <- FindTopFeatures(signacobj, min.cutoff = 5)
 signacobj <- RunTFIDF(signacobj)
 signacobj <- RunSVD(signacobj)
 
+# The first LSI component often captures sequencing depth (technical variation) 
+# rather than biological variation. If this is the case, the component should 
+# be removed from downstream analysis. We can assess the correlation between 
+# each LSI component and sequencing depth using the DepthCor() function:
+
+DepthCor(signacobj)
+
 ```
 
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/signac_atac_LSI_corr.png" width="90%" />
+
+</details>
+
+
+Then we use the LSI results to perform UMAP and find clusters of cells:
+
+```r
+signacobj <- RunUMAP(object = signacobj, reduction = 'lsi', dims = 2:30)
+signacobj <- FindNeighbors(object = signacobj, reduction = 'lsi', dims = 2:30)
+signacobj <- FindClusters(object = signacobj, verbose = FALSE, algorithm = 3)
+DimPlot(object = signacobj, label = TRUE) + NoLegend()
+
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/signac_atac_UMAP.png" width="90%" />
+
+</details>
+
+
+
+
+
 ## Annotating cell types with a reference dataset
+
+We can use a reference scRNA-seq dataset to annotate cells from a scATAC-seq dataset. In this example, we will use different functions from the Seurat package for this.
+As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. Provided by 10x Genomics, and [pre-processed by the Satija Lab](https://github.com/satijalab/Integration2019/blob/master/preprocessing_scripts/pbmc_10k_v3.R). 
+
 
 ```r
 # load PBMC reference
