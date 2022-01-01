@@ -1,10 +1,10 @@
 
 
-# Multiome scRNA-seq/scATAC-seq analysis with Signac
+# Chromatin accessibility scATAC-seq analysis with Signac
 
 ## Data download
 
-In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data provided by 10x Genomics for human PBMCs.
+In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data provided by 10x Genomics for human PBMCs. However, we will focus only on the scATAC-seq data, in the second session we will see how can we use the scRNA-seq data to improve our analysis.
 
 The data was downloaded using the following commands:
 
@@ -14,7 +14,7 @@ wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_1
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz.tbi
 ```
 
-## Load the gene expression and chromatin accessibility data
+## Load the chromatin accessibility data
 
 
 ```r
@@ -33,6 +33,7 @@ library(BSgenome.Hsapiens.UCSC.hg38)
 counts <- Read10X_h5("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5")
 # If the previous line fails, please use the following:
 # counts <- readRDS("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.RDS")
+fragments_files <- "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz"
 
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                            Load annotation                                 ##
@@ -41,8 +42,10 @@ counts <- Read10X_h5("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matri
 annotation <- GetGRangesFromEnsDb(ensdb = EnsDb.Hsapiens.v86)
 seqlevelsStyle(annotation) <- "UCSC"
 # If the previous line fails, please use the following:
-# ucsc.levels <- stringr::str_replace(string=paste("chr",seqlevels(annotation),sep=""), pattern="chrMT", replacement="chrM")
-# seqlevels(annotation) <- ucsc.levels
+# seqlevels(annotation) <- stringr::str_replace(
+#   string  = paste("chr", seqlevels(annotation),sep=""), 
+#   pattern = "chrMT", replacement="chrM")
+
 
 # Check annotation seqnames
 unique(seqnames(annotation))
@@ -88,64 +91,155 @@ attr(,"package")
 
 
 
-## Create a Signac object from the counts
+## Create a Signac object from the Cellranger peak counts
 
-To create a Signac multiome object, the first step is to create a standard Seurat object including only the gene expression data. Once this object is created, a Chromatin Assay object is added as one of the Seurat object assays.
-
-Once both datasets are loaded in the object, we can perform a QC analysis to remove low quality cells:
+To create a Signac object, the first step is to create a  Chromatin Assay objec using the Cellranger peak counts, and then create a Seurat object from this.
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                              Create Signac                                 ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-# First create a Seurat object containing the gene expression data alone
+# Create a ChromatinAssay 
+chrom_assay <- CreateChromatinAssay(
+  counts    = counts$Peaks,
+  sep       = c(":", "-"),
+  fragments = fragments_files,
+  min.cells = 10,
+  min.features = 200
+)
+
+# Create a Seurat object from the ChromatinAssay
 signacobj <- CreateSeuratObject(
-  counts = counts$`Gene Expression`,
-  assay = "RNA"
+  counts = chrom_assay,
+  assay  = "ATAC"
 )
 
-# Then, create a ChromatinAssay and add it to the previous object
-signacobj[["ATAC"]] <- CreateChromatinAssay(
-  counts = counts$Peaks,
-  sep = c(":", "-"),
-  fragments = "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz",
-  annotation = annotation
-)
+# Add the gene information to the object, this allows downstream functions to 
+# pull the gene annotation information directly from the object.
+Annotation(signacobj) <- annotation
 
-DefaultAssay(signacobj) <- "ATAC"
 
+signacobj
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+An object of class Seurat 
+106086 features across 11830 samples within 1 assay 
+Active assay: ATAC (106086 features, 0 variable features)
+
+</details>
+
+
+Signac adds extra functionality to a Seurat object, for instance a genomic ranges associated with each feature in the object can be retreived when the active assay is a ChromatinAssay.
+
+```{r}
+granges(signacobj)
+```
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+GRanges object with 106086 ranges and 0 metadata columns:
+             seqnames        ranges strand
+                <Rle>     <IRanges>  <Rle>
+       [1]       chr1   10109-10357      *
+       [2]       chr1 180730-181630      *
+       [3]       chr1 191491-191736      *
+       [4]       chr1 267816-268196      *
+       [5]       chr1 586028-586373      *
+       ...        ...           ...    ...
+  [106082] KI270713.1   20444-22615      *
+  [106083] KI270713.1   27118-28927      *
+  [106084] KI270713.1   29485-30706      *
+  [106085] KI270713.1   31511-32072      *
+  [106086] KI270713.1   37129-37638      *
+  -------
+  seqinfo: 33 sequences from an unspecified genome; no seqlengths
+
+</details>
+
+## Quality control
+
+The following are some metrics and threshold ragnes for them recommended from teh developers of Signac (the final values allays depend on the biologycal system, and experiment conditions):
+
+"
+- Nucleosome banding pattern: The histogram of DNA fragment sizes (determined from the paired-end sequencing reads) should exhibit a strong nucleosome banding pattern corresponding to the length of DNA wrapped around a single nucleosome. We calculate this per single cell, and quantify the approximate ratio of mononucleosomal to nucleosome-free fragments (stored as nucleosome_signal)
+
+- Transcriptional start site (TSS) enrichment score. The ENCODE project has defined an ATAC-seq targeting score based on the ratio of fragments centered at the TSS to fragments in TSS-flanking regions (see https://www.encodeproject.org/data-standards/terms/). Poor ATAC-seq experiments typically will have a low TSS enrichment score. We can compute this metric for each cell with the TSSEnrichment() function, and the results are stored in metadata under the column name TSS.enrichment.
+
+- Total number of fragments: A measure of cellular sequencing depth / complexity. Cells with very few reads may need to be excluded due to low sequencing depth. Cells with extremely high levels may represent doublets, nuclei clumps, or other artefacts.
+
+- Fraction of fragments in peaks: Represents the fraction of all fragments that fall within ATAC-seq peaks. Cells with low values (i.e. <15-20%) often represent low-quality cells or technical artifacts that should be removed. Note that this value can be sensitive to the set of peaks used.
+
+- Ratio reads in genomic blacklist regions The ENCODE project has provided a list of blacklist regions, representing reads which are often associated with artefactual signal. Cells with a high proportion of reads mapping to these areas (compared to reads mapping to peaks) often represent technical artifacts and should be removed. ENCODE blacklist regions for human (hg19 and GRCh38), mouse (mm10), Drosophila (dm3), and C. elegans (ce10) are included in the Signac package.
+
+" _Taken from https://satijalab.org/signac/articles/pbmc_vignette.html_
+
+
+
+```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                                    QC                                      ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+# compute nucleosome signal score per cell
 signacobj <- NucleosomeSignal(signacobj)
-signacobj <- TSSEnrichment(signacobj)
+# compute TSS enrichment score per cell
+signacobj <- TSSEnrichment(signacobj, fast = FALSE)
 
-VlnPlot(
+# Counting fraction of reads in peaks
+total_fragments <- CountFragments(fragments_files)
+signacobj$fragments <- total_fragments$reads_count[match(colnames(signacobj), 
+                                                         total_fragments$CB)]
+
+signacobj <- FRiP(
   object = signacobj,
-  features = c("nCount_RNA", "nCount_ATAC", "TSS.enrichment", "nucleosome_signal"),
-  ncol = 4,
-  pt.size = 0
+  assay  = "ATAC",
+  total.fragments = "fragments"
 )
+
+# Counting fragments in genome blacklist regions
+signacobj$blacklist_fraction <- FractionCountsInRegion(
+  object  = signacobj, 
+  assay   = "ATAC",
+  regions = blacklist_hg38_unified
+)
+
+
+# Inspect the TSS enrichment scores by plotting the accessibility signal over all TSS sites. 
+signacobj$high.tss <- ifelse(signacobj$TSS.enrichment > 2, 'High', 'Low')
+TSSPlot(signacobj, group.by = 'high.tss') + NoLegend()
 
 ```
 
 <details>
 <summary><b>Click for Answer</b></summary>
 
-<img src="figs/signac_QC.png" width="90%" />
+<img src="figs/signac_atac_TSS.png" width="90%" />
 
 </details>
 
 
-Low quality cells filtering:
+We can now visualize all the QC metrics and filter out all the low quality cells:
 
 ```r
+VlnPlot(
+  object = signacobj,
+  features = c("FRiP", "nCount_ATAC", "TSS.enrichment", "blacklist_fraction", "nucleosome_signal"),
+  ncol = 5,
+  pt.size = 0.1
+)
+
+
+# filter out low quality cells
 signacobj <- subset(
   x = signacobj,
-  subset = nCount_ATAC < 100000 &
-    nCount_RNA < 25000 &
+  subset = 
+    nCount_ATAC < 100000 &
     nCount_ATAC > 1000 &
-    nCount_RNA > 1000 &
+    FRiP > 0.15 &
+    blacklist_fraction < 0.01 &
     nucleosome_signal < 2 &
     TSS.enrichment > 1
 )
@@ -156,11 +250,13 @@ signacobj
 <details>
 <summary><b>Click for Answer</b></summary>
 
+<img src="figs/signac_atac_QC.png" width="90%" />
+
+
 ```
 An object of class Seurat 
-144978 features across 11331 samples within 2 assays 
-Active assay: ATAC (108377 features, 0 variable features)
- 1 other assay present: RNA
+106086 features across 11498 samples within 1 assay 
+Active assay: ATAC (106086 features, 0 variable features)
 
 ```
 
@@ -169,6 +265,7 @@ Active assay: ATAC (108377 features, 0 variable features)
 
 ## Call peaks and add peak counts matrix
 
+The set of peaks identified using Cellranger often merges distinct peaks that are close together. This can create a problem for certain analyses, particularly motif enrichment analysis and peak-to-gene linkage. To identify a more accurate set of peaks, we can call peaks using MACS2 with the CallPeaks() function (_Taken from: https://satijalab.org/signac/articles/pbmc_multiomic.html#linking-peaks-to-genes_).
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -184,14 +281,14 @@ peaks <- subsetByOverlaps(x = peaks, ranges = blacklist_hg38_unified, invert = T
 # quantify counts in each peak
 macs2_counts <- FeatureMatrix(
   fragments = Fragments(signacobj),
-  features = peaks,
-  cells = colnames(signacobj)
+  features  = peaks,
+  cells     = colnames(signacobj)
 )
 
 # create a new assay using the MACS2 peak set and add it to the Seurat object
 signacobj[["peaks"]] <- CreateChromatinAssay(
-  counts = macs2_counts,
-  fragments = "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz",
+  counts     = macs2_counts,
+  fragments  = fragments_files,
   annotation = annotation
 )
 
@@ -203,32 +300,32 @@ peaks
 
 ```
 GRanges object with 131364 ranges and 6 metadata columns:
-           seqnames              ranges strand |                   name     score fold_change neg_log10pvalue_summit
-              <Rle>           <IRanges>  <Rle> |            <character> <integer>   <numeric>              <numeric>
-       [1]     chr1         10032-10322      * |  SeuratProject_peak_44       142     4.99234                16.3379
-       [2]     chr1       180709-181030      * |  SeuratProject_peak_45       149     5.12372                17.1108
-       [3]     chr1       181296-181600      * |  SeuratProject_peak_46       291     7.35714                31.7325
-       [4]     chr1       191304-191914      * |  SeuratProject_peak_47       142     4.99234                16.3379
-       [5]     chr1       267874-268087      * |  SeuratProject_peak_48       134     4.86097                15.5761
-       ...      ...                 ...    ... .                    ...       ...         ...                    ...
-  [131360]     chrX 155880631-155881911      * | SeuratProject_peak_1..       824     8.67288                87.4204
-  [131361]     chrX 155891339-155891781      * | SeuratProject_peak_1..       105     4.30809                12.5625
-  [131362]     chrX 155966929-155967163      * | SeuratProject_peak_1..       134     4.86097                15.5761
-  [131363]     chrX 155997247-155997787      * | SeuratProject_peak_1..       263     6.17155                28.7770
-  [131364]     chrX 156029849-156030260      * | SeuratProject_peak_1..       106     4.33546                12.6467
-           neg_log10qvalue_summit relative_summit_position
-                        <numeric>                <integer>
-       [1]                14.2177                      126
-       [2]                14.9684                      124
-       [3]                29.1857                      137
-       [4]                14.2177                      145
-       [5]                13.4782                      134
-       ...                    ...                      ...
-  [131360]                82.4206                      637
-  [131361]                10.5583                      258
-  [131362]                13.4782                      112
-  [131363]                26.3134                      342
-  [131364]                10.6377                      245
+           seqnames              ranges strand |                   name     score fold_change
+              <Rle>           <IRanges>  <Rle> |            <character> <integer>   <numeric>
+       [1]     chr1         10032-10322      * |  SeuratProject_peak_44       142     4.99234
+       [2]     chr1       180709-181030      * |  SeuratProject_peak_45       149     5.12372
+       [3]     chr1       181296-181600      * |  SeuratProject_peak_46       291     7.35714
+       [4]     chr1       191304-191914      * |  SeuratProject_peak_47       142     4.99234
+       [5]     chr1       267874-268087      * |  SeuratProject_peak_48       134     4.86097
+       ...      ...                 ...    ... .                    ...       ...         ...
+  [131360]     chrX 155880631-155881911      * | SeuratProject_peak_1..       824     8.67288
+  [131361]     chrX 155891339-155891781      * | SeuratProject_peak_1..       105     4.30809
+  [131362]     chrX 155966929-155967163      * | SeuratProject_peak_1..       134     4.86097
+  [131363]     chrX 155997247-155997787      * | SeuratProject_peak_1..       263     6.17155
+  [131364]     chrX 156029849-156030260      * | SeuratProject_peak_1..       106     4.33546
+           neg_log10pvalue_summit neg_log10qvalue_summit relative_summit_position
+                        <numeric>              <numeric>                <integer>
+       [1]                16.3379                14.2177                      126
+       [2]                17.1108                14.9684                      124
+       [3]                31.7325                29.1857                      137
+       [4]                16.3379                14.2177                      145
+       [5]                15.5761                13.4782                      134
+       ...                    ...                    ...                      ...
+  [131360]                87.4204                82.4206                      637
+  [131361]                12.5625                10.5583                      258
+  [131362]                15.5761                13.4782                      112
+  [131363]                28.7770                26.3134                      342
+  [131364]                12.6467                10.6377                      245
   -------
   seqinfo: 24 sequences from an unspecified genome; no seqlengths
 ```
@@ -236,21 +333,11 @@ GRanges object with 131364 ranges and 6 metadata columns:
 </details>
 
 
-## Normalize data
+## Reduce data dimensionality with LSI
 
-The gene expression data is normalized and scaled, followed by dimension reduction with PCA.
-The dimension of the peak matrix is reduced by performing latent semantic indexing (LSI).
+Signac uses latent semantic indexing (LSI) to reduce the data dimensionality as well as ArchR, which is the combination of term frequency-inverse document frequency (TF-IDF) normalization followed by singular value decomposition (SVD).
 
 ```r
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                             Normalize RNA data                             ##
-##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-DefaultAssay(signacobj) <- "RNA"
-signacobj <- NormalizeData(signacobj)
-signacobj <- FindVariableFeatures(signacobj, nfeatures = 3000)
-signacobj <- ScaleData(signacobj)
-signacobj <- RunPCA(signacobj)
-
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                             Normalize ATAC data                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##

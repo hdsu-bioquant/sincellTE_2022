@@ -93,8 +93,8 @@ Here are the links to the slides
 On the "scATAC-seq analysis" session we will focus on understanding the basic steps to perform a scATAC-seq data analysis. We wil use two of the most frequently used packages: ArchR and Signac. Additonally we will see a few tips to format the raw data in order to be used by these packages.
 
 1. [Chromatin accessibility analysis with ArchR](./session2/01_scATAC-seq_ArchR.md)
-2. [Chromatin accessibility analysis with Signac](./session2/01_scATAC-seq_Signac.md)
-3. [Tricks to compute Arrow files](./session2/02_scATAC-seq_ArchR_tricks.md)
+2. [Chromatin accessibility analysis with Signac](./session2/02_scATAC-seq_Signac.md)
+3. [Tricks to compute Arrow files](./session2/03_scATAC-seq_ArchR_tricks.md)
                                
 ### Session 2 - Multi-omics integration
 
