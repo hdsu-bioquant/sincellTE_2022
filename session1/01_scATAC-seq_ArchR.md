@@ -758,3 +758,90 @@ plotPDF(heatmapEM, name = "Motifs-Enriched-Marker-Heatmap", width = 8, height = 
 
 
 ## Footprinting
+
+The first step to perform the footprinting is to retreive the position of the matched motifs as a GRangesList objet. Then we call the footprint with the getFootprints() functions, for this analysis we will focus only in a few motifs identifed before as enriched in some of the cell types.
+
+
+```r
+
+motifPositions <- getPositions(archrproj)
+
+motifPositions
+
+markerMotifs <- c("EGR1_195", "TCF7L2_762", "TCF12_56", "RUNX2_732")
+
+seFoot <- getFootprints(
+  ArchRProj = archrproj, 
+  positions = motifPositions[markerMotifs], 
+  groupBy   = "predictedGroup_Un"
+)
+
+plotFootprints(
+  seFoot = seFoot,
+  ArchRProj = archrproj, 
+  normMethod = "Subtract",
+  plotName = "Footprints-Subtract-Bias",
+  addDOC = FALSE,
+  smoothWindow = 5
+)
+
+
+
+```
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+```
+
+GRangesList object of length 870:
+$TFAP2B_1
+GRanges object with 18242 ranges and 1 metadata column:
+          seqnames              ranges strand |     score
+             <Rle>           <IRanges>  <Rle> | <numeric>
+      [1]     chr1       925412-925423      - |   8.33741
+      [2]     chr1       938095-938106      + |   8.42954
+      [3]     chr1       940898-940909      + |   9.04966
+      [4]     chr1       961090-961101      + |   8.77530
+      [5]     chr1       961291-961302      + |   9.88491
+      ...      ...                 ...    ... .       ...
+  [18238]     chrX 154751280-154751291      - |   9.03217
+  [18239]     chrX 154762826-154762837      + |   8.26523
+  [18240]     chrX 155071293-155071304      + |   8.82409
+  [18241]     chrX 155071293-155071304      - |   8.04580
+  [18242]     chrX 155876953-155876964      - |   8.12269
+  -------
+  seqinfo: 23 sequences from an unspecified genome; no seqlengths
+
+...
+<869 more elements>
+
+ArchR logging to : ArchRLogs/ArchR-getFootprints-2cdba15c075f-Date-2022-01-01_Time-20-21-41.log
+If there is an issue, please report to github with logFile!
+2022-01-01 20:21:42 : Computing Kmer Bias Table, 0.01 mins elapsed.
+2022-01-01 20:21:55 : Finished Computing Kmer Tables, 0.223 mins elapsed.
+2022-01-01 20:21:55 : Computing Footprints, 0.233 mins elapsed.
+2022-01-01 20:22:06 : Computing Footprints Bias, 0.403 mins elapsed.
+2022-01-01 20:22:14 : Summarizing Footprints, 0.538 mins elapsed.
+
+
+```
+
+</details>
+
+
+The footprinting pltos can be found on the ArchR project output directory
+
+
+<details>
+<summary><b>Click for Answer</b></summary>
+
+<img src="figs/archr_atac_Footprint1.png" width="50%" />
+<img src="figs/archr_atac_Footprint2.png" width="50%" />
+<img src="figs/archr_atac_Footprint3.png" width="50%" />
+<img src="figs/archr_atac_Footprint4.png" width="50%" />
+
+</details>
+
+
