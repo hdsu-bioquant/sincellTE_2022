@@ -18,7 +18,7 @@ wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_1
 
 The main input to create an ArchR project are Arrow files created from the raw alignments, this files can be created from the fragments files resulting from the cellranger-atac pipeline, or from a bam file.
 
-Here we are going to create an arrow file from the fragments file: *pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz*
+Here we are going to create an Arrow file from the fragments file: *pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz*
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -82,11 +82,11 @@ The parameters to filter out low quality cells are:
 
 - Minimum TSS enrichment score = 4
 - Minimum fragments per cell = 1000
-- Maximum fragments per cell = 1e+05
+- Maximum fragments per cell = 100000
 
 This paremeters are optimized for human samples. Thus, it is necessary to modify them for other types of samples. However, an extra step of quality control can be done in a later step.
 
-The quality control plots can be found in the _QCDir_ for the created Arrow files.
+The quality control plots can be found in the directory specified in the _QCDir_ parameter from the _createArrowFiles()_ function used to create Arrow files.
 
 <details>
 <summary><b>Click to see QC plots</b></summary>
@@ -831,7 +831,7 @@ If there is an issue, please report to github with logFile!
 </details>
 
 
-The footprinting pltos can be found on the ArchR project output directory
+The footprinting plots can be found on the ArchR project output directory
 
 
 <details>
