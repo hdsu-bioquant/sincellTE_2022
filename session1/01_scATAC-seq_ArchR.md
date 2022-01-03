@@ -178,6 +178,8 @@ archrproj
 <details>
 <summary><b>Click for Answer</b></summary>
 
+<img src="figs/archr_atac_QC.png" width="90%" />
+
 ```
 > archrproj <- addDoubletScores(archrproj)
 ArchR logging to : ArchRLogs/ArchR-addDoubletScores-2cdba5b39f401-Date-2022-01-01_Time-16-07-37.log
