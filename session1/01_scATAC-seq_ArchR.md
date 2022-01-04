@@ -84,7 +84,7 @@ The parameters to filter out low quality cells are:
 - Minimum fragments per cell = 1000
 - Maximum fragments per cell = 100000
 
-This paremeters are optimized for human samples. Thus, it is necessary to modify them for other types of samples. However, an extra step of quality control can be done in a later step.
+This parameters are optimized for human samples. Thus, it is necessary to modify them for other types of samples. However, an extra step of quality control can be done in a later step.
 
 The quality control plots can be found in the directory specified in the _QCDir_ parameter from the _createArrowFiles()_ function used to create Arrow files.
 
@@ -218,7 +218,9 @@ medianFrags(1): 13557
 
 ## Reduce data dimensionality with LSI
 
-Latent Semantic Indexing (LSI) is an approach from natural language processing that was originally designed to assess document similarity based on word counts. In the context of scATAC-seq and scRNA-seq data ArchR performs LSI following these steps:
+Latent Semantic Indexing (LSI) is an approach from natural language processing that was originally designed to assess document similarity based on word counts. See for example [this post](http://andrewjohnhill.com/blog/2019/05/06/dimensionality-reduction-for-scatac-data/) for an in-depth discussion of available methods. 
+	
+In the context of scATAC-seq and scRNA-seq data ArchR performs LSI following these steps:
 1. scATAC-seq: documents=samples, words=regions/peaks. scRNA-seq: documents=samples, words=genes. 
 2. Calculate word frequency by depth normalization per single cell. 
 3. Normalize word frequency by the inverse document frequency which weights features by how often they occur. 
@@ -378,10 +380,10 @@ ArchR computes a gene activity matrix for each sample at the time of creation of
 
 In the case of ArchR the gene activity matrix if computed by the following steps:
 
-1. Creates a tile matrix  for each chromosome.
+1. Creates a tile matrix for each chromosome (default tile size is 500bp).
 2. Overlap these tiles with a user-defined gene window (default is 100 kb on either side of the gene)
 3. computes the distance from each tile (start or end) to the gene body or gene start. 
-4. The distance from each tile to the gene is then converted to a distance weight using a user-defined accessibility model (default is e(-abs(distance)/5000) + e-1). 
+4. The distance from each tile to the gene is then converted to a distance weight using a user-defined accessibility model (default is e^(-abs(distance)/5000) + e^(-1)). 
 5. To help adjust for large differences in gene size, ArchR applies a separate weight for the inverse of the gene size (1 / gene size) and scales this inverse weight linearly from 1 to a user-defined hard maximum (default of 5). 
 6. The corresponding distance and gene size weights are then multiplied by the number of Tn5 insertions within each tile and summed across all tiles within the gene window. 
 
@@ -607,11 +609,11 @@ markersPeaks <- getMarkerFeatures(
 )
 ```
 
-The markersPeaks object is SummarizedExperiment that contains different assays containing marker peaks for each cell type.
+The `markersPeaks` object is SummarizedExperiment that contains different assays containing marker peaks for each cell type.
 The following helper functions allow us to retreive markers we are interested in:
 
-- getMarkers(): The default behavior of this function is to return a list of DataFrame objects, one for each cell group.
-- getMarkers() with option returnGR = TRUE: Instead of a list of DataFrame objects returns a GRangesList object with the marker peaks.
+- `getMarkers()`: The default behavior of this function is to return a list of DataFrame objects, one for each cell group.
+- `getMarkers()` with option `returnGR = TRUE`: Instead of a list of DataFrame objects returns a GRangesList object with the marker peaks.
 
 ```r
 markersPeaks
@@ -761,7 +763,7 @@ plotPDF(heatmapEM, name = "Motifs-Enriched-Marker-Heatmap", width = 8, height = 
 
 ## Footprinting
 
-The first step to perform the footprinting is to retreive the position of the matched motifs as a GRangesList objet. Then we call the footprint with the getFootprints() functions, for this analysis we will focus only in a few motifs identifed before as enriched in some of the cell types.
+The first step to perform the footprinting is to retreive the position of the matched motifs as a GRangesList objet. Then we call the footprint with the `getFootprints()` functions, for this analysis we will focus only in a few motifs identifed before as enriched in some of the cell types.
 
 
 ```r
