@@ -12,6 +12,7 @@ The data was downloaded using the following commands:
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz.tbi
+wget https://www.dropbox.com/s/zn6khirjafoyyxl/pbmc_10k_v3.rds
 ```
 
 ## Create ArchR Arrow file and quality control
@@ -236,9 +237,10 @@ archrproj <- addIterativeLSI(
     ArchRProj = archrproj, 
     clusterParams = list(
       resolution = 0.2, 
-      sampleCells = 10000,
+      sampleCells = 5000,
       n.start = 10
     ),
+    varFeatures = 10000,
     saveIterations = FALSE,
     useMatrix = "TileMatrix", 
     depthCol = "nFrags",
