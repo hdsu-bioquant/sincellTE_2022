@@ -383,7 +383,7 @@ If there is an issue, please report to github with logFile!
 </details>
 
 
-After reducing the dimension of the scRNA-seq and scATAC-seq data individually, the reduced dimensions are normalzed and combined into one set of reduced dimensions:
+After reducing the dimension of the scRNA-seq and scATAC-seq data individually, the reduced dimensions are normalized and combined into one set of reduced dimensions:
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -543,6 +543,7 @@ p1 + p2 + p3 + patchwork::plot_layout(nrow = 1, guides = "collect")
 
 ## Finding peak to gene links
 
+One advantage of the multiome single-cell dataset is the possibility to link regulatory regions (i.e. atac-seq peaks) to potential target genes. One approach is to look for correlations between accessibility and gene expression across all cells.
 
 First we have to define pseudo-bulk replicates to call peaks on them, ArchR merges cells within each designated cell group:
 
