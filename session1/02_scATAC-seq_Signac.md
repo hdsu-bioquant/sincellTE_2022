@@ -93,7 +93,7 @@ attr(,"package")
 
 ## Create a Signac object from the Cellranger peak counts
 
-To create a Signac object, the first step is to create a  Chromatin Assay objec using the Cellranger peak counts, and then create a Seurat object from this.
+To create a Signac object, the first step is to create a Chromatin Assay object using the Cellranger peak counts, and then create a Seurat object from this:
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -137,7 +137,7 @@ Active assay: ATAC (106086 features, 0 variable features)
 
 Signac adds extra functionality to a Seurat object, for instance a genomic ranges associated with each feature in the object can be retreived when the active assay is a ChromatinAssay.
 
-```{r}
+```r
 granges(signacobj)
 ```
 
@@ -169,20 +169,20 @@ GRanges object with 106086 ranges and 0 metadata columns:
 
 ## Quality control
 
-The following are some metrics and threshold ragnes for them recommended from teh developers of Signac (the final values allays depend on the biologycal system, and experiment conditions):
+The following are some metrics and threshold ranges recommended by the developers of Signac (the final values always depend on the biological system, and experimental conditions):
 
-"
-- Nucleosome banding pattern: The histogram of DNA fragment sizes (determined from the paired-end sequencing reads) should exhibit a strong nucleosome banding pattern corresponding to the length of DNA wrapped around a single nucleosome. We calculate this per single cell, and quantify the approximate ratio of mononucleosomal to nucleosome-free fragments (stored as nucleosome_signal)
 
-- Transcriptional start site (TSS) enrichment score. The ENCODE project has defined an ATAC-seq targeting score based on the ratio of fragments centered at the TSS to fragments in TSS-flanking regions (see https://www.encodeproject.org/data-standards/terms/). Poor ATAC-seq experiments typically will have a low TSS enrichment score. We can compute this metric for each cell with the TSSEnrichment() function, and the results are stored in metadata under the column name TSS.enrichment.
+- *Nucleosome banding pattern*: the histogram of DNA fragment sizes (determined from the paired-end sequencing reads) should exhibit a strong nucleosome banding pattern corresponding to the length of DNA wrapped around a single nucleosome. We calculate this per single cell, and quantify the approximate ratio of mononucleosomal to nucleosome-free fragments (stored as nucleosome_signal)
 
-- Total number of fragments: A measure of cellular sequencing depth / complexity. Cells with very few reads may need to be excluded due to low sequencing depth. Cells with extremely high levels may represent doublets, nuclei clumps, or other artefacts.
+- *Transcriptional start site (TSS) enrichment score*: the ENCODE project has defined an ATAC-seq targeting score based on the ratio of fragments centered at the TSS to fragments in TSS-flanking regions (see https://www.encodeproject.org/data-standards/terms/). Poor ATAC-seq experiments typically will have a low TSS enrichment score. We can compute this metric for each cell with the TSSEnrichment() function, and the results are stored in metadata under the column name `TSS.enrichment`
+                 
+- *Total number of fragments*: A measure of cellular sequencing depth / complexity. Cells with very few reads may need to be excluded due to low sequencing depth. Cells with extremely high levels may represent doublets, nuclei clumps, or other artefacts.
 
-- Fraction of fragments in peaks: Represents the fraction of all fragments that fall within ATAC-seq peaks. Cells with low values (i.e. <15-20%) often represent low-quality cells or technical artifacts that should be removed. Note that this value can be sensitive to the set of peaks used.
+- *Fraction of fragments in peaks*: Represents the fraction of all fragments that fall within ATAC-seq peaks. Cells with low values (i.e. <15-20%) often represent low-quality cells or technical artifacts that should be removed. Note that this value can be sensitive to the set of peaks used.
 
-- Ratio reads in genomic blacklist regions The ENCODE project has provided a list of blacklist regions, representing reads which are often associated with artefactual signal. Cells with a high proportion of reads mapping to these areas (compared to reads mapping to peaks) often represent technical artifacts and should be removed. ENCODE blacklist regions for human (hg19 and GRCh38), mouse (mm10), Drosophila (dm3), and C. elegans (ce10) are included in the Signac package.
+- *Ratio reads in genomic blacklist regions*: The ENCODE project has provided a list of blacklist regions, representing reads which are often associated with artefactual signal. Cells with a high proportion of reads mapping to these areas (compared to reads mapping to peaks) often represent technical artifacts and should be removed. ENCODE blacklist regions for human (hg19 and GRCh38), mouse (mm10), Drosophila (dm3), and C. elegans (ce10) are included in the Signac package.
 
-" _Taken from https://satijalab.org/signac/articles/pbmc_vignette.html_
+Taken from https://satijalab.org/signac/articles/pbmc_vignette.html_
 
 
 
@@ -272,7 +272,7 @@ Active assay: ATAC (106086 features, 0 variable features)
 
 ## Call peaks and add peak counts matrix
 
-The set of peaks identified using Cellranger often merges distinct peaks that are close together. This can create a problem for certain analyses, particularly motif enrichment analysis and peak-to-gene linkage. To identify a more accurate set of peaks, we can call peaks using MACS2 with the CallPeaks() function (_Taken from: https://satijalab.org/signac/articles/pbmc_multiomic.html#linking-peaks-to-genes_).
+The set of peaks identified using Cellranger often merges distinct peaks that are close together. This can create a problem for certain analyses, particularly motif enrichment analysis and peak-to-gene linkage. To identify a more accurate set of peaks, we can call peaks using MACS2 with the `CallPeaks()` function (_Taken from: https://satijalab.org/signac/articles/pbmc_multiomic.html#linking-peaks-to-genes_).
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
