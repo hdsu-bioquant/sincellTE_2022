@@ -33,7 +33,7 @@ addArchRGenome("hg38")
 addArchRThreads(5)
 
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                    Load package and global settings                        ##
+##                               Create Arrow file                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 # Get fragment file
 inputFiles <- "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz"

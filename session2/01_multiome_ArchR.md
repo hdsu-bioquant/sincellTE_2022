@@ -32,7 +32,7 @@ addArchRGenome("hg38")
 addArchRThreads(5)
 
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-##                    Load package and global settings                        ##
+##                               Create Arrow file                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 # Get fragment file
 inputFiles <- list.files("data", pattern="fragments.tsv.gz$", full.names=TRUE)
@@ -719,6 +719,10 @@ ArchR includes a function to align a reference scRNA-seq dataset, and impute cel
 As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. Provided by 10x Genomics, and [pre-processed by the Satija Lab](https://github.com/satijalab/Integration2019/blob/master/preprocessing_scripts/pbmc_10k_v3.R). 
 
 ```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                            Cell type annotation                            ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+
 # Read reference
 reference <- readRDS("data/pbmc_10k_v3.rds")
 
