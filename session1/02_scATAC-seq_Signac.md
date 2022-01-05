@@ -402,6 +402,10 @@ In the case of Signac the gene activity matrix if computed by the following step
 
 
 ```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                            Gene activity matrix                            ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+
 gene_activities <- GeneActivity(signacobj)
 # add the gene activity matrix to the Seurat object as a new assay and normalize it
 
