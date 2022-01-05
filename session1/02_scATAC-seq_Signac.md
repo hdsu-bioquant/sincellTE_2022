@@ -452,6 +452,10 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 
 
 ```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                            Cell type annotation                            ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+
 reference <- readRDS("data/pbmc_10k_v3.rds")
 
 transfer_anchors <- FindTransferAnchors(
