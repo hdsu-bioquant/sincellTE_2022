@@ -39,6 +39,7 @@ addArchRThreads(5)
 inputFiles <- "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz"
 
 # Create Arrow file
+# Don't run!!! creating an Arrow file will take a long time, we will use a precomputed file
 createArrowFiles(inputFiles  = inputFiles, 
                  sampleNames = "PBMC_10k", 
                  QCDir       = "data/QualityControl",
