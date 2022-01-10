@@ -25,8 +25,18 @@ Here we are going to create an Arrow file from the fragments file: *pbmc_granulo
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                    Load package and global settings                        ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-## Setting default genome to Hg38.
+work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Single-cell_ATAC_analysis/")
+data_dir <- "/shared/projects/sincellte_2022/Courses/Single-cell_ATAC_analysis/input/data/"
+dir.create(work_dir, recursive = TRUE)
+setwd(work_dir)
+dir.create("results")
+
+# Load packages
 library(ArchR)
+library(parallel)
+library(patchwork)
+
+## Setting default genome to Hg38.
 addArchRGenome("hg38")
 
 ## Setting default number of Parallel threads to 5.
@@ -36,15 +46,15 @@ addArchRThreads(5)
 ##                               Create Arrow file                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 # Get fragment file
-inputFiles <- "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz"
+inputFiles <- paste0(data_dir, "pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz")
 
 # Create Arrow file
 # Don't run!!! creating an Arrow file will take a long time, we will use a precomputed file
 createArrowFiles(inputFiles  = inputFiles, 
                  sampleNames = "PBMC_10k", 
-                 QCDir       = "data/QualityControl",
+                 QCDir       = "results/QualityControl",
                  logFile     = createLogFile(name = "createArrows", 
-                                             logDir = "data/ArchRLogs"),
+                                             logDir = "results/ArchRLogs"),
                  force       = TRUE)
 
 ```
