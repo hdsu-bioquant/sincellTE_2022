@@ -92,15 +92,15 @@ Here are the links to the slides
 
 On the "scATAC-seq analysis" session we will focus on understanding the basic steps to perform a scATAC-seq data analysis. We wil use two of the most frequently used packages: ArchR and Signac. Additonally we will see a few tips to format the raw data in order to be used by these packages.
 
-1. [Chromatin accessibility analysis with ArchR](./session1/01_scATAC-seq_ArchR.md)
-2. [Chromatin accessibility analysis with Signac](./session1/02_scATAC-seq_Signac.md)
+1. [Chromatin accessibility analysis with Signac](./session1/02_scATAC-seq_Signac.md)
+2. [Chromatin accessibility analysis with ArchR](./session1/01_scATAC-seq_ArchR.md)
 3. [Tricks to compute Arrow files](./session1/03_scATAC-seq_ArchR_tricks.md)
                                
 ### Session 2 - Multi-omics integration
 
 On the "Multi-omics integration" session we will complete an integrative analysis of single-cell chromatin accessibility and transcriptome data, using ArchR and Signac.
 
-1. [Multiome analysis with ArchR](./session2/01_multiome_ArchR.md)
-2. [Multiome analysis with Signac](./session2/02_multiome_Signac.md)
+1. [Multiome analysis with Signac](./session2/02_multiome_Signac.md)
+2. [Multiome analysis with ArchR](./session2/01_multiome_ArchR.md)
 
 

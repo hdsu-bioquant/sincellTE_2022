@@ -179,15 +179,15 @@ Filtering out low quality cells and doublets:
 
 ```r
 p1 <- plotFragmentSizes(ArchRProj = archrproj) # ~3min
-p2 <- plotTSSEnrichment(ArchRProj = archrproj) # ~4min
+p2 <- plotTSSEnrichment(ArchRProj = archrproj) # ~5min
 p1 + p2
 
 # Low quality cells
 archrproj <- archrproj[archrproj$TSSEnrichment > 6 & archrproj$nFrags > 2500 ]
 
 # Filtering doublets
-archrproj <- addDoubletScores(archrproj)
-archrproj <- filterDoublets(archrproj)
+archrproj <- addDoubletScores(archrproj) # ~5min
+archrproj <- filterDoublets(archrproj)   
 
 archrproj
 ```
