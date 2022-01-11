@@ -63,9 +63,9 @@ inputFiles <- paste0(data_dir, "pbmc_granulocyte_sorted_10k_atac_fragments.tsv.g
 # Don't run!!! creating an Arrow file will take a long time (~20min), we will use a precomputed file
 createArrowFiles(inputFiles  = inputFiles, 
                  sampleNames = "PBMC_10k", 
-                 QCDir       = "results/QualityControl",
+                 QCDir       = "QualityControl",
                  logFile     = createLogFile(name = "createArrows", 
-                                             logDir = "results/ArchRLogs"),
+                                             logDir = "ArchRLogs"),
                  force       = TRUE)
 
 ```
@@ -255,6 +255,8 @@ archrproj
 <summary><b>Click for Answer</b></summary>
 
 <img src="figs/archr_atac_QC.png" width="90%" />
+
+<img src="figs/archr_atac_QC2.png" width="90%" />
 
 ```
 > archrproj <- addDoubletScores(archrproj)
@@ -451,6 +453,15 @@ plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_ATAC", size = 1.5,
 
 </details>
 
+### **Checkpoint 1**
+
+Key questions:
+
+- What happen if you change the `addClusters`'s resolution parameter?
+- Read the `addClusters`'s documentation and find how to change the number of dimensions to use.
+
+---
+
 
 ## Computing a gene activity matrix and marker genes
 
@@ -563,6 +574,8 @@ ArchR logging successful to : ArchRLogs/ArchR-addGeneIntegrationMatrix-2cdba6d0b
 
 First we have to define pseudo-bulk replicates to call peaks on them, ArchR merges cells within each designated cell group:
 
+Do not run!
+
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                       Defining pseudo-bulk replicates                      ##
@@ -587,6 +600,8 @@ ArchR logging successful to : ArchRLogs/ArchR-addGroupCoverages-2cdba30dbb619-Da
 </details>
 
 Now we can call peaks using the pseudo-bulk replicates, and add the peak matrix to our ArchR project:
+
+Do not run!
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -679,6 +694,10 @@ ArchR can also take into account differences in data quality between cell types 
 
 
 ```r
+# Copy the precomputed ArchR project and load it
+file.copy(paste0(data_dir, "archrproject03"), ".", recursive = TRUE)
+archrproj <- ArchR::loadArchRProject(path = "archrproject03")
+
 markersPeaks <- getMarkerFeatures(
     ArchRProj = archrproj, 
     useMatrix = "PeakMatrix", 
@@ -928,3 +947,11 @@ The footprinting plots can be found on the ArchR project output directory
 </details>
 
 
+### **Checkpoint 2**
+
+Key questions:
+
+- What motif databases can you use with ArchR?
+- What does a footprint represents?
+
+---
