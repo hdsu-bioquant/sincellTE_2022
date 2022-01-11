@@ -26,14 +26,21 @@ library(Seurat)
 library(EnsDb.Hsapiens.v86)
 library(BSgenome.Hsapiens.UCSC.hg38)
 
+# Setting up working directory
+work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Single-cell_ATAC_analysis/results")
+data_dir <- "/shared/projects/sincellte_2022/Courses/Single-cell_ATAC_analysis/input/data/"
+dir.create(work_dir, recursive = TRUE)
+setwd(work_dir)
+
+
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                              Load data                                     ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 # load the RNA and ATAC data
-counts <- Read10X_h5("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5")
+counts <- Read10X_h5(paste0(data_dir, "pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5"))
 # If the previous line fails, please use the following:
-# counts <- readRDS("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.RDS")
-fragments_files <- "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz"
+# counts <- readRDS(paste0(data_dir, "pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.RDS"))
+fragments_files <- paste0(data_dir, "pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz")
 
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                            Load annotation                                 ##
@@ -366,9 +373,9 @@ Signac uses latent semantic indexing (LSI) to reduce the data dimensionality as 
 ##                             Normalize ATAC data                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 DefaultAssay(signacobj) <- "peaks"
-signacobj <- FindTopFeatures(signacobj, min.cutoff = 5)
+signacobj <- FindTopFeatures(signacobj, min.cutoff = "q75")
 signacobj <- RunTFIDF(signacobj)
-signacobj <- RunSVD(signacobj)
+signacobj <- RunSVD(signacobj, n=20)
 
 # The first LSI component often captures sequencing depth (technical variation) 
 # rather than biological variation. If this is the case, the component should 
@@ -391,8 +398,8 @@ DepthCor(signacobj)
 Then we use the LSI results to perform UMAP and find clusters of cells:
 
 ```r
-signacobj <- RunUMAP(object = signacobj, reduction = 'lsi', dims = 2:30)
-signacobj <- FindNeighbors(object = signacobj, reduction = 'lsi', dims = 2:30)
+signacobj <- RunUMAP(object = signacobj, reduction = 'lsi', dims = 2:20)
+signacobj <- FindNeighbors(object = signacobj, reduction = 'lsi', dims = 2:20)
 signacobj <- FindClusters(object = signacobj, verbose = FALSE, algorithm = 3)
 DimPlot(object = signacobj, label = TRUE) + NoLegend()
 
@@ -419,7 +426,7 @@ In the case of Signac the gene activity matrix if computed by the following step
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                            Gene activity matrix                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-
+# ~8min
 gene_activities <- GeneActivity(signacobj)
 # add the gene activity matrix to the Seurat object as a new assay and normalize it
 
@@ -470,7 +477,7 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 ##                            Cell type annotation                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 
-reference <- readRDS("data/pbmc_10k_v3.rds")
+reference <- readRDS(paste0(data_dir, "pbmc_10k_v3.rds"))
 
 transfer_anchors <- FindTransferAnchors(
   reference = reference,
@@ -482,7 +489,7 @@ predicted_labels <- TransferData(
   anchorset = transfer_anchors,
   refdata   = reference$celltype,
   weight.reduction = signacobj[['lsi']],
-  dims = 2:30
+  dims = 2:20
 )
 
 signacobj <- AddMetaData(object = signacobj, metadata = predicted_labels)
