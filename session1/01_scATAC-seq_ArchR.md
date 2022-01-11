@@ -183,7 +183,9 @@ p2 <- plotTSSEnrichment(ArchRProj = archrproj) # ~5min
 p1 + p2
 
 # Low quality cells
-archrproj <- archrproj[archrproj$TSSEnrichment > 6 & archrproj$nFrags > 2500 ]
+archrproj <- archrproj[archrproj$TSSEnrichment > 6 &
+                         archrproj$nFrags > 2500  &
+                         archrproj$NucleosomeRatio < 2]
 
 # Filtering doublets
 archrproj <- addDoubletScores(archrproj) # ~5min

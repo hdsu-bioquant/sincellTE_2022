@@ -274,23 +274,37 @@ Active assay: ATAC (106086 features, 0 variable features)
 
 The set of peaks identified using Cellranger often merges distinct peaks that are close together. This can create a problem for certain analyses, particularly motif enrichment analysis and peak-to-gene linkage. To identify a more accurate set of peaks, we can call peaks using MACS2 with the `CallPeaks()` function (_Taken from: https://satijalab.org/signac/articles/pbmc_multiomic.html#linking-peaks-to-genes_).
 
+Do not run the next chunk!!!, as calling peaks and creating the feature matrix can take a long time. Instead we will read a precomputed feature matrix.
+
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                    Call peaks and make feature matrix                      ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-# Call peaks using MACS2
+# Call peaks using MACS2 ~10min
 peaks <- CallPeaks(signacobj, macs2.path = "/shared/software/miniconda/envs/macs2-2.2.7.1/bin/macs2")
 
 # remove peaks on nonstandard chromosomes and in genomic blacklist regions
 peaks <- keepStandardChromosomes(peaks, pruning.mode = "coarse")
 peaks <- subsetByOverlaps(x = peaks, ranges = blacklist_hg38_unified, invert = TRUE)
 
-# quantify counts in each peak
+# quantify counts in each peak ~15min
 macs2_counts <- FeatureMatrix(
   fragments = Fragments(signacobj),
   features  = peaks,
   cells     = colnames(signacobj)
 )
+````
+
+Load precompute feature matrix and add to the seurat object:
+
+```r
+# Read feature matrix and peaks
+peaks <- readRDS(paste0(data_dir, "signac_peaks.RDS"))
+macs2_counts <- readRDS(paste0(data_dir, "signac_macs2_counts.RDS"))
+
+signacobj <- signacobj[,colnames(signacobj) %in% colnames(macs2_counts)]
+macs2_counts <- macs2_counts[,colnames(signacobj)]
+
 
 # create a new assay using the MACS2 peak set and add it to the Seurat object
 signacobj[["peaks"]] <- CreateChromatinAssay(
