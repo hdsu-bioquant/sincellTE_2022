@@ -25,11 +25,11 @@ Here we are going to create an Arrow file from the fragments file: *pbmc_granulo
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                    Load package and global settings                        ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Single-cell_ATAC_analysis/")
+# Setting up working directory
+work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Single-cell_ATAC_analysis/results")
 data_dir <- "/shared/projects/sincellte_2022/Courses/Single-cell_ATAC_analysis/input/data/"
 dir.create(work_dir, recursive = TRUE)
 setwd(work_dir)
-dir.create("results")
 
 # Load packages
 library(ArchR)
@@ -49,7 +49,7 @@ addArchRThreads(5)
 inputFiles <- paste0(data_dir, "pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz")
 
 # Create Arrow file
-# Don't run!!! creating an Arrow file will take a long time, we will use a precomputed file
+# Don't run!!! creating an Arrow file will take a long time (~20min), we will use a precomputed file
 createArrowFiles(inputFiles  = inputFiles, 
                  sampleNames = "PBMC_10k", 
                  QCDir       = "results/QualityControl",
@@ -121,8 +121,13 @@ An ArchR project is created from a list of previously computed Arrow files
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                          Create ArchR project                              ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-archrproj <- ArchRProject(ArrowFiles = "PBMC_10k.arrow", 
-                     outputDirectory = "results/ArchROutput")
+# archrproj <- ArchRProject(ArrowFiles = paste0(data_dir, "PBMC_10k.arrow"), 
+#                           outputDirectory = "ArchROutput")
+# ArchR::saveArchRProject(archrproj, outputDirectory = paste0(data_dir, "archrproject01"))
+
+# Copy the precomputed ArchR project and load it
+file.copy(paste0(data_dir, "archrproject01"), ".", recursive = TRUE)
+archrproj <- ArchR::loadArchRProject(path = "archrproject01")
 ```
 
 <details>
@@ -173,8 +178,8 @@ Initializing ArchRProject...
 Filtering out low quality cells and doublets:
 
 ```r
-p1 <- plotFragmentSizes(ArchRProj = archrproj)
-p2 <- plotTSSEnrichment(ArchRProj = archrproj)
+p1 <- plotFragmentSizes(ArchRProj = archrproj) # ~3min
+p2 <- plotTSSEnrichment(ArchRProj = archrproj) # ~4min
 p1 + p2
 
 # Low quality cells
