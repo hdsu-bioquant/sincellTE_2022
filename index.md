@@ -88,6 +88,9 @@ Here are the links to the slides
 
 ## Practical sessions
 
+**Please document your progress in this [Google Sheet](https://docs.google.com/spreadsheets/d/1gUmKbjq6v0GTWz74U-ENYxffuFtLzN0wtYpor27KMe0/edit?usp=sharing)**
+
+
 ### Session 1 - scATAC-seq analysis
 
 On the "scATAC-seq analysis" session we will focus on understanding the basic steps to perform a scATAC-seq data analysis. We wil use two of the most frequently used packages: ArchR and Signac. Additonally we will see a few tips to format the raw data in order to be used by these packages.

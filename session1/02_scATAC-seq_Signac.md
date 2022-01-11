@@ -120,6 +120,9 @@ signacobj <- CreateSeuratObject(
   counts = chrom_assay,
   assay  = "ATAC"
 )
+rm(chrom_assay, counts)
+gc()
+
 
 # Add the gene information to the object, this allows downstream functions to 
 # pull the gene annotation information directly from the object.
@@ -426,8 +429,9 @@ In the case of Signac the gene activity matrix if computed by the following step
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                            Gene activity matrix                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-# ~8min
-gene_activities <- GeneActivity(signacobj)
+# gene_activities <- GeneActivity(signacobj) # Don't run! read percomputed object ~8min
+gene_activities <- readRDS(paste0(data_dir, "signac_gene_activities.RDS"))
+
 # add the gene activity matrix to the Seurat object as a new assay and normalize it
 
 head(signacobj@meta.data)
