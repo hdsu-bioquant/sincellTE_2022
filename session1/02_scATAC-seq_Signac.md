@@ -8,6 +8,7 @@ In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data prov
 
 The data was downloaded using the following commands:
 
+Do not run!
 ```
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz
@@ -279,6 +280,19 @@ Active assay: ATAC (106086 features, 0 variable features)
 
 </details>
 
+---
+
+### **Checkpoint 1**
+
+Key questions:
+
+- What is the FRiP?
+- Why do we blacklist some genomic regions?
+- How does the TSS enrichment score help us to remove low quality cells?
+- Is there a consensus set of thresholds to indentify low quality cells?
+
+---
+
 
 ## Call peaks and add peak counts matrix
 
@@ -416,6 +430,20 @@ DimPlot(object = signacobj, label = TRUE) + NoLegend()
 
 </details>
 
+
+---
+
+### **Checkpoint 2**
+
+Key questions:
+
+- How does the min.cutoff parameter from `FindTopFeatures` affects the final embedding?
+- What is the difference between Signac's `FindTopFeatures` and Seurat `FindVariableFeatures`?
+- How does the n parameter from `RunSVD` affects the final embedding?
+
+---
+
+
 ## Computing a gene activity matrix
 
 The activity of each gene can be measured from the scATAC-seq data by quantifying the chromatin accessibility associated with each gene.
@@ -521,3 +549,14 @@ DimPlot(
 <img src="figs/signac_atac_UMAP_celltypes.png" width="90%" />
 
 </details>
+
+---
+
+### **Checkpoint 3**
+
+Key questions:
+
+- What happen if you use less dimensions (dims) in the function `TransferData`
+- Which matrix is used by Signac's  `FindTransferAnchors` between a scRNA-seq reference and a scATAC-seq query?
+
+---

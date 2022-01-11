@@ -8,6 +8,7 @@ In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data prov
 
 The data was downloaded using the following commands:
 
+Do not run!
 ```
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz
@@ -42,6 +43,16 @@ addArchRGenome("hg38")
 ## Setting default number of Parallel threads to 5.
 addArchRThreads(5)
 
+# Copy the precomputed ArchR project and load it
+file.copy(paste0(data_dir, "archrproject02"), ".", recursive = TRUE)
+archrproj <- ArchR::loadArchRProject(path = "archrproject02")
+
+
+```
+
+Do not run!
+
+```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                               Create Arrow file                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -117,17 +128,15 @@ The quality control plots can be found in the directory specified in the _QCDir_
 
 An ArchR project is created from a list of previously computed Arrow files
 
+Do not run!
+
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                          Create ArchR project                              ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-# archrproj <- ArchRProject(ArrowFiles = paste0(data_dir, "PBMC_10k.arrow"), 
-#                           outputDirectory = "ArchROutput")
-# ArchR::saveArchRProject(archrproj, outputDirectory = paste0(data_dir, "archrproject01"))
+archrproj <- ArchRProject(ArrowFiles = paste0(data_dir, "PBMC_10k.arrow"), 
+                          outputDirectory = "ArchROutput")
 
-# Copy the precomputed ArchR project and load it
-file.copy(paste0(data_dir, "archrproject01"), ".", recursive = TRUE)
-archrproj <- ArchR::loadArchRProject(path = "archrproject01")
 ```
 
 <details>
@@ -177,19 +186,67 @@ Initializing ArchRProject...
 
 Filtering out low quality cells and doublets:
 
+Do not run!
+
 ```r
 p1 <- plotFragmentSizes(ArchRProj = archrproj) # ~3min
 p2 <- plotTSSEnrichment(ArchRProj = archrproj) # ~5min
 p1 + p2
+
+
+# Finding doublets
+archrproj <- addDoubletScores(archrproj)
+
+
+p1 <- ArchR::plotGroups(ArchRProj = archrproj, 
+                        groupBy = "Sample", 
+                        name = "log10(nFrags)",
+                        plotAs = "violin",
+                        alpha = 0.4,
+                        addBoxPlot = TRUE) +
+  ggtitle("nFrags")
+p2 <- ArchR::plotGroups(ArchRProj = archrproj, 
+                        groupBy = "Sample", 
+                        name = "TSSEnrichment",
+                        plotAs = "violin",
+                        alpha = 0.4,
+                        addBoxPlot = TRUE) +
+  ggtitle("TSSEnrichment")
+p3 <- ArchR::plotGroups(ArchRProj = archrproj, 
+                        groupBy = "Sample", 
+                        name = "BlacklistRatio",
+                        plotAs = "violin",
+                        alpha = 0.4,
+                        addBoxPlot = TRUE) +
+  ggtitle("BlacklistRatio")
+p4 <- ArchR::plotGroups(ArchRProj = archrproj, 
+                        groupBy = "Sample", 
+                        name = "NucleosomeRatio",
+                        plotAs = "violin",
+                        alpha = 0.4,
+                        addBoxPlot = TRUE) +
+  ggtitle("NucleosomeRatio")
+p5 <- ArchR::plotGroups(ArchRProj = archrproj, 
+                  groupBy = "Sample", 
+                  name = "DoubletScore",
+                  plotAs = "violin",
+                  alpha = 0.4,
+                  addBoxPlot = TRUE) +
+  ggtitle("DoubletScore")
+
+p1 + p2 + p3 + p4 + p5 + patchwork::plot_layout(nrow=1)
+
 
 # Low quality cells
 archrproj <- archrproj[archrproj$TSSEnrichment > 6 &
                          archrproj$nFrags > 2500  &
                          archrproj$NucleosomeRatio < 2]
 
+
 # Filtering doublets
-archrproj <- addDoubletScores(archrproj) # ~5min
-archrproj <- filterDoublets(archrproj)   
+archrproj <- filterDoublets(archrproj)
+
+
 
 archrproj
 ```
@@ -246,6 +303,8 @@ In the context of scATAC-seq and scRNA-seq data ArchR performs LSI following the
 4. Results in a word frequency-inverse document frequency (TF-IDF) matrix, which reflects how important a word (aka region/peak) is to a document (aka sample). 
 5. Perform singular value decomposition (SVD) on the TF-IDF matrix.
 _Modified from: https://www.archrproject.com/bookdown/dimensionality-reduction-with-archr.html_ 
+
+Do not run!
 
 ```r
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
@@ -442,7 +501,7 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 
 ```r
 # Read reference
-reference <- readRDS("data/pbmc_10k_v3.rds")
+reference <- readRDS(paste0(data_dir, "pbmc_10k_v3.rds"))
 
 # add gene integration matrix
 archrproj <- addGeneIntegrationMatrix(
