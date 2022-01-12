@@ -26,13 +26,22 @@ library(Seurat)
 library(EnsDb.Hsapiens.v86)
 library(BSgenome.Hsapiens.UCSC.hg38)
 
+
+# Setting up working directory
+work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Multi-Omics_Integration/results")
+data_dir <- "/shared/projects/sincellte_2022/Courses/Multi-Omics_Integration/input/data/"
+dir.create(work_dir, recursive = TRUE)
+setwd(work_dir)
+
+
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                              Load data                                     ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 # load the RNA and ATAC data
-counts <- Read10X_h5("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5")
+counts <- Read10X_h5(paste0(data_dir, "pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5"))
 # If the previous line fails, please use the following:
-# counts <- readRDS("data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.RDS")
+# counts <- readRDS(paste0(data_dir, "pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.RDS"))
+fragments_files <- paste0(data_dir, "pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz")
 
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                            Load annotation                                 ##
@@ -108,7 +117,7 @@ signacobj <- CreateSeuratObject(
 signacobj[["ATAC"]] <- CreateChromatinAssay(
   counts = counts$Peaks,
   sep = c(":", "-"),
-  fragments = "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz",
+  fragments = fragments_files,
   annotation = annotation
 )
 
@@ -167,7 +176,23 @@ Active assay: ATAC (108377 features, 0 variable features)
 </details>
 
 
+---
+
+### **Checkpoint 1**
+
+Key questions:
+
+- What extra metrics can be used for cell QC in a multiome dataset in comparison to a scATAC-seq?
+- Complete the QC with other metrics (hint: FRiP, ratio of reads in blacklisted regions).
+
+---
+
+
+
+
 ## Call peaks and add peak counts matrix
+
+Do not run the next chunk!!!, as calling peaks and creating the feature matrix can take a long time. Instead we will read a precomputed feature matrix.
 
 
 ```r
@@ -188,10 +213,23 @@ macs2_counts <- FeatureMatrix(
   cells = colnames(signacobj)
 )
 
+````
+
+Load precompute feature matrix and add to the seurat object:
+
+```r
+# Read feature matrix and peaks
+peaks <- readRDS(paste0(data_dir, "signac_peaks.RDS"))
+macs2_counts <- readRDS(paste0(data_dir, "signac_macs2_counts.RDS"))
+
+signacobj <- signacobj[,colnames(signacobj) %in% colnames(macs2_counts)]
+macs2_counts <- macs2_counts[,colnames(signacobj)]
+
+
 # create a new assay using the MACS2 peak set and add it to the Seurat object
 signacobj[["peaks"]] <- CreateChromatinAssay(
   counts = macs2_counts,
-  fragments = "data/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz",
+  fragments  = fragments_files,
   annotation = annotation
 )
 
@@ -255,9 +293,10 @@ signacobj <- RunPCA(signacobj)
 ##                             Normalize ATAC data                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 DefaultAssay(signacobj) <- "peaks"
-signacobj <- FindTopFeatures(signacobj, min.cutoff = 5)
+signacobj <- FindTopFeatures(signacobj, min.cutoff = "q75")
+length(VariableFeatures(signacobj))
 signacobj <- RunTFIDF(signacobj)
-signacobj <- RunSVD(signacobj)
+signacobj <- RunSVD(signacobj, n=20)
 
 ```
 
@@ -269,7 +308,7 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 
 ```r
 # load PBMC reference
-reference <- readRDS("data/pbmc_10k_v3.rds")
+reference <- readRDS(paste0(data_dir, "pbmc_10k_v3.rds"))
 
 # transfer cell type labels from reference to query
 DefaultAssay(signacobj) <- "RNA"

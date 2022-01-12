@@ -289,7 +289,7 @@ Key questions:
 - What is the FRiP?
 - Why do we blacklist some genomic regions?
 - How does the TSS enrichment score help us to remove low quality cells?
-- Is there a consensus set of thresholds to indentify low quality cells?
+- Is there a consensus set of thresholds to identify low quality cells?
 
 ---
 
