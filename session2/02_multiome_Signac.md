@@ -381,6 +381,7 @@ Key questions:
 - Make one UMAP embedding for the gene expression and another for the chromatin accessibility layers without combining them (hint: use the reduction.name param in the `RunUMAP` function to save your new embeddings alonside with the combined one).
 - Do you find any differences between the combined, RNA, and ATAC UMAPs?
 - For this particular dataset, which genomic layer do you consider is more informative for clustering?
+- Make another UMAP embedding for the "peaks" assay, but using PCA instead of LSI to reduce the dimension of the dataset. Do you find any differences? (Hint: select less components _npcs_ if you get a timeout error while using the `RunPCA` function).
 
 ---
 
