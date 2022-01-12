@@ -347,7 +347,7 @@ Signac uses the weighted nearest neighbor methods in Seurat v4, where a joint ne
 signacobj <- FindMultiModalNeighbors(
   object = signacobj,
   reduction.list = list("pca", "lsi"), 
-  dims.list = list(1:50, 2:40),
+  dims.list = list(1:50, 2:20),
   modality.weight.name = "RNA.weight",
   verbose = TRUE
 )
