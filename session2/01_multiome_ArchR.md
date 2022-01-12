@@ -24,6 +24,13 @@ Here we are going to create an arrow file from the fragments file: *pbmc_granulo
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                    Load package and global settings                        ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+# Setting up working directory
+work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Multi-Omics_Integration/results")
+data_dir <- "/shared/projects/sincellte_2022/Courses/Multi-Omics_Integration/input/data/"
+dir.create(work_dir, recursive = TRUE)
+setwd(work_dir)
+
+
 ## Setting default genome to Hg38.
 library(ArchR)
 addArchRGenome("hg38")
@@ -35,15 +42,15 @@ addArchRThreads(5)
 ##                               Create Arrow file                            ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 # Get fragment file
-inputFiles <- list.files("data", pattern="fragments.tsv.gz$", full.names=TRUE)
-names(inputFiles) <- "PBMC_10k"
+# Get fragment file
+inputFiles <- paste0(data_dir, "pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz")
 
 # Create Arrow file
 createArrowFiles(inputFiles  = inputFiles, 
                  sampleNames = "PBMC_10k", 
-                 QCDir       = "data/QualityControl",
+                 QCDir       = "QualityControl",
                  logFile     = createLogFile(name = "createArrows", 
-                                             logDir = "data/ArchRLogs"),
+                                             logDir = "ArchRLogs"),
                  force       = TRUE)
 
 ```
@@ -87,7 +94,7 @@ An ArchR project is created from a list of previously computed Arrow files
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 ##                          Create ArchR project                              ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
-archrproj <- ArchRProject(ArrowFiles = "PBMC_10k.arrow", 
+archrproj <- ArchRProject(ArrowFiles = paste0(data_dir, "PBMC_10k.arrow"), 
                      outputDirectory = "results/ArchROutput")
 ```
 
@@ -145,7 +152,7 @@ First we have to import the feature matrix from the 10x feature hdf5 file:
 ##                          Adding scRNA-seq data                             ##
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 scRNA <- import10xFeatureMatrix(
-    input = "data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5",
+    input = paste0(data_dir, "pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5"),
     names = "PBMC_10k")
 scRNA
 ```
@@ -724,7 +731,7 @@ As a reference, we will use a pre-processed scRNA-seq dataset for human PBMCs. P
 ##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
 
 # Read reference
-reference <- readRDS("data/pbmc_10k_v3.rds")
+reference <- readRDS(paste0(data_dir, "pbmc_10k_v3.rds"))
 
 # add gene integration matrix
 archrproj2 <- addGeneIntegrationMatrix(
