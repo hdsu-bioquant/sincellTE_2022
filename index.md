@@ -97,7 +97,7 @@ On the "scATAC-seq analysis" session we will focus on understanding the basic st
 
 1. [Chromatin accessibility analysis with Signac](./session1/02_scATAC-seq_Signac.md)
 2. [Chromatin accessibility analysis with ArchR](./session1/01_scATAC-seq_ArchR.md)
-3. [Tricks to compute Arrow files](./session1/03_scATAC-seq_ArchR_tricks.md)
+<!-- 3. [Tricks to compute Arrow files](./session1/03_scATAC-seq_ArchR_tricks.md) -->
                                
 ### Session 2 - Multi-omics integration
 

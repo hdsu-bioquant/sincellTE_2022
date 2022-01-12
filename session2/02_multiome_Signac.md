@@ -370,6 +370,22 @@ DimPlot(signacobj, label = TRUE, repel = TRUE, reduction = "umap") + NoLegend()
 
 </details>
 
+
+
+---
+
+### **Checkpoint 2**
+
+Key questions:
+
+- Make one UMAP embedding for the gene expression and another for the chromatin accessibility layers without combining them (hint: use the reduction.name param in the `RunUMAP` function to save your new embeddings alonside with the combined one).
+- Do you find any differences between the combined, RNA, and ATAC UMAPs?
+- For this particular dataset, which genomic layer do you consider is more informative for clustering?
+
+---
+
+
+
 ## Finding peak to gene links
 
 Signac can find the set of peaks that may regulate each gene by computing the correlation between gene expression and accessibility at nearby peaks, and correcting for bias due to GC content, overall accessibility, and peak size.
@@ -427,3 +443,24 @@ patchwork::wrap_plots(p1, p2, ncol = 1)
 <img src="figs/signac_links.png" width="90%" />
 
 </details>
+
+--- 
+
+### **Checkpoint 3**
+
+Key questions:
+
+- Compute the peak to gene links on the original peaks from Cell Ranger (Stored on the _ATAC_ assay).
+- Do you find any differences between the peak to gene links computed using the macs2 or the Cell Ranger peaks?
+
+Hint:
+If you encounter problems while computing the GC content of the 10x peaks, it might be do to different scaffolds' names used in the 10x peaks. It can solved by keeping only the main chromosomes.
+To solve it you can use these lines:
+
+```r
+main.chroms <- standardChromosomes(BSgenome.Hsapiens.UCSC.hg38)
+keep.peaks <- which(as.character(seqnames(granges(signacobj))) %in% main.chroms)
+signacobj[["ATAC"]] <- subset(signacobj[["ATAC"]], features = rownames(signacobj[["ATAC"]])[keep.peaks])
+```
+
+---
