@@ -2,6 +2,32 @@
 
 # Multiome scRNA-seq/scATAC-seq analysis with Signac
 
+---
+**NOTE**
+
+To save time we will start from teh **Normalize data** section.
+Please run the following lines to read a precomputed object:
+
+```r
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+##                              Load data                                     ##
+##––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––##
+library(Signac)
+library(Seurat)
+
+# Setting up working directory
+work_dir <- paste0("/shared/projects/sincellte_2022/", Sys.getenv('USER'), "/Multi-Omics_Integration/results")
+data_dir <- "/shared/projects/sincellte_2022/Courses/Multi-Omics_Integration/input/data/"
+dir.create(work_dir, recursive = TRUE)
+setwd(work_dir)
+signacobj <- readRDS(paste0(data_dir, "signac_final.RDS"))
+
+```
+
+
+---
+
+
 ## Data download
 
 In this tutorial we will use the scRNA-seq/scATAC-seq multiome example data provided by 10x Genomics for human PBMCs.
@@ -213,9 +239,9 @@ macs2_counts <- FeatureMatrix(
   cells = colnames(signacobj)
 )
 
-````
+```
 
-Load precompute feature matrix and add to the seurat object:
+Load precomputed feature matrix and add to the seurat object:
 
 ```r
 # Read feature matrix and peaks
