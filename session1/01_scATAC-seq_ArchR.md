@@ -453,6 +453,8 @@ plotEmbedding(archrproj, name = "Clusters", embedding = "UMAP_ATAC", size = 1.5,
 
 </details>
 
+---
+
 ### **Checkpoint 1**
 
 Key questions:
@@ -946,6 +948,7 @@ The footprinting plots can be found on the ArchR project output directory
 
 </details>
 
+---
 
 ### **Checkpoint 2**
 
